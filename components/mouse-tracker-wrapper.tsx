@@ -37,9 +37,9 @@ export default function MouseTrackerWrapper() {
 
   const cursorColor = isDarkTheme
     ? "rgba(79, 172, 254, 0.15)"
-    : "rgba(79, 70, 229, 0.15)";
+    : "rgba(30, 64, 175, 0.15)"; // Darker blue for light mode for better visibility
 
-  const cursorOpacity = isDarkTheme ? 0.6 : 0.5;
+  const cursorOpacity = isDarkTheme ? 0.6 : 0.4; // Slightly less opacity in light mode
 
   return (
     <MouseTracker

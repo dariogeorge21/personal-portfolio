@@ -84,12 +84,47 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  /* Enhanced glassmorphism for better contrast with background image */
   .glassmorphism {
-    @apply bg-background/40 backdrop-blur-md border border-border/50 shadow-lg;
+    @apply backdrop-blur-md border border-border/50 shadow-lg;
+  }
+
+  /* Light mode specific styles */
+  .light .glassmorphism {
+    @apply bg-white/70 shadow-xl;
+  }
+
+  /* Dark mode specific styles */
+  .dark .glassmorphism {
+    @apply bg-background/40;
+  }
+
+  /* Content cards for light mode */
+  .light .content-card {
+    @apply bg-white/80 shadow-lg;
+  }
+
+  /* Content cards for dark mode */
+  .dark .content-card {
+    @apply bg-background/80;
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600;
+  }
+
+  /* Light mode text gradient */
+  .light .text-gradient {
+    @apply from-blue-600 to-purple-800;
+  }
+
+  /* Light mode text colors */
+  .light .text-foreground {
+    @apply text-gray-800;
+  }
+
+  .light .text-muted-foreground {
+    @apply text-gray-600;
   }
 
   .border-gradient {
@@ -98,6 +133,16 @@
 
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(79,172,254,0.5)];
+  }
+
+  /* Light mode navbar */
+  .light .navbar-blur {
+    @apply bg-white/80 backdrop-blur-xl border-gray-200/50 shadow-md;
+  }
+
+  /* Dark mode navbar */
+  .dark .navbar-blur {
+    @apply bg-background/60 backdrop-blur-xl border-border/50 shadow-lg;
   }
 }
 

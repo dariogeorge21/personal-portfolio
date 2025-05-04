@@ -35,17 +35,17 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navVariants = {
     hidden: { y: -100, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
-      transition: { 
+      transition: {
         type: "spring",
         stiffness: 100,
         damping: 20
@@ -56,12 +56,12 @@ export default function Navbar() {
   const linkVariants = {
     initial: { y: -4, opacity: 0 },
     animate: { y: 0, opacity: 1 },
-    hover: { 
+    hover: {
       scale: 1.05,
-      transition: { 
-        type: "spring", 
-        stiffness: 400, 
-        damping: 10 
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10
       }
     }
   };
@@ -73,8 +73,8 @@ export default function Navbar() {
       variants={navVariants}
       className={cn(
         'fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300',
-        scrolled 
-          ? 'bg-background/60 backdrop-blur-xl border-b border-border/50 shadow-lg'
+        scrolled
+          ? 'navbar-blur border-b'
           : 'bg-transparent'
       )}
     >
@@ -125,7 +125,7 @@ export default function Navbar() {
                 </Link>
               </motion.div>
             ))}
-            
+
             {/* Theme toggle button */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -191,7 +191,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </Button>
             </motion.div>
-            
+
             {/* Mobile menu button */}
             <motion.div
               whileTap={{ scale: 0.9 }}
@@ -227,9 +227,9 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="md:hidden overflow-hidden px-4 pb-4 bg-background/80 backdrop-blur-md"
+            className="md:hidden overflow-hidden px-4 pb-4 navbar-blur"
           >
-            <motion.div 
+            <motion.div
               className="flex flex-col space-y-2"
               variants={{
                 open: {
@@ -242,7 +242,7 @@ export default function Navbar() {
               initial="closed"
               animate="open"
             >
-              {navLinks.map((link, index) => (
+              {navLinks.map((link) => (
                 <motion.div
                   key={link.path}
                   variants={{
