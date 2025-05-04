@@ -162,8 +162,8 @@ function SkillCard({ skill, index, inView }: SkillCardProps) {
 }
 
 const frontendSkills: Skill[] = [
-  { name: "HTML", level: 85 },
-  { name: "CSS", level: 80 },
+  { name: "HTML", level: 95 },
+  { name: "CSS", level: 90 },
   { name: "JavaScript", level: 75 },
   { name: "TypeScript", level: 70 },
   { name: "NextJS", level: 65 },
@@ -174,48 +174,48 @@ const frontendSkills: Skill[] = [
 ];
 
 const backendSkills: Skill[] = [
-  { name: "Python", level: 80 },
-  { name: "C Programming", level: 75 },
-  { name: "C++", level: 70 },
+  { name: "Python", level: 85 },
+  { name: "C Programming", level: 85 },
+  { name: "C++", level: 75 },
   { name: "MySQL", level: 75 },
-  { name: "Java (Learning)", level: 60 },
-  { name: "DSA Fundamentals", level: 65 },
+  { name: "Java (Learning)", level: 30 },
+  { name: "DSA Fundamentals", level: 40 },
   { name: "Backend Basics", level: 60 },
   { name: "Database Concepts", level: 70 },
   { name: "API Fundamentals", level: 65 }
 ];
 
 const toolsSkills: Skill[] = [
-  { name: "Git", level: 70 },
-  { name: "VS Code", level: 85 },
+  { name: "Git", level: 90 },
+  { name: "VS Code", level: 95 },
   { name: "Computer Hardware", level: 80 },
-  { name: "Troubleshooting", level: 75 },
-  { name: "Windows OS", level: 85 },
+  { name: "Linux OS", level: 85 },
+  { name: "Windows OS", level: 95 },
   { name: "Basic Networking", level: 70 },
   { name: "Development Tools", level: 75 },
-  { name: "GitHub", level: 70 },
-  { name: "Command Line", level: 65 }
+  { name: "GitHub", level: 90 },
+  { name: "Command Line", level: 85 }
 ];
 
 const otherSkills: Skill[] = [
   { name: "Prompt Engineering", level: 75 },
-  { name: "English", level: 90 },
-  { name: "Malayalam", level: 95 },
-  { name: "Hindi", level: 85 },
-  { name: "Tamil", level: 75 },
-  { name: "Problem Solving", level: 80 },
+  { name: "English", level: 95 },
+  { name: "Malayalam", level: 85 },
+  { name: "Hindi", level: 95 },
+  { name: "Tamil", level: 85 },
+  { name: "Problem Solving", level: 70 },
   { name: "Self-Learning", level: 85 },
-  { name: "Time Management", level: 75 },
-  { name: "Adaptability", level: 80 }
+  { name: "Time Management", level: 85 },
+  { name: "Adaptability", level: 90 }
 ];
 
 const professionalSkills: Skill[] = [
   { name: "Communication", level: 85 },
-  { name: "Teamwork", level: 80 },
+  { name: "Teamwork", level: 90 },
   { name: "Problem Solving", level: 85 },
   { name: "Critical Thinking", level: 80 },
   { name: "Learning Agility", level: 90 },
   { name: "Attention to Detail", level: 85 },
   { name: "Time Management", level: 80 },
-  { name: "Adaptability", level: 85 }
+  { name: "Adaptability", level: 95 }
 ];
