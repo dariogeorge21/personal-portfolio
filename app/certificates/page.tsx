@@ -14,34 +14,34 @@ export default function CertificatesPage() {
   return (
     <div className="pt-24 pb-16">
       <BackgroundParticles />
-      
+
       <div className="container mx-auto px-4">
         <SectionHeading
           title="Certifications"
           subtitle="Professional certifications and qualifications I've earned throughout my career"
           centered
         />
-        
+
         {/* Certificates Grid */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
           {certificates.map((certificate, index) => (
             <CertificateCard key={index} certificate={certificate} index={index} />
           ))}
         </div>
-        
+
         {/* Professional Memberships */}
-        <div>
+        {/* <div>
           <SectionHeading
             title="Professional Memberships"
             subtitle="Organizations and professional bodies I'm affiliated with"
           />
-          
+
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {memberships.map((membership, index) => (
               <MembershipCard key={index} membership={membership} index={index} />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -62,7 +62,7 @@ function CertificateCard({ certificate, index }: { certificate: Certificate; ind
     triggerOnce: true,
     threshold: 0.1
   });
-  
+
   return (
     <motion.div
       ref={ref}
@@ -80,7 +80,7 @@ function CertificateCard({ certificate, index }: { certificate: Certificate; ind
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
-        
+
         <div className="flex-grow">
           <div className="flex items-start justify-between mb-4">
             <div>
@@ -92,7 +92,7 @@ function CertificateCard({ certificate, index }: { certificate: Certificate; ind
               <span>{certificate.date}</span>
             </div>
           </div>
-          
+
           <div className="mb-4">
             <h4 className="text-sm text-muted-foreground mb-2">Skills</h4>
             <div className="flex flex-wrap gap-2">
@@ -106,12 +106,12 @@ function CertificateCard({ certificate, index }: { certificate: Certificate; ind
               ))}
             </div>
           </div>
-          
+
           <div className="text-sm text-muted-foreground mb-4">
             <span className="font-medium">Credential ID:</span> {certificate.credentialId}
           </div>
         </div>
-        
+
         <Button variant="outline" className="border-gradient" asChild>
           <Link href={certificate.credentialLink} target="_blank" rel="noopener noreferrer">
             View Credential <ExternalLink className="ml-2 h-4 w-4" />
@@ -135,7 +135,7 @@ function MembershipCard({ membership, index }: { membership: Membership; index: 
     triggerOnce: true,
     threshold: 0.1
   });
-  
+
   return (
     <motion.div
       ref={ref}
@@ -156,7 +156,7 @@ function MembershipCard({ membership, index }: { membership: Membership; index: 
             <span>Member since {membership.since}</span>
           </div>
         </div>
-        
+
         <div className="mt-4 pt-4 border-t border-border/50">
           <Link
             href={membership.website}
@@ -175,81 +175,49 @@ function MembershipCard({ membership, index }: { membership: Membership; index: 
 
 const certificates: Certificate[] = [
   {
+    name: "Docker Advanced Assessment",
+    issuer: "LearnTube.ai",
+    date: "March 2025",
+    credentialId: "DJA-B-1-1107045-0",
+    credentialLink: "#",
+    imageUrl: "/certificates/docker.jpg",
+    skills: ["Docker", "Containerization", "DevOps", "CI/CD"]
+  },
+  {
     name: "UI/UX Fundamentals",
-    issuer: "",
-    date: "May 2023",
-    credentialId: "AWS-ASA-12345",
+    issuer: "LearnTube.ai",
+    date: "March 2025",
+    credentialId: "DJA-B-1-1099295-0",
     credentialLink: "#",
-    imageUrl: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    skills: ["AWS", "Cloud Architecture", "DevOps", "Security"]
+    imageUrl: "/certificates/ui-ux.jpg",
+    skills: ["UI Design", "UX Design", "User Research", "Prototyping"]
   },
   {
-    name: "Google Professional Cloud Developer",
-    issuer: "Google Cloud",
-    date: "November 2022",
-    credentialId: "GCP-PCD-67890",
+    name: "Lumino Hackathon",
+    issuer: "Saintgits College of Engineering",
+    date: "February 2025",
+    credentialId: "NA",
     credentialLink: "#",
-    imageUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    skills: ["Google Cloud", "App Engine", "Kubernetes", "Cloud Functions"]
+    imageUrl: "/certificates/lumino.jpg",
+    skills: ["Next.js", "Firebase", "Tailwind CSS", "Vercel"]
   },
   {
-    name: "Microsoft Certified: Azure Developer Associate",
-    issuer: "Microsoft",
-    date: "August 2022",
-    credentialId: "MCADA-54321",
+    name: "Asthra 9.0 Volunteer",
+    issuer: "St. Joseph's College of Engineering and Technology",
+    date: "March 2025",
+    credentialId: "NA",
     credentialLink: "#",
-    imageUrl: "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    skills: ["Azure", "Cloud Services", ".NET", "Azure Functions"]
+    imageUrl: "/certificates/asthra9.png",
+    skills: ["Linux", "Virtualization", "Mediapipe", "OpenCV"]
   },
-  {
-    name: "Certified Kubernetes Administrator (CKA)",
-    issuer: "Cloud Native Computing Foundation",
-    date: "March 2022",
-    credentialId: "CKA-09876",
-    credentialLink: "#",
-    imageUrl: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    skills: ["Kubernetes", "Container Orchestration", "DevOps", "Docker"]
-  },
-  {
-    name: "TensorFlow Developer Certificate",
-    issuer: "Google",
-    date: "January 2022",
-    credentialId: "TF-DEV-24680",
-    credentialLink: "#",
-    imageUrl: "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    skills: ["TensorFlow", "Machine Learning", "Deep Learning", "AI"]
-  },
-  {
-    name: "React Certification",
-    issuer: "Meta",
-    date: "October 2021",
-    credentialId: "META-REACT-13579",
-    credentialLink: "#",
-    imageUrl: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    skills: ["React", "JavaScript", "Frontend Development", "Redux"]
-  }
 ];
 
 const memberships: Membership[] = [
   {
-    organization: "IEEE Computer Society",
-    type: "Professional Member",
-    since: "2019",
-    description: "The IEEE Computer Society is the world's leading organization of computer professionals, offering resources and networking opportunities.",
-    website: "#"
-  },
-  {
-    organization: "Association for Computing Machinery (ACM)",
-    type: "Professional Member",
-    since: "2018",
-    description: "ACM brings together computing educators, researchers, and professionals to inspire dialogue and share resources to address the field's challenges.",
-    website: "#"
-  },
-  {
-    organization: "Cloud Native Computing Foundation",
-    type: "Silver Member",
-    since: "2020",
-    description: "CNCF hosts critical components of the global technology infrastructure, serving as the vendor-neutral home for projects like Kubernetes.",
+    organization: "NA",
+    type: "NA",
+    since: "NA",
+    description: "NA",
     website: "#"
   }
 ];
