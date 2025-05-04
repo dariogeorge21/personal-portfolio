@@ -175,8 +175,8 @@ function MembershipCard({ membership, index }: { membership: Membership; index: 
 
 const certificates: Certificate[] = [
   {
-    name: "AWS Certified Solutions Architect - Professional",
-    issuer: "Amazon Web Services",
+    name: "UI/UX Fundamentals",
+    issuer: "",
     date: "May 2023",
     credentialId: "AWS-ASA-12345",
     credentialLink: "#",

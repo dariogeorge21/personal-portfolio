@@ -4,10 +4,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
-  fontLoaders: [
-    { loader: '@next/font/google', options: { timeout: 30000 } }
-  ]
+  images: { unoptimized: true }
 };
 
 module.exports = nextConfig;
