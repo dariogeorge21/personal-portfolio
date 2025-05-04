@@ -2,10 +2,11 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
+import { LoadingProvider } from '@/components/loading-provider';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 
-const spaceGrotesk = Space_Grotesk({ 
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
 });
@@ -24,11 +25,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={spaceGrotesk.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div className="min-h-screen bg-gradient-to-b from-background to-background/90 flex flex-col">
-            <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
+          <LoadingProvider>
+            <div className="min-h-screen bg-gradient-to-b from-background to-background/90 flex flex-col">
+              <Navbar />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+          </LoadingProvider>
         </ThemeProvider>
       </body>
     </html>

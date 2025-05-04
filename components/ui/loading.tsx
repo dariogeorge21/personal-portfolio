@@ -1,40 +1,38 @@
 import React from 'react';
-import styled from 'styled-components';
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
-const Loader = () => {
+const Loader = ({ className }: { className?: string }) => {
   return (
-    <StyledWrapper>
-      <div className="spinner">
-        <div className="spinner1" />
+    <div className={cn("flex flex-col items-center justify-center gap-4", className)}>
+      <div className="relative w-24 h-24">
+        <motion.div
+          className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-600"
+          animate={{
+            rotate: 360,
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: { duration: 1.5, repeat: Infinity, ease: "linear" },
+            scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          }}
+          style={{
+            filter: "blur(1px)",
+            boxShadow: "0px 0px 20px 0px rgba(79, 172, 254, 0.5), 0px 0px 30px 0px rgba(79, 172, 254, 0.3)"
+          }}
+        />
+        <div className="absolute inset-2 rounded-full bg-background" />
       </div>
-    </StyledWrapper>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+      >
+        <p className="text-gradient font-medium">Loading...</p>
+      </motion.div>
+    </div>
   );
 }
-
-const StyledWrapper = styled.div`
-  .spinner {
-    background-image: linear-gradient(rgb(186, 66, 255) 35%,rgb(0, 225, 255));
-    width: 100px;
-    height: 100px;
-    animation: spinning82341 1.7s linear infinite;
-    text-align: center;
-    border-radius: 50px;
-    filter: blur(1px);
-    box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
-  }
-
-  .spinner1 {
-    background-color: rgb(36, 36, 36);
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    filter: blur(10px);
-  }
-
-  @keyframes spinning82341 {
-    to {
-      transform: rotate(360deg);
-    }
-  }`;
 
 export default Loader;
