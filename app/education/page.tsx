@@ -3,11 +3,9 @@
 import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { GlassmorphicCard } from '@/components/glassmorphic-card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useInView } from 'react-intersection-observer';
 import BackgroundParticles from '@/components/background-particles';
-import { Award, BookOpen, Calendar, MapPin } from 'lucide-react';
-import Link from 'next/link';
+import { Award, Calendar, MapPin } from 'lucide-react';
 
 export default function EducationPage() {
   const { ref, inView } = useInView({
@@ -21,37 +19,16 @@ export default function EducationPage() {
 
       <div className="container mx-auto px-4">
         <SectionHeading
-          title="Education & Certifications"
-          subtitle="My academic journey and professional qualifications"
+          title="Education"
+          subtitle="My academic journey and qualifications"
           centered
         />
 
-        <Tabs defaultValue="education" className="w-full mb-20">
-          <div className="flex justify-center mb-8">
-            <TabsList className="glassmorphism">
-              <TabsTrigger value="education">Education</TabsTrigger>
-              <TabsTrigger value="certifications">Certifications</TabsTrigger>
-            </TabsList>
-          </div>
-
-          {/* Education Tab */}
-          <TabsContent value="education">
-            <div className="grid gap-8" ref={ref}>
-              {educationData.map((edu, index) => (
-                <EducationCard key={index} education={edu} index={index} inView={inView} />
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* Certifications Tab */}
-          <TabsContent value="certifications">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certifications.map((cert, index) => (
-                <CertificationCard key={index} certification={cert} index={index} inView={inView} />
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+        <div className="grid gap-8 mb-20" ref={ref}>
+          {educationData.map((edu, index) => (
+            <EducationCard key={index} education={edu} index={index} inView={inView} />
+          ))}
+        </div>
 
         {/* Skills & Achievements */}
         <div>
@@ -146,70 +123,6 @@ function EducationCard({ education, index, inView }: EducationCardProps) {
   );
 }
 
-interface Certification {
-  name: string;
-  issuer: string;
-  date: string;
-  credentialLink: string;
-  logo?: string;
-}
-
-interface CertificationCardProps {
-  certification: Certification;
-  index: number;
-  inView: boolean;
-}
-
-function CertificationCard({ certification, index, inView }: CertificationCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
-    >
-      <GlassmorphicCard className="h-full flex flex-col">
-        <div className="flex-grow">
-          <div className="text-primary mb-4">
-            <Award className="w-6 h-6" />
-          </div>
-          <h3 className="text-lg font-bold mb-1">{certification.name}</h3>
-          <p className="text-muted-foreground mb-4">{certification.issuer}</p>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4 mr-2" />
-            <span>{certification.date}</span>
-          </div>
-        </div>
-
-        <div className="mt-4 pt-4 border-t border-border/50">
-          <Link
-            href={certification.credentialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 text-sm flex items-center"
-          >
-            View Credential
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="ml-1"
-            >
-              <path d="M7 7h10v10"></path>
-              <path d="M7 17 17 7"></path>
-            </svg>
-          </Link>
-        </div>
-      </GlassmorphicCard>
-    </motion.div>
-  );
-}
-
 const educationData: Education[] = [
   {
     degree: "BTech in Computer Science and Engineering",
@@ -249,50 +162,11 @@ const educationData: Education[] = [
   }
 ];
 
-const certifications: Certification[] = [
-  {
-    name: "Python Programming",
-    issuer: "Self-Learning",
-    date: "2023",
-    credentialLink: "#",
-  },
-  {
-    name: "HTML & CSS Fundamentals",
-    issuer: "Self-Learning",
-    date: "2023",
-    credentialLink: "#",
-  },
-  {
-    name: "JavaScript Basics",
-    issuer: "Self-Learning",
-    date: "2023",
-    credentialLink: "#",
-  },
-  {
-    name: "TypeScript Introduction",
-    issuer: "Self-Learning",
-    date: "2024",
-    credentialLink: "#",
-  },
-  {
-    name: "NextJS Framework",
-    issuer: "Self-Learning",
-    date: "2024",
-    credentialLink: "#",
-  },
-  {
-    name: "Computer Hardware Basics",
-    issuer: "Self-Learning",
-    date: "2023",
-    credentialLink: "#",
-  }
-];
-
 const achievements = [
   {
     title: "Strong Academic Performance",
     description: "Maintaining a GPA of 8.9 in BTech Computer Science and Engineering program.",
-    year: "2024"
+    year: "2025"
   },
   {
     title: "Higher Secondary Achievement",
@@ -302,21 +176,21 @@ const achievements = [
   {
     title: "Multilingual Proficiency",
     description: "Proficient in four languages: English, Malayalam, Hindi, and Tamil, enabling effective communication across diverse environments.",
-    year: "Present"
+    year: "2021-Present"
   },
   {
     title: "Self-Taught Programming",
     description: "Independently learned multiple programming languages and web development technologies.",
-    year: "2023-2024"
+    year: "2022-Present"
   },
   {
     title: "Frontend Development Projects",
     description: "Created personal projects to practice and demonstrate skills in HTML, CSS, JavaScript, and TypeScript.",
-    year: "2023-2024"
+    year: "2024-Present"
   },
   {
     title: "Computer Hardware Knowledge",
     description: "Developed comprehensive understanding of computer hardware components and troubleshooting techniques.",
-    year: "2023"
+    year: "2020-2022"
   }
 ];
