@@ -21,7 +21,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
@@ -31,15 +30,6 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const navVariants = {
     visible: {
       y: 0,
@@ -47,23 +37,6 @@ export default function Navbar() {
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
-  // Animation for the navbar when scrolling
-  const scrollAnimation = {
-    notScrolled: {
-      boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
-      y: 0
-    },
-    scrolled: {
-      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 260,
         damping: 20
       }
     }
@@ -84,21 +57,16 @@ export default function Navbar() {
 
   return (
     <motion.header
-      animate={scrolled ? "scrolled" : "visible"}
-      variants={{
-        visible: navVariants.visible,
-        scrolled: scrollAnimation.scrolled,
-        notScrolled: scrollAnimation.notScrolled
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 20
       }}
-      className={cn(
-        'fixed z-50 transition-colors duration-300',
-        'top-[16px] left-[80px] right-[80px] rounded-full',
-        scrolled
-          ? 'navbar-blur'
-          : 'bg-transparent'
-      )}
+      className="fixed z-50 top-[20px] left-[16px] right-[16px] rounded-xl navbar-blur max-w-6xl mx-auto left-0 right-0"
     >
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-4 py-3 relative z-10 max-w-5xl">
         <nav className="flex items-center justify-between h-[40px]">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -127,10 +95,10 @@ export default function Navbar() {
                 <Link
                   href={link.path}
                   className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200',
+                    'px-3 py-2 text-sm font-medium rounded-xl transition-all duration-200',
                     'min-w-[44px] min-h-[44px] flex items-center justify-center',
                     pathname === link.path
-                      ? 'text-primary font-semibold bg-primary/10'
+                      ? 'text-primary font-semibold bg-primary/10 active-link'
                       : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
                   )}
                 >
@@ -156,7 +124,7 @@ export default function Navbar() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="rounded-full w-9 h-9 flex items-center justify-center"
+                className="rounded-xl w-9 h-9 flex items-center justify-center"
                 aria-label="Toggle theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -189,7 +157,7 @@ export default function Navbar() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="rounded-full w-9 h-9 flex items-center justify-center"
+                className="rounded-xl w-9 h-9 flex items-center justify-center"
                 aria-label="Toggle theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -221,7 +189,7 @@ export default function Navbar() {
                 size="icon"
                 aria-label="Toggle Menu"
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative w-[44px] h-[44px]"
+                className="relative w-[44px] h-[44px] rounded-xl"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -247,7 +215,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -10 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="lg:hidden overflow-hidden px-4 pb-4 navbar-blur mt-2 rounded-full mx-[16px] fixed left-0 right-0"
+            className="lg:hidden overflow-hidden px-4 pb-4 navbar-blur mt-2 rounded-xl mx-[16px] fixed left-0 right-0 cyberpunk-menu"
           >
             <motion.div
               className="flex flex-col space-y-2"
@@ -275,10 +243,10 @@ export default function Navbar() {
                     href={link.path}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      'block px-4 py-3 rounded-lg transition-colors',
+                      'block px-4 py-3 rounded-xl transition-colors',
                       'min-w-[44px] min-h-[44px] flex items-center',
                       pathname === link.path
-                        ? 'bg-primary/10 text-primary font-semibold'
+                        ? 'bg-primary/10 text-primary font-semibold active-link'
                         : 'hover:bg-primary/5 text-foreground'
                     )}
                   >

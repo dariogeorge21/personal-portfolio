@@ -137,17 +137,135 @@
 
   /* Light mode navbar */
   .light .navbar-blur {
-    @apply bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-md rounded-xl;
+    @apply bg-white/80 backdrop-blur-xl border border-gray-200/30 rounded-xl;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.05),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+      -4px 0 15px rgba(236, 72, 153, 0.5), /* Pink glow on left */
+      4px 0 15px rgba(79, 70, 229, 0.5); /* Purple glow on right */
   }
 
   /* Dark mode navbar */
   .dark .navbar-blur {
-    @apply bg-background/60 backdrop-blur-xl border border-border/50 shadow-lg rounded-xl;
+    @apply bg-background/60 backdrop-blur-xl border border-gray-800/30 rounded-xl;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      -4px 0 15px rgba(236, 72, 153, 0.5), /* Pink glow on left */
+      4px 0 15px rgba(79, 70, 229, 0.5); /* Purple glow on right */
   }
 
   /* Floating navbar styles */
   .navbar-blur {
     @apply overflow-hidden;
+    position: relative;
+  }
+
+  /* Cyberpunk scanline effect */
+  .navbar-blur::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      /* Scanlines */
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 1px,
+        rgba(255, 255, 255, 0.03) 1px,
+        rgba(255, 255, 255, 0.03) 2px
+      ),
+      /* Grid pattern */
+      radial-gradient(
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+      );
+    background-size: 100% 2px, 20px 20px;
+    background-position: 0 0, 10px 10px;
+    pointer-events: none;
+    opacity: 0.15;
+    border-radius: inherit;
+    z-index: 1;
+  }
+
+  /* Cyberpunk border effect */
+  .navbar-blur::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg,
+      #ec4899, #8b5cf6, #4f46e5, #8b5cf6, #ec4899
+    );
+    background-size: 300% 100%;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.8;
+    animation:
+      borderGlow 3s infinite alternate,
+      gradientMove 8s linear infinite;
+  }
+
+  /* Cyberpunk glow pulse animation */
+  @keyframes borderGlow {
+    0% {
+      opacity: 0.6;
+      box-shadow:
+        -4px 0 10px rgba(236, 72, 153, 0.4),
+        4px 0 10px rgba(79, 70, 229, 0.4);
+    }
+    100% {
+      opacity: 1;
+      box-shadow:
+        -4px 0 15px rgba(236, 72, 153, 0.7),
+        4px 0 15px rgba(79, 70, 229, 0.7);
+    }
+  }
+
+  /* Cyberpunk menu styles */
+  .cyberpunk-menu::before {
+    animation-duration: 4s;
+  }
+
+  /* Cyberpunk link hover effect */
+  .navbar-blur a:hover,
+  .navbar-blur button:hover {
+    text-shadow: 0 0 8px rgba(79, 70, 229, 0.6);
+    transition: all 0.2s ease;
+  }
+
+  /* Active link in navbar */
+  .navbar-blur .active-link {
+    position: relative;
+  }
+
+  .navbar-blur .active-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+    border-radius: 4px;
+  }
+
+  /* Animated gradient border */
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
 
