@@ -27,19 +27,19 @@ export default function BackgroundParticles() {
         fpsLimit: 60,
         particles: {
           color: {
-            value: ["#4facfe", "#00f2fe", "#7367f0", "#ec4899", "#8b5cf6"],
+            value: ["#ffffff"],
           },
           links: {
             color: {
-              value: ["#4facfe", "#8b5cf6", "#ec4899"],
+              value: ["#ffffff"],
             },
             distance: 150,
             enable: true,
-            opacity: 0.2,
+            opacity: 0.15,
             width: 1,
             triangles: {
               enable: true,
-              opacity: 0.05,
+              opacity: 0.03,
             },
           },
           move: {
@@ -60,17 +60,17 @@ export default function BackgroundParticles() {
           number: {
             density: {
               enable: true,
-              area: 900,
+              area: 1200,
             },
-            value: 100,
+            value: 80,
           },
           opacity: {
-            value: 0.3,
+            value: 0.2,
             random: true,
             anim: {
               enable: true,
               speed: 0.5,
-              opacity_min: 0.1,
+              opacity_min: 0.05,
               sync: false,
             },
           },
@@ -95,8 +95,8 @@ export default function BackgroundParticles() {
           twinkle: {
             particles: {
               enable: true,
-              frequency: 0.05,
-              opacity: 1,
+              frequency: 0.03,
+              opacity: 0.7,
             },
           },
         },
@@ -107,7 +107,7 @@ export default function BackgroundParticles() {
               mode: "grab",
               parallax: {
                 enable: true,
-                force: 60,
+                force: 40,
                 smooth: 10,
               },
             },
@@ -120,11 +120,11 @@ export default function BackgroundParticles() {
             grab: {
               distance: 200,
               links: {
-                opacity: 0.4,
+                opacity: 0.2,
               },
             },
             push: {
-              quantity: 4,
+              quantity: 3,
             },
           },
         },

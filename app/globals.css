@@ -91,7 +91,8 @@
 
   /* Light mode specific styles */
   .light .glassmorphism {
-    @apply bg-white/70 shadow-xl;
+    @apply bg-white/80 shadow-xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   /* Dark mode specific styles */
@@ -101,7 +102,7 @@
 
   /* Content cards for light mode */
   .light .content-card {
-    @apply bg-white/80 shadow-lg;
+    @apply bg-white/90 shadow-lg;
   }
 
   /* Content cards for dark mode */
@@ -120,11 +121,11 @@
 
   /* Light mode text colors */
   .light .text-foreground {
-    @apply text-gray-800;
+    @apply text-gray-900;
   }
 
   .light .text-muted-foreground {
-    @apply text-gray-600;
+    @apply text-gray-700;
   }
 
   .border-gradient {

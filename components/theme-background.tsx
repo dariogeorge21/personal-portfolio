@@ -22,7 +22,7 @@ export default function ThemeBackground() {
       {isLightTheme && (
         <div className="fixed inset-0 z-[-1] pointer-events-none">
           {/* Background image for light mode */}
-          <div className="absolute inset-0 bg-black/5" /> {/* Subtle overlay for contrast */}
+          <div className="absolute inset-0 bg-black/10" /> {/* Increased overlay for better contrast */}
           <Image
             src="/background-white.jpg"
             alt="Background"
@@ -32,12 +32,12 @@ export default function ThemeBackground() {
             className="object-cover"
             sizes="100vw"
             style={{
-              filter: 'brightness(1.05) saturate(0.9)',
-              opacity: 0.9
+              filter: 'brightness(0.95) saturate(0.85) contrast(1.05)',
+              opacity: 0.85
             }}
           />
-          {/* Additional overlay gradient for better content contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/50 to-white/70" />
+          {/* Strengthened gradient overlay for better content contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/60 to-white/80" />
         </div>
       )}
 
