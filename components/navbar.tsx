@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Menu, X, Code } from 'lucide-react';
+import { Menu, X, Code, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
@@ -22,8 +22,14 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+
+  // After mounting, we can safely show the theme toggle
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,32 +125,98 @@ export default function Navbar() {
                 </Link>
               </motion.div>
             ))}
+            
+            {/* Theme toggle button */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-2"
+            >
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="rounded-full w-9 h-9 flex items-center justify-center"
+                aria-label="Toggle theme"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {mounted && (
+                    <motion.div
+                      key={theme === 'dark' ? 'dark' : 'light'}
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 10, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      {theme === 'dark' ? (
+                        <Sun className="h-5 w-5 text-yellow-400" />
+                      ) : (
+                        <Moon className="h-5 w-5 text-blue-700" />
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Button>
+            </motion.div>
           </div>
 
-          <motion.div
-            className="md:hidden"
-            whileTap={{ scale: 0.9 }}
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Toggle Menu"
-              onClick={() => setIsOpen(!isOpen)}
-              className="relative w-[44px] h-[44px]"
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Theme toggle button for mobile */}
+            <motion.div
+              whileTap={{ scale: 0.9 }}
             >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={isOpen ? "close" : "menu"}
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </motion.div>
-              </AnimatePresence>
-            </Button>
-          </motion.div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="rounded-full w-9 h-9 flex items-center justify-center"
+                aria-label="Toggle theme"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {mounted && (
+                    <motion.div
+                      key={theme === 'dark' ? 'dark' : 'light'}
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 10, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      {theme === 'dark' ? (
+                        <Sun className="h-5 w-5 text-yellow-400" />
+                      ) : (
+                        <Moon className="h-5 w-5 text-blue-700" />
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Button>
+            </motion.div>
+            
+            {/* Mobile menu button */}
+            <motion.div
+              whileTap={{ scale: 0.9 }}
+            >
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Toggle Menu"
+                onClick={() => setIsOpen(!isOpen)}
+                className="relative w-[44px] h-[44px]"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={isOpen ? "close" : "menu"}
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  </motion.div>
+                </AnimatePresence>
+              </Button>
+            </motion.div>
+          </div>
         </nav>
       </div>
 
@@ -201,3 +273,4 @@ export default function Navbar() {
     </motion.header>
   );
 }
+
