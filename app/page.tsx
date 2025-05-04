@@ -53,7 +53,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
                   >
-                    <span className="text-gradient animate-glow">Hi, I'm Dario George</span>
+                    <span className="text-gradient">Dario George</span>
                   </motion.h1>
 
                   <motion.h2
@@ -88,7 +88,7 @@ export default function Home() {
                   </Button>
 
                   <Button variant="outline" className="border-gradient hover-glow" asChild>
-                    <Link href="/about">
+                    <Link href="/contact">
                       About Me
                     </Link>
                   </Button>
