@@ -18,7 +18,8 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 0 0% 0%;
+    --background: ;
     --foreground: 210 40% 98%;
     --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
@@ -44,7 +45,7 @@
     --chart-5: 180 70% 55%;
     --radius: 0.5rem;
   }
-  
+
   .light {
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
@@ -77,24 +78,24 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
+
   .glassmorphism {
     @apply bg-background/40 backdrop-blur-md border border-border/50 shadow-lg;
   }
-  
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600;
   }
-  
+
   .border-gradient {
     @apply border border-transparent bg-gradient-to-r from-blue-400/50 to-purple-600/50 bg-clip-border;
   }
-  
+
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(79,172,254,0.5)];
   }
@@ -105,12 +106,30 @@
   animation: glow 3s ease-in-out infinite alternate;
 }
 
+.animate-ripple {
+  animation: ripple 0.5s ease-out forwards;
+}
+
 @keyframes glow {
   from {
     box-shadow: 0 0 5px rgba(79, 172, 254, 0.3);
   }
   to {
     box-shadow: 0 0 20px rgba(79, 172, 254, 0.6), 0 0 30px rgba(79, 172, 254, 0.4);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    transform: translate(-35px, -35px);
   }
 }
 
