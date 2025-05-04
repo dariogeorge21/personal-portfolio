@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Github, Linkedin, Mail, Download } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, Download } from 'lucide-react';
 import Link from 'next/link';
 import BackgroundParticles from '@/components/background-particles';
 import { GlassmorphicCard } from '@/components/glassmorphic-card';
@@ -38,20 +38,39 @@ export default function Home() {
       {/* Hero Section */}
       <section className="pt-36 pb-24 px-4 min-h-screen flex items-center justify-center">
         <div className="container mx-auto">
-          <div className="hero-glassmorphic p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="hero-glassmorphic p-8 md:p-12 relative">
+            {/* Decorative elements */}
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-tr from-pink-500/20 to-blue-600/20 rounded-full blur-2xl"></div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
+              {/* Left Content Column */}
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
-                className="space-y-6"
+                className="hero-content space-y-8"
               >
+                {/* Tech badges */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="flex flex-wrap gap-2 mb-2"
+                >
+                  <span className="hero-tech-badge">TypeScript</span>
+                  <span className="hero-tech-badge">React</span>
+                  <span className="hero-tech-badge">NextJS</span>
+                  <span className="hero-tech-badge">Python</span>
+                </motion.div>
+
+                {/* Main heading */}
                 <div>
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+                    className="hero-title mb-4"
                   >
                     <span className="text-gradient">Dario George</span>
                   </motion.h1>
@@ -60,7 +79,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-2xl md:text-3xl font-medium text-muted-foreground mb-6"
+                    className="hero-subtitle mb-6"
                   >
                     Student, Frontend Developer
                   </motion.h2>
@@ -69,19 +88,20 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="text-muted-foreground max-w-md"
+                    className="hero-description"
                   >
                     Exploring Full Stack Development | Learning DSA in Java | Computer Science Student at St Joseph's College of Engineering and Technology
                   </motion.p>
                 </div>
 
+                {/* CTA Buttons */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="flex flex-wrap gap-4"
                 >
-                  <Button asChild className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+                  <Button asChild className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hero-button-glow">
                     <Link href="/contact">
                       Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -98,6 +118,7 @@ export default function Home() {
                   </Button>
                 </motion.div>
 
+                {/* Social Links */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -105,7 +126,10 @@ export default function Home() {
                   className="flex gap-4 mt-6"
                 >
                   <Link href="https://github.com/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300">
-                    <Github className="h-6 w-6" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
                   </Link>
                   <Link href="https://www.linkedin.com/in/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300">
                     <Linkedin className="h-6 w-6" />
@@ -116,23 +140,58 @@ export default function Home() {
                 </motion.div>
               </motion.div>
 
+              {/* Right Image Column */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex justify-center"
+                className="hero-image-container flex justify-center items-center relative"
               >
-                <div className="relative w-full max-w-md">
-                  <div className="rounded-xl overflow-hidden aspect-square relative">
+                {/* Decorative code blocks */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 0.7, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="absolute -top-10 right-10 bg-background/40 backdrop-blur-md p-3 rounded-lg border border-border/30 shadow-lg text-xs font-mono text-blue-400 transform rotate-3 z-10"
+                >
+                  const developer = new Developer();
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 0.7, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1.1 }}
+                  className="absolute -bottom-8 left-10 bg-background/40 backdrop-blur-md p-3 rounded-lg border border-border/30 shadow-lg text-xs font-mono text-purple-400 transform -rotate-2 z-10"
+                >
+                  await skills.improve();
+                </motion.div>
+
+                {/* Glow effect */}
+                <div className="hero-image-glow"></div>
+
+                {/* Profile image */}
+                <div className="relative w-56 h-56">
+                  <div className="hero-image-frame w-full h-full">
                     <Image
-                      src="/terminal-screen.jpg"
-                      alt="Terminal Screen"
+                      src="/profile-image.jpg"
+                      alt="Dario George"
                       fill
                       className="object-cover"
                       priority
                     />
                   </div>
                 </div>
+
+                {/* Floating badges */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.3 }}
+                  className="absolute -bottom-4 right-0 bg-background/60 backdrop-blur-md px-3 py-2 rounded-full border border-border/30 shadow-lg flex items-center gap-2"
+                >
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  <span className="text-xs font-medium">Available for projects</span>
+                </motion.div>
               </motion.div>
             </div>
           </div>

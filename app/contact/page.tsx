@@ -130,16 +130,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
           >
             <GlassmorphicCard className="h-full">
-              <div className="relative aspect-square rounded-lg overflow-hidden mb-6">
-                <Image
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                  alt="About Me"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 my-6">
+              <div className="grid grid-cols-2 gap-4 mt-6">
                 <div>
                   <h4 className="text-muted-foreground text-sm">Name</h4>
                   <p className="font-medium">Dario George</p>
@@ -267,7 +258,7 @@ export default function ContactPage() {
         </div>
 
         {/* Personal Interests */}
-        <div className="mb-20">
+        {/* <div className="mb-20">
           <SectionHeading
             title="Personal Interests"
             subtitle="Beyond coding, here are a few things I'm passionate about"
@@ -289,7 +280,7 @@ export default function ContactPage() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </div> */}
 
         <SectionHeading
           title="Get In Touch"

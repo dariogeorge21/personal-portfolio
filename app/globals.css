@@ -234,9 +234,12 @@
 
   /* Hero glassmorphic box with gradient border */
   .hero-glassmorphic {
-    @apply backdrop-blur-md border border-border/50 shadow-lg rounded-xl overflow-hidden relative;
-    border-radius: 12px;
+    @apply backdrop-blur-xl border border-border/50 shadow-xl rounded-xl overflow-hidden relative;
+    border-radius: 16px;
     position: relative;
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   }
 
   .hero-glassmorphic::before {
@@ -244,7 +247,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1px;
+    padding: 2px;
     background: linear-gradient(90deg,
       #ec4899, #8b5cf6, #4f46e5, #8b5cf6, #ec4899
     );
@@ -255,10 +258,37 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.9;
     animation:
       borderGlow 3s infinite alternate,
       gradientMove 8s linear infinite;
+  }
+
+  /* Hero section cyberpunk scanline effect */
+  .hero-glassmorphic::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      /* Scanlines */
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 1px,
+        rgba(255, 255, 255, 0.03) 1px,
+        rgba(255, 255, 255, 0.03) 2px
+      ),
+      /* Grid pattern */
+      radial-gradient(
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+      );
+    background-size: 100% 2px, 20px 20px;
+    background-position: 0 0, 10px 10px;
+    pointer-events: none;
+    opacity: 0.1;
+    border-radius: inherit;
+    z-index: 1;
   }
 
   /* Light mode hero glassmorphic */
@@ -315,6 +345,172 @@
 
 .animate-ripple {
   animation: ripple 0.5s ease-out forwards;
+}
+
+/* Profile image styles */
+.border-gradient-glow {
+  position: relative;
+  border: none;
+}
+
+.border-gradient-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ec4899, #8b5cf6, #4f46e5, #8b5cf6, #ec4899);
+  background-size: 300% 100%;
+  animation: gradientMove 8s linear infinite;
+  z-index: -1;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+  animation: profileGlow 3s infinite alternate;
+}
+
+@keyframes profileGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.7);
+  }
+}
+
+/* Enhanced hero section styles */
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-title {
+  @apply text-5xl md:text-6xl lg:text-7xl font-bold;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  @apply text-xl md:text-2xl font-medium text-muted-foreground;
+  letter-spacing: -0.01em;
+}
+
+.hero-description {
+  @apply text-muted-foreground max-w-md;
+  line-height: 1.6;
+}
+
+.hero-image-container {
+  position: relative;
+  z-index: 5;
+}
+
+.hero-image-frame {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.1),
+    0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-image-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #ec4899, #8b5cf6, #4f46e5, #8b5cf6, #ec4899);
+  background-size: 300% 100%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.9;
+  animation: gradientMove 8s linear infinite;
+  z-index: 2;
+}
+
+.hero-image-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle at center,
+    rgba(79, 70, 229, 0.3) 0%,
+    transparent 70%
+  );
+  z-index: 1;
+  filter: blur(20px);
+  opacity: 0.7;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.hero-tech-badge {
+  @apply bg-background/60 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hero-tech-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: rgba(79, 70, 229, 0.4);
+}
+
+.hero-button-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-button-glow::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  animation: shineEffect 3s infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shineEffect {
+  0% {
+    left: -100%;
+    top: -100%;
+  }
+  100% {
+    left: 100%;
+    top: 100%;
+  }
 }
 
 @keyframes glow {
