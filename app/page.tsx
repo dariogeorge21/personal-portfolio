@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen">
       <BackgroundParticles />
-      
+
       {/* Hero Section */}
       <section className="pt-36 pb-24 px-4 min-h-screen flex items-center justify-center">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -45,35 +45,35 @@ export default function Home() {
             className="space-y-6"
           >
             <div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
               >
-                <span className="text-gradient animate-glow">Hi, I'm John Doe</span>
+                <span className="text-gradient animate-glow">Hi, I'm Dario George</span>
               </motion.h1>
-              
-              <motion.h2 
+
+              <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-2xl md:text-3xl font-medium text-muted-foreground mb-6"
               >
-                Full Stack Developer
+                Student, Frontend Developer
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-muted-foreground max-w-md"
               >
-                I build exceptional digital experiences with modern technologies. Specializing in creating innovative solutions that deliver real business value.
+                Exploring Full Stack Development | Learning DSA in Java | Computer Science Student at St Joseph's College of Engineering and Technology
               </motion.p>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -84,36 +84,36 @@ export default function Home() {
                   Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              
+
               <Button variant="outline" className="border-gradient hover-glow" asChild>
                 <Link href="/about">
                   About Me
                 </Link>
               </Button>
-              
+
               <Button variant="ghost" className="hover-glow">
                 <Download className="mr-2 h-4 w-4" /> Resume
               </Button>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
               className="flex gap-4 mt-6"
             >
-              <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300">
+              <Link href="https://github.com/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300">
                 <Github className="h-6 w-6" />
               </Link>
-              <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300">
+              <Link href="https://www.linkedin.com/in/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300">
                 <Linkedin className="h-6 w-6" />
               </Link>
-              <Link href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-all duration-300">
+              <Link href="mailto:edu.dariogeorge21@gmail.com" className="text-muted-foreground hover:text-primary transition-all duration-300">
                 <Mail className="h-6 w-6" />
               </Link>
             </motion.div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -134,7 +134,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Featured Section */}
       <section className="py-24 px-4" ref={ref}>
         <div className="container mx-auto">
@@ -151,7 +151,7 @@ export default function Home() {
               A glimpse into my technical expertise and professional capabilities
             </motion.p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredCards.map((card, index) => (
               <motion.div

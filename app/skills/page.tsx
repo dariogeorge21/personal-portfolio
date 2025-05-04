@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 export default function SkillsPage() {
   const [value, setValue] = useState(0);
-  
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -20,14 +20,14 @@ export default function SkillsPage() {
   return (
     <div className="pt-24 pb-16">
       <BackgroundParticles />
-      
+
       <div className="container mx-auto px-4">
         <SectionHeading
           title="My Skills"
           subtitle="A comprehensive overview of my technical expertise and professional capabilities"
           centered
         />
-        
+
         {/* Technical Skills */}
         <div className="mb-20" ref={ref}>
           <Tabs defaultValue="frontend" className="w-full">
@@ -39,7 +39,7 @@ export default function SkillsPage() {
                 <TabsTrigger value="other">Other Skills</TabsTrigger>
               </TabsList>
             </div>
-            
+
             <TabsContent value="frontend">
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {frontendSkills.map((skill, index) => (
@@ -47,7 +47,7 @@ export default function SkillsPage() {
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="backend">
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {backendSkills.map((skill, index) => (
@@ -55,7 +55,7 @@ export default function SkillsPage() {
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="tools">
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {toolsSkills.map((skill, index) => (
@@ -63,7 +63,7 @@ export default function SkillsPage() {
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="other">
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {otherSkills.map((skill, index) => (
@@ -73,14 +73,14 @@ export default function SkillsPage() {
             </TabsContent>
           </Tabs>
         </div>
-        
+
         {/* Professional Skills */}
         <div>
           <SectionHeading
             title="Professional Skills"
             subtitle="Soft skills and professional abilities that complement my technical expertise"
           />
-          
+
           <div className="grid md:grid-cols-2 gap-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export default function SkillsPage() {
             >
               <GlassmorphicCard>
                 <h3 className="text-xl font-bold mb-6">Communication & Collaboration</h3>
-                
+
                 {professionalSkills.slice(0, 4).map((skill, index) => (
                   <div key={index} className="mb-6">
                     <div className="flex justify-between mb-2">
@@ -102,7 +102,7 @@ export default function SkillsPage() {
                 ))}
               </GlassmorphicCard>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export default function SkillsPage() {
             >
               <GlassmorphicCard>
                 <h3 className="text-xl font-bold mb-6">Leadership & Management</h3>
-                
+
                 {professionalSkills.slice(4, 8).map((skill, index) => (
                   <div key={index} className="mb-6">
                     <div className="flex justify-between mb-2">
@@ -162,60 +162,60 @@ function SkillCard({ skill, index, inView }: SkillCardProps) {
 }
 
 const frontendSkills: Skill[] = [
-  { name: "React", level: 95 },
-  { name: "TypeScript", level: 90 },
-  { name: "HTML/CSS", level: 95 },
-  { name: "JavaScript", level: 95 },
-  { name: "Next.js", level: 85 },
-  { name: "Tailwind CSS", level: 90 },
-  { name: "Redux", level: 85 },
-  { name: "Angular", level: 75 },
-  { name: "Vue.js", level: 70 }
+  { name: "HTML", level: 85 },
+  { name: "CSS", level: 80 },
+  { name: "JavaScript", level: 75 },
+  { name: "TypeScript", level: 70 },
+  { name: "NextJS", level: 65 },
+  { name: "Responsive Design", level: 75 },
+  { name: "UI Fundamentals", level: 70 },
+  { name: "Tailwind CSS", level: 65 },
+  { name: "Frontend Basics", level: 80 }
 ];
 
 const backendSkills: Skill[] = [
-  { name: "Node.js", level: 90 },
-  { name: "Express", level: 90 },
-  { name: "Python", level: 85 },
-  { name: "Django", level: 80 },
-  { name: "PHP", level: 75 },
-  { name: "GraphQL", level: 85 },
-  { name: "REST API", level: 90 },
-  { name: "PostgreSQL", level: 85 },
-  { name: "MongoDB", level: 80 }
+  { name: "Python", level: 80 },
+  { name: "C Programming", level: 75 },
+  { name: "C++", level: 70 },
+  { name: "MySQL", level: 75 },
+  { name: "Java (Learning)", level: 60 },
+  { name: "DSA Fundamentals", level: 65 },
+  { name: "Backend Basics", level: 60 },
+  { name: "Database Concepts", level: 70 },
+  { name: "API Fundamentals", level: 65 }
 ];
 
 const toolsSkills: Skill[] = [
-  { name: "Git", level: 95 },
-  { name: "Docker", level: 85 },
-  { name: "AWS", level: 80 },
-  { name: "CI/CD", level: 85 },
-  { name: "Jenkins", level: 75 },
-  { name: "Kubernetes", level: 70 },
-  { name: "Linux", level: 90 },
-  { name: "Webpack", level: 85 },
-  { name: "Jira", level: 90 }
+  { name: "Git", level: 70 },
+  { name: "VS Code", level: 85 },
+  { name: "Computer Hardware", level: 80 },
+  { name: "Troubleshooting", level: 75 },
+  { name: "Windows OS", level: 85 },
+  { name: "Basic Networking", level: 70 },
+  { name: "Development Tools", level: 75 },
+  { name: "GitHub", level: 70 },
+  { name: "Command Line", level: 65 }
 ];
 
 const otherSkills: Skill[] = [
-  { name: "UI/UX Design", level: 80 },
-  { name: "Figma", level: 85 },
-  { name: "SEO", level: 75 },
-  { name: "Performance Optimization", level: 90 },
-  { name: "Technical Writing", level: 85 },
-  { name: "Responsive Design", level: 95 },
-  { name: "Agile Methodologies", level: 90 },
-  { name: "Mobile-First Design", level: 85 },
-  { name: "Accessibility", level: 80 }
+  { name: "Prompt Engineering", level: 75 },
+  { name: "English", level: 90 },
+  { name: "Malayalam", level: 95 },
+  { name: "Hindi", level: 85 },
+  { name: "Tamil", level: 75 },
+  { name: "Problem Solving", level: 80 },
+  { name: "Self-Learning", level: 85 },
+  { name: "Time Management", level: 75 },
+  { name: "Adaptability", level: 80 }
 ];
 
 const professionalSkills: Skill[] = [
-  { name: "Team Collaboration", level: 95 },
-  { name: "Communication", level: 90 },
-  { name: "Problem Solving", level: 95 },
-  { name: "Client Relations", level: 85 },
-  { name: "Project Management", level: 90 },
-  { name: "Team Leadership", level: 85 },
-  { name: "Strategic Planning", level: 80 },
-  { name: "Mentoring", level: 90 }
+  { name: "Communication", level: 85 },
+  { name: "Teamwork", level: 80 },
+  { name: "Problem Solving", level: 85 },
+  { name: "Critical Thinking", level: 80 },
+  { name: "Learning Agility", level: 90 },
+  { name: "Attention to Detail", level: 85 },
+  { name: "Time Management", level: 80 },
+  { name: "Adaptability", level: 85 }
 ];

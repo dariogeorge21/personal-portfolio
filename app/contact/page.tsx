@@ -39,9 +39,9 @@ export default function ContactPage() {
     triggerOnce: true,
     threshold: 0.1,
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,10 +51,10 @@ export default function ContactPage() {
       message: "",
     },
   });
-  
+
   function onSubmit(data: FormValues) {
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       console.log(data);
@@ -63,18 +63,18 @@ export default function ContactPage() {
       setIsSubmitting(false);
     }, 1500);
   }
-  
+
   return (
     <div className="pt-24 pb-16">
       <BackgroundParticles />
-      
+
       <div className="container mx-auto px-4">
         <SectionHeading
           title="Get In Touch"
           subtitle="Have a question or want to work together? Feel free to contact me!"
           centered
         />
-        
+
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Info */}
           <motion.div
@@ -84,7 +84,7 @@ export default function ContactPage() {
           >
             <GlassmorphicCard className="h-full">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="mt-1 mr-4 p-2 rounded-full bg-primary/10 text-primary">
@@ -92,24 +92,24 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
-                    <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                      hello@example.com
+                    <a href="mailto:edu.dariogeorge21@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      edu.dariogeorge21@gmail.com
                     </a>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="mt-1 mr-4 p-2 rounded-full bg-primary/10 text-primary">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
                     <h4 className="font-medium">Phone</h4>
-                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                      +1 (234) 567-890
+                    <a href="tel:+917838403506" className="text-muted-foreground hover:text-primary transition-colors">
+                      +91 7838403506
                     </a>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="mt-1 mr-4 p-2 rounded-full bg-primary/10 text-primary">
                     <MapPin className="h-5 w-5" />
@@ -117,17 +117,17 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium">Location</h4>
                     <p className="text-muted-foreground">
-                      San Francisco, California, USA
+                      Kottayam, Kerala, India
                     </p>
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-10">
                 <h4 className="font-medium mb-4">Connect with me</h4>
                 <div className="flex space-x-4">
                   <Link
-                    href="https://github.com"
+                    href="https://github.com/dariogeorge21"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
@@ -136,7 +136,7 @@ export default function ContactPage() {
                     <Github className="h-5 w-5" />
                   </Link>
                   <Link
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/dariogeorge21"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
@@ -145,16 +145,7 @@ export default function ContactPage() {
                     <Linkedin className="h-5 w-5" />
                   </Link>
                   <Link
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </Link>
-                  <Link
-                    href="mailto:hello@example.com"
+                    href="mailto:edu.dariogeorge21@gmail.com"
                     className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                     aria-label="Email"
                   >
@@ -162,16 +153,16 @@ export default function ContactPage() {
                   </Link>
                 </div>
               </div>
-              
+
               <div className="mt-10 p-4 bg-primary/5 rounded-lg border border-primary/10">
                 <h4 className="font-medium mb-2">Availability</h4>
                 <p className="text-muted-foreground text-sm">
-                  I'm currently open to freelance opportunities, full-time positions, and interesting project collaborations.
+                  I'm currently a student at St Joseph's College of Engineering and Technology, open to internships, learning opportunities, and collaborative projects.
                 </p>
               </div>
             </GlassmorphicCard>
           </motion.div>
-          
+
           {/* Contact Form */}
           <motion.div
             ref={ref}
@@ -181,7 +172,7 @@ export default function ContactPage() {
           >
             <GlassmorphicCard>
               <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-              
+
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -198,7 +189,7 @@ export default function ContactPage() {
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="email"
@@ -213,7 +204,7 @@ export default function ContactPage() {
                       )}
                     />
                   </div>
-                  
+
                   <FormField
                     control={form.control}
                     name="subject"
@@ -227,7 +218,7 @@ export default function ContactPage() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="message"
@@ -235,8 +226,8 @@ export default function ContactPage() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="Write your message here..." 
+                          <Textarea
+                            placeholder="Write your message here..."
                             rows={6}
                             {...field}
                           />
@@ -245,9 +236,9 @@ export default function ContactPage() {
                       </FormItem>
                     )}
                   />
-                  
-                  <Button 
-                    type="submit" 
+
+                  <Button
+                    type="submit"
                     className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                     disabled={isSubmitting}
                   >

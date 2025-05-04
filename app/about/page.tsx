@@ -34,14 +34,14 @@ export default function AboutPage() {
   return (
     <div className="pt-24 pb-16">
       <BackgroundParticles />
-      
+
       <div className="container mx-auto px-4">
         <SectionHeading
           title="About Me"
           subtitle="Get to know more about my journey, passions, and what drives me"
           centered
         />
-        
+
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -57,26 +57,26 @@ export default function AboutPage() {
                   className="object-cover"
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4 my-6">
                 <div>
                   <h4 className="text-muted-foreground text-sm">Name</h4>
-                  <p className="font-medium">John Doe</p>
+                  <p className="font-medium">Dario George</p>
                 </div>
                 <div>
                   <h4 className="text-muted-foreground text-sm">Email</h4>
-                  <p className="font-medium">hello@example.com</p>
+                  <p className="font-medium">edu.dariogeorge21@gmail.com</p>
                 </div>
                 <div>
                   <h4 className="text-muted-foreground text-sm">Location</h4>
-                  <p className="font-medium">San Francisco, CA</p>
+                  <p className="font-medium">Kottayam, Kerala, India</p>
                 </div>
                 <div>
                   <h4 className="text-muted-foreground text-sm">Availability</h4>
-                  <p className="font-medium">Open to Opportunities</p>
+                  <p className="font-medium">Student, Open to Opportunities</p>
                 </div>
               </div>
-              
+
               <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" asChild>
                 <Link href="/contact">
                   Contact Me <ArrowRight className="ml-2 h-4 w-4" />
@@ -84,7 +84,7 @@ export default function AboutPage() {
               </Button>
             </GlassmorphicCard>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -92,27 +92,25 @@ export default function AboutPage() {
             className="flex flex-col space-y-6"
           >
             <h3 className="text-2xl font-bold">
-              I'm a <span className="text-gradient">Full Stack Developer</span> with a passion for building exceptional digital experiences
+              I'm a <span className="text-gradient">Computer Science Student</span> with a passion for frontend development and exploring new technologies
             </h3>
-            
+
             <p className="text-muted-foreground">
-              Hello! I'm John, a dedicated Full Stack Developer with over 5 years of experience creating innovative 
-              web applications. My journey in technology began with a childhood fascination with computers, which 
-              eventually led me to pursue a degree in Computer Science.
+              Hello! I'm Dario, a Computer Science Engineering student at St Joseph's College of Engineering and Technology in Palai, Kerala.
+              I'm currently in my second semester with a GPA of 8.9. My journey in technology began with a fascination for how websites work,
+              which led me to explore frontend development.
             </p>
-            
+
             <p className="text-muted-foreground">
-              Throughout my career, I've worked with diverse teams across various industries, from startups to 
-              enterprise organizations. My approach combines technical expertise with a deep understanding of user 
-              needs, allowing me to build solutions that are both functionally robust and intuitive to use.
+              I'm currently focused on expanding my skills in web development using technologies like HTML, CSS, JavaScript, and TypeScript.
+              I'm also learning Data Structures and Algorithms in Java to build a strong foundation in computer science fundamentals.
             </p>
-            
+
             <p className="text-muted-foreground">
-              When I'm not coding, you'll find me hiking in nature, experimenting with photography, or contributing 
-              to open-source projects. I believe in continuous learning and regularly attend tech conferences and 
-              workshops to stay at the forefront of industry developments.
+              When I'm not coding, I enjoy exploring new technologies, learning about computer hardware, and improving my skills in multiple
+              languages including English, Malayalam, Hindi, and Tamil. I'm always eager to learn and grow in the field of technology.
             </p>
-            
+
             <div className="flex flex-wrap gap-2 pt-2">
               <Button variant="outline" className="border-gradient">Resume</Button>
               <Button variant="outline" className="border-gradient">Portfolio</Button>
@@ -120,14 +118,14 @@ export default function AboutPage() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* What I Do Section */}
         <div className="mb-20">
           <SectionHeading
             title="What I Do"
             subtitle="Explore the services I offer and the value I bring to every project"
           />
-          
+
           <div className="grid md:grid-cols-3 gap-6" ref={ref}>
             {services.map((service, index) => (
               <motion.div
@@ -147,15 +145,15 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-        
+
         {/* Personal Interests */}
         <div>
           <SectionHeading
             title="Personal Interests"
             subtitle="Beyond coding, here are a few things I'm passionate about"
           />
-          
-          <motion.div 
+
+          <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"

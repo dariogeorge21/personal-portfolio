@@ -14,8 +14,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Professional Portfolio',
-  description: 'A showcase of my skills, experience, and achievements',
+  title: 'Dario George | Portfolio',
+  description: 'Computer Science Student | Frontend Developer | Exploring Full Stack Development',
 };
 
 export default function RootLayout({

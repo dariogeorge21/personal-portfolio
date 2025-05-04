@@ -18,14 +18,14 @@ export default function EducationPage() {
   return (
     <div className="pt-24 pb-16">
       <BackgroundParticles />
-      
+
       <div className="container mx-auto px-4">
         <SectionHeading
           title="Education & Certifications"
           subtitle="My academic journey and professional qualifications"
           centered
         />
-        
+
         <Tabs defaultValue="education" className="w-full mb-20">
           <div className="flex justify-center mb-8">
             <TabsList className="glassmorphism">
@@ -33,7 +33,7 @@ export default function EducationPage() {
               <TabsTrigger value="certifications">Certifications</TabsTrigger>
             </TabsList>
           </div>
-          
+
           {/* Education Tab */}
           <TabsContent value="education">
             <div className="grid gap-8" ref={ref}>
@@ -42,7 +42,7 @@ export default function EducationPage() {
               ))}
             </div>
           </TabsContent>
-          
+
           {/* Certifications Tab */}
           <TabsContent value="certifications">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -52,14 +52,14 @@ export default function EducationPage() {
             </div>
           </TabsContent>
         </Tabs>
-        
+
         {/* Skills & Achievements */}
         <div>
           <SectionHeading
             title="Academic Achievements"
             subtitle="Recognition and awards received during my academic journey"
           />
-          
+
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {achievements.map((achievement, index) => (
               <motion.div
@@ -128,9 +128,9 @@ function EducationCard({ education, index, inView }: EducationCardProps) {
             </div>
           </div>
         </div>
-        
+
         <p className="text-muted-foreground mb-4">{education.description}</p>
-        
+
         {education.achievements && (
           <div>
             <h4 className="font-medium mb-2">Key Achievements:</h4>
@@ -179,7 +179,7 @@ function CertificationCard({ certification, index, inView }: CertificationCardPr
             <span>{certification.date}</span>
           </div>
         </div>
-        
+
         <div className="mt-4 pt-4 border-t border-border/50">
           <Link
             href={certification.credentialLink}
@@ -212,114 +212,111 @@ function CertificationCard({ certification, index, inView }: CertificationCardPr
 
 const educationData: Education[] = [
   {
-    degree: "Master of Science in Computer Science",
-    institution: "Stanford University",
-    location: "Stanford, CA",
-    period: "2018 - 2020",
-    description: "Specialized in Artificial Intelligence and Machine Learning, with a focus on natural language processing and computer vision applications. Completed thesis on 'Deep Learning Approaches for Text Classification in Low-Resource Scenarios'.",
+    degree: "BTech in Computer Science and Engineering",
+    institution: "St Joseph's College of Engineering and Technology",
+    location: "Palai, Kottayam, Kerala",
+    period: "2024 - Present",
+    description: "Currently in the second semester (S2) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
     achievements: [
-      "Graduated with distinction (GPA: 3.92/4.0)",
-      "Selected for Research Assistantship in the AI Lab",
-      "Presented research at two international conferences",
-      "Recipient of the Technology Innovation Scholarship"
+      "Current GPA: 8.9",
+      "Actively learning web development technologies",
+      "Exploring Data Structures and Algorithms in Java"
     ]
   },
   {
-    degree: "Bachelor of Science in Software Engineering",
-    institution: "University of California, Berkeley",
-    location: "Berkeley, CA",
-    period: "2014 - 2018",
-    description: "Comprehensive curriculum covering software development methodologies, data structures, algorithms, database systems, and web development. Participated in multiple hackathons and coding competitions.",
+    degree: "12th (Pre-degree)",
+    institution: "St Mary's Central School",
+    location: "Idukki, Kerala",
+    period: "July 2022 - April 2024",
+    description: "Completed higher secondary education with a focus on Mathematics and Computer Science, developing a strong foundation in logical thinking and problem-solving skills.",
     achievements: [
-      "Dean's List all semesters (GPA: 3.85/4.0)",
-      "Led a team of 5 in developing a campus resource application",
-      "Completed internship at Google during junior year",
-      "Published paper on efficient algorithm implementation"
+      "Achieved 87.8% in final examinations",
+      "Specialized in Mathematics and Computer Science",
+      "Participated in school-level programming competitions"
     ]
   },
   {
-    degree: "High School Diploma",
-    institution: "Tech Preparatory Academy",
-    location: "San Francisco, CA",
-    period: "2010 - 2014",
-    description: "Advanced curriculum with focus on mathematics, computer science, and physics. Participated in numerous extracurricular activities including Robotics Club, Math Olympiad, and Science Fair.",
+    degree: "10th (SSLC)",
+    institution: "St Columba's School",
+    location: "New Delhi",
+    period: "April 2011 - May 2022",
+    description: "Completed secondary education with a well-rounded curriculum covering all major subjects, developing a strong academic foundation.",
     achievements: [
-      "Valedictorian of graduating class",
-      "First place in State Programming Competition",
-      "Founded and led the school's first Artificial Intelligence Club",
-      "Perfect score on AP Computer Science exam"
+      "Achieved 72.8% in final examinations",
+      "Participated in various extracurricular activities",
+      "Developed initial interest in computers and technology"
     ]
   }
 ];
 
 const certifications: Certification[] = [
   {
-    name: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services",
-    date: "May 2023",
+    name: "Python Programming",
+    issuer: "Self-Learning",
+    date: "2023",
     credentialLink: "#",
   },
   {
-    name: "Google Professional Cloud Developer",
-    issuer: "Google Cloud",
-    date: "November 2022",
+    name: "HTML & CSS Fundamentals",
+    issuer: "Self-Learning",
+    date: "2023",
     credentialLink: "#",
   },
   {
-    name: "TensorFlow Developer Certificate",
-    issuer: "Google",
-    date: "July 2022",
+    name: "JavaScript Basics",
+    issuer: "Self-Learning",
+    date: "2023",
     credentialLink: "#",
   },
   {
-    name: "Certified Kubernetes Administrator",
-    issuer: "Cloud Native Computing Foundation",
-    date: "March 2022",
+    name: "TypeScript Introduction",
+    issuer: "Self-Learning",
+    date: "2024",
     credentialLink: "#",
   },
   {
-    name: "React Certification",
-    issuer: "Meta",
-    date: "October 2021",
+    name: "NextJS Framework",
+    issuer: "Self-Learning",
+    date: "2024",
     credentialLink: "#",
   },
   {
-    name: "Microsoft Certified: Azure Developer Associate",
-    issuer: "Microsoft",
-    date: "May 2021",
+    name: "Computer Hardware Basics",
+    issuer: "Self-Learning",
+    date: "2023",
     credentialLink: "#",
   }
 ];
 
 const achievements = [
   {
-    title: "Outstanding Graduate Research Award",
-    description: "Awarded for exceptional research contributions in the field of machine learning applications for natural language processing.",
-    year: "2020"
+    title: "Strong Academic Performance",
+    description: "Maintaining a GPA of 8.9 in BTech Computer Science and Engineering program.",
+    year: "2024"
   },
   {
-    title: "Academic Excellence Scholarship",
-    description: "Full-ride scholarship awarded to top 1% of applicants based on academic merit and leadership potential.",
-    year: "2018-2020"
+    title: "Higher Secondary Achievement",
+    description: "Scored 87.8% in 12th grade with specialization in Mathematics and Computer Science.",
+    year: "2024"
   },
   {
-    title: "Best Undergraduate Thesis",
-    description: "Recognized for developing an innovative approach to optimizing distributed computing systems.",
-    year: "2018"
+    title: "Multilingual Proficiency",
+    description: "Proficient in four languages: English, Malayalam, Hindi, and Tamil, enabling effective communication across diverse environments.",
+    year: "Present"
   },
   {
-    title: "Dean's Leadership Award",
-    description: "Awarded for exemplary leadership in academic and extracurricular activities at the university.",
-    year: "2017"
+    title: "Self-Taught Programming",
+    description: "Independently learned multiple programming languages and web development technologies.",
+    year: "2023-2024"
   },
   {
-    title: "Hackathon Champion",
-    description: "First place at the University Tech Innovation Hackathon for developing a real-time translation application.",
-    year: "2016"
+    title: "Frontend Development Projects",
+    description: "Created personal projects to practice and demonstrate skills in HTML, CSS, JavaScript, and TypeScript.",
+    year: "2023-2024"
   },
   {
-    title: "Programming Competition Winner",
-    description: "Won the regional collegiate programming competition, solving complex algorithmic challenges in record time.",
-    year: "2015"
+    title: "Computer Hardware Knowledge",
+    description: "Developed comprehensive understanding of computer hardware components and troubleshooting techniques.",
+    year: "2023"
   }
 ];
