@@ -232,6 +232,45 @@
     animation-duration: 4s;
   }
 
+  /* Hero glassmorphic box with gradient border */
+  .hero-glassmorphic {
+    @apply backdrop-blur-md border border-border/50 shadow-lg rounded-xl overflow-hidden relative;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .hero-glassmorphic::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg,
+      #ec4899, #8b5cf6, #4f46e5, #8b5cf6, #ec4899
+    );
+    background-size: 300% 100%;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.8;
+    animation:
+      borderGlow 3s infinite alternate,
+      gradientMove 8s linear infinite;
+  }
+
+  /* Light mode hero glassmorphic */
+  .light .hero-glassmorphic {
+    @apply bg-white/70 shadow-xl;
+  }
+
+  /* Dark mode hero glassmorphic */
+  .dark .hero-glassmorphic {
+    @apply bg-background/40;
+  }
+
   /* Cyberpunk link hover effect */
   .navbar-blur a:hover,
   .navbar-blur button:hover {
