@@ -41,13 +41,29 @@ export default function Navbar() {
   }, []);
 
   const navVariants = {
-    hidden: { y: -100, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
+  // Animation for the navbar when scrolling
+  const scrollAnimation = {
+    notScrolled: {
+      boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+      y: 0
+    },
+    scrolled: {
+      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 260,
         damping: 20
       }
     }
@@ -68,17 +84,21 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial="hidden"
-      animate="visible"
-      variants={navVariants}
+      animate={scrolled ? "scrolled" : "visible"}
+      variants={{
+        visible: navVariants.visible,
+        scrolled: scrollAnimation.scrolled,
+        notScrolled: scrollAnimation.notScrolled
+      }}
       className={cn(
-        'fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300',
+        'fixed z-50 transition-colors duration-300',
+        'top-[16px] left-[80px] right-[80px] rounded-full',
         scrolled
-          ? 'navbar-blur border-b'
+          ? 'navbar-blur'
           : 'bg-transparent'
       )}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-3">
         <nav className="flex items-center justify-between h-[40px]">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -93,7 +113,7 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.path}
@@ -160,7 +180,7 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-2">
             {/* Theme toggle button for mobile */}
             <motion.div
               whileTap={{ scale: 0.9 }}
@@ -223,11 +243,11 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ height: 0, opacity: 0, y: -10 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -10 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="md:hidden overflow-hidden px-4 pb-4 navbar-blur"
+            className="lg:hidden overflow-hidden px-4 pb-4 navbar-blur mt-2 rounded-full mx-[16px] fixed left-0 right-0"
           >
             <motion.div
               className="flex flex-col space-y-2"

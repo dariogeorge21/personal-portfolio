@@ -16,6 +16,9 @@ const config: Config = {
       },
     },
     extend: {
+      screens: {
+        'lg': '940px', // This will make the hamburger appear below 940px
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

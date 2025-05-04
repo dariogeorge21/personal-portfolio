@@ -137,12 +137,17 @@
 
   /* Light mode navbar */
   .light .navbar-blur {
-    @apply bg-white/80 backdrop-blur-xl border-gray-200/50 shadow-md;
+    @apply bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-md rounded-xl;
   }
 
   /* Dark mode navbar */
   .dark .navbar-blur {
-    @apply bg-background/60 backdrop-blur-xl border-border/50 shadow-lg;
+    @apply bg-background/60 backdrop-blur-xl border border-border/50 shadow-lg rounded-xl;
+  }
+
+  /* Floating navbar styles */
+  .navbar-blur {
+    @apply overflow-hidden;
   }
 }
 
