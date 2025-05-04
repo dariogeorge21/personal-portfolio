@@ -66,20 +66,20 @@ export default function Navbar() {
       animate="visible"
       variants={navVariants}
       className={cn(
-        'fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] z-50 rounded-2xl transition-all duration-300',
+        'fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300',
         scrolled 
-          ? 'bg-background/60 backdrop-blur-xl border border-border/50 shadow-lg'
+          ? 'bg-background/60 backdrop-blur-xl border-b border-border/50 shadow-lg'
           : 'bg-transparent'
       )}
     >
-      <div className="px-6 py-4 max-w-[1200px] mx-auto">
+      <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between h-[40px]">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex-shrink-0"
           >
-            <Link href="/" className="flex items-center space-x-2 px-4 py-2">
+            <Link href="/" className="flex items-center space-x-2">
               <Code className="h-6 w-6 text-primary" />
               <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
                 Portfolio
@@ -87,7 +87,7 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.path}
@@ -101,7 +101,7 @@ export default function Navbar() {
                 <Link
                   href={link.path}
                   className={cn(
-                    'px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200',
+                    'px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200',
                     'min-w-[44px] min-h-[44px] flex items-center justify-center',
                     pathname === link.path
                       ? 'text-primary font-semibold bg-primary/10'
@@ -155,7 +155,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="md:hidden overflow-hidden px-6 pb-4"
+            className="md:hidden overflow-hidden px-4 pb-4 bg-background/80 backdrop-blur-md"
           >
             <motion.div 
               className="flex flex-col space-y-2"
