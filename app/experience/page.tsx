@@ -154,7 +154,7 @@ const experiences: Experience[] = [
     period: "March 2025 - Present",
     description: "I started freelancing as a developer to gain hands-on experience in building web applications. ",
     responsibilities: [
-      "Lead a team of 5 developers, conduct code reviews, and mentor junior developers",
+      "Complete a project for a client within the given deadline",
       "Collaborate with product managers and designers to refine product requirements and user experience"
     ],
     achievements: [
