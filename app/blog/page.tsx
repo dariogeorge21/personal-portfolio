@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { GlassmorphicCard } from '@/components/glassmorphic-card';
@@ -8,12 +9,39 @@ import BackgroundParticles from '@/components/background-particles';
 import { Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { getAllPosts, BlogPost } from '@/lib/blog-service';
+import { toast } from 'sonner';
+import Loading from '@/components/loading';
 
 export default function BlogPage() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setIsLoading(true);
+      try {
+        const fetchedPosts = await getAllPosts();
+        setPosts(fetchedPosts);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        toast.error('Failed to load blog posts');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="pt-24 pb-16">
@@ -26,23 +54,20 @@ export default function BlogPage() {
           centered
         />
 
-        <div className="grid md:grid-cols-2 gap-8" ref={ref}>
-          {
-            blogPosts.map((post, index) => (
-              <BlogPostCard key={index} post={post} index={index} inView={inView} />
-            ))
-          }
-        </div>
+        {posts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground mb-4">No blog posts found</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8" ref={ref}>
+            {posts.map((post, index) => (
+              <BlogPostCard key={post.id} post={post} index={index} inView={inView} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
-}
-
-interface BlogPost {
-  title: string;
-  date: string;
-  excerpt: string;
-  slug: string; // For future use with actual blog post pages
 }
 
 interface BlogPostCardProps {
@@ -78,32 +103,3 @@ function BlogPostCard({ post, index, inView }: BlogPostCardProps) {
     </motion.div>
   );
 }
-
-// Sample blog posts data
-// Replace with your actual blog posts
-const blogPosts: BlogPost[] = [
-  {
-    title: "Getting Started with Next.js and TypeScript",
-    date: "May 15, 2025",
-    excerpt: "Next.js is a powerful React framework that enables server-side rendering and static site generation. In this post, I'll share my experience setting up a new project with Next.js and TypeScript.",
-    slug: "getting-started-with-nextjs"
-  },
-  {
-    title: "The Power of Tailwind CSS",
-    date: "April 28, 2025",
-    excerpt: "Tailwind CSS has revolutionized the way I approach styling in web development. Learn how this utility-first CSS framework can speed up your development workflow.",
-    slug: "power-of-tailwind-css"
-  },
-  {
-    title: "Building Accessible Web Applications",
-    date: "April 10, 2025",
-    excerpt: "Accessibility is a crucial aspect of web development that is often overlooked. In this post, I discuss practical strategies for making your web applications more accessible to all users.",
-    slug: "building-accessible-web-applications"
-  },
-  {
-    title: "Data Structures in Java: A Comprehensive Guide",
-    date: "March 22, 2025",
-    excerpt: "Understanding data structures is fundamental to becoming a proficient programmer. This guide covers essential data structures in Java and their practical applications.",
-    slug: "data-structures-in-java"
-  }
-];

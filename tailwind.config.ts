@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
 
 const config: Config = {
   darkMode: ['class'],
@@ -98,10 +99,10 @@ const config: Config = {
           '50%': { transform: 'translateY(-10px)' },
         },
         'glow': {
-          '0%, 100%': { 
+          '0%, 100%': {
             textShadow: '0 0 5px rgba(79, 172, 254, 0.3), 0 0 10px rgba(79, 172, 254, 0.3)'
           },
-          '50%': { 
+          '50%': {
             textShadow: '0 0 5px rgba(79, 172, 254, 0.5), 0 0 15px rgba(79, 172, 254, 0.5), 0 0 20px rgba(79, 172, 254, 0.3)'
           },
         },
@@ -114,6 +115,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), typography],
 };
+
 export default config;
