@@ -284,7 +284,15 @@ const featuredProjects: Project[] = [
     liveUrl: "https://dariogeorge.vercel.app",
     githubUrl: "https://github.com/dariogeorge21/personal-portfolio",
     featured: true,
-    category: "Web Development"
+    category: "Web Development",
+    keyFeatures: [
+      "Dark/Light theme toggle for user preference",
+      "Smooth animations using Framer Motion",
+      "Responsive design for all devices",
+      "Dynamic routing for easy navigation",
+      "SEO optimized for better visibility",
+      "Integrated with Vercel for fast deployment"
+    ]
   },
 ];
 
