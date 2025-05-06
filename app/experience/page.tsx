@@ -168,6 +168,6 @@ const experiences: Experience[] = [
 const technologies = [
   "JavaScript", "TypeScript", "React", "Next.js", "Angular", "C", 
   "Node.js", "C++", "API", "MongoDB", "MySQL", 
-  "Linux", "Augment Code", "VS Code", "Git", "Github", "Python", "HTML", 
+  "Arch Linux", "Augment Code", "VS Code", "Git", "Github", "Python", "HTML", 
   "CSS/SCSS", "Tailwind CSS", "Material UI", "Figma", "Webpack"
 ];
