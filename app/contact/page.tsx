@@ -206,25 +206,28 @@ export default function ContactPage() {
               I'm a <span className="text-gradient">Computer Science Student</span> with a passion for frontend development and exploring new technologies
             </h3>
 
-            <p className="text-muted-foreground">
-              Hello! I'm Dario, a Computer Science Engineering student at St Joseph's College of Engineering and Technology in Palai, Kerala.
-              I'm currently in my second semester with a GPA of 8.9. My journey in technology began with a fascination for how websites work,
-              which led me to explore frontend development.
-            </p>
+            <GlassmorphicCard className="rounded-[10px]">
+              <div className="space-y-4">
+                <p className="text-muted-foreground">
+                  Engineering student at St Joseph's College of Engineering and Technology in Palai, Kerala.
+                  I'm currently in my second semester with a GPA of 8.9. My journey in technology began with a fascination for how websites work,
+                  which led me to explore frontend development.
+                </p>
 
-            <p className="text-muted-foreground">
-              I'm currently focused on expanding my skills in web development using technologies like HTML, CSS, JavaScript, and TypeScript.
-              I'm also learning Data Structures and Algorithms in Java to build a strong foundation in computer science fundamentals.
-            </p>
+                <p className="text-muted-foreground">
+                  I'm currently focused on expanding my skills in web development using technologies like HTML, CSS, JavaScript, and TypeScript.
+                  I'm also learning Data Structures and Algorithms in Java to build a strong foundation in computer science fundamentals.
+                </p>
 
-            <p className="text-muted-foreground">
-              When I'm not coding, I enjoy exploring new technologies, learning about computer hardware, and improving my skills in multiple
-              languages including English, Malayalam, Hindi, and Tamil. I'm always eager to learn and grow in the field of technology.
-            </p>
+                <p className="text-muted-foreground">
+                  When I'm not coding, I enjoy exploring new technologies, learning about computer hardware, and improving my skills in multiple
+                  languages including English, Malayalam, Hindi, and Tamil. I'm always eager to learn and grow in the field of technology.
+                </p>
+              </div>
+            </GlassmorphicCard>
 
             <div className="flex flex-wrap gap-2 pt-2">
               <Button variant="outline" className="border-gradient">Resume</Button>
-              <Button variant="outline" className="border-gradient">Portfolio</Button>
               <Button variant="outline" className="border-gradient">Blog</Button>
             </div>
           </motion.div>
