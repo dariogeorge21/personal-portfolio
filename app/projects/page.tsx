@@ -285,7 +285,7 @@ const featuredProjects: Project[] = [
     githubUrl: "https://github.com/dariogeorge21/personal-portfolio",
     featured: true,
     category: "Web Development"
-  }
+  },
 ];
 
 const otherProjects: Project[] = [
@@ -299,5 +299,24 @@ const otherProjects: Project[] = [
     githubUrl: "https://github.com/dariogeorge21/AI-HUB-PAGE",
     category: "Web Development"
   },
-  
+  {
+    title: "Gooners Studio",
+    description: "Gooners Studio a group project, is a visually appealing website built for a fictional digital media company. The site showcases the company’s expertise across various services including live streaming, media production, digital marketing, event management, and Esports. The website is designed to provide potential clients with an immersive user experience through a modern, responsive, and interactive interface.",
+    date: "February 2025",
+    imageUrl: "/projects/gooners.png",
+    technologies: ["Typescript","NextJS","Tailwind CSS","ShadCN UI"],
+    liveUrl:"https://abc-2-omega.vercel.app/",
+    githubUrl: "https://github.com/dariogeorge21/abc_2",
+    category:"Web Development"
+  },
+  {
+    title: "Typing Speed Test",
+    description: "A simple web page that allows users to test their typing speed and accuracy.",
+    date: "January 2025",
+    imageUrl: "/projects/typing-test.png",
+    technologies: ["JavaScript", "HTML", "CSS"],
+    liveUrl: "https://dariogeorge21.github.io/typing-test/",
+    githubUrl: "https://github.com/dariogeorge21/typing-test",
+    category: "Web Development"
+  }
 ];
