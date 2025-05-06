@@ -18,6 +18,7 @@ const navLinks = [
   { name: 'Experience', path: '/experience' },
   { name: 'Certificates', path: '/certificates' },
   { name: 'Contact', path: '/contact' },
+  { name: 'Blog', path: '/blog' },
 ];
 
 export default function Navbar() {
