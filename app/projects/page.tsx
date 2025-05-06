@@ -260,7 +260,7 @@ const featuredProjects: Project[] = [
     description: "An advanced, all-in-one platform designed to help users explore, compare, and utilize a wide range of AI tools and technologies. Acts as a toolkit hub, streamlining access to the latest and best AI tools across categories — from generative models to productivity boosters.",
     date: "May 2025",
     imageUrl: "/projects/ai-central.jpg",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "API Integration", "AI Summarization", "NewsAPI"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Radix UI", "NewsAPI"],
     liveUrl: "https://ai-central.vercel.app",
     githubUrl: "https://github.com/dariogeorge21/ai-central-station",
     featured: true,
