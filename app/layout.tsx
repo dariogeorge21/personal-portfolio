@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: 'Dario George | Portfolio',
   description: 'Computer Science Student | Frontend Developer | Exploring Full Stack Development',
   icons: {
-    icon: 'favicon.ico',
+    icon: './favicon.ico',
   },
 };
 
