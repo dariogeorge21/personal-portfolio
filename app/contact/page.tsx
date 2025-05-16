@@ -85,16 +85,32 @@ export default function ContactPage() {
     },
   });
 
-  function onSubmit(data: FormValues) {
+  async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(data);
-      toast.success("Message sent successfully! I'll get back to you soon.");
-      form.reset();
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        form.reset();
+      } else {
+        toast.error(result.error || "Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   }
 
   const container = {
