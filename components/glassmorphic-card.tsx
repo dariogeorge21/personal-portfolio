@@ -7,14 +7,14 @@ interface GlassmorphicCardProps {
   glowAccent?: boolean;
 }
 
-export function GlassmorphicCard({ 
-  children, 
+export function GlassmorphicCard({
+  children,
   className,
   glowAccent = false,
 }: GlassmorphicCardProps) {
   return (
     <div className={cn(
-      "glassmorphism rounded-xl p-6",
+      "glassmorphism rounded-lg sm:rounded-xl p-4 sm:p-6",
       glowAccent && "animate-glow",
       className
     )}>

@@ -19,7 +19,6 @@
 @layer base {
   :root {
     --background: 0 0% 0%;
-    --background: ;
     --foreground: 210 40% 98%;
     --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
@@ -386,13 +385,13 @@
 }
 
 .hero-title {
-  @apply text-5xl md:text-6xl lg:text-7xl font-bold;
+  @apply font-bold;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 .hero-subtitle {
-  @apply text-xl md:text-2xl font-medium text-muted-foreground;
+  @apply font-medium text-muted-foreground;
   letter-spacing: -0.01em;
 }
 
@@ -449,7 +448,7 @@
 }
 
 .hero-tech-badge {
-  @apply bg-background/60 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium;
+  @apply bg-background/60 backdrop-blur-md px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;

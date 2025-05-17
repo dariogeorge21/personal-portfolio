@@ -7,6 +7,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import MouseTrackerWrapper from '@/components/mouse-tracker-wrapper';
 import ThemeBackground from '@/components/theme-background';
+import { Toaster } from '@/components/ui/sonner';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -16,6 +17,9 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: 'Dario George | Portfolio',
   description: 'Computer Science Student | Frontend Developer | Exploring Full Stack Development',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -35,6 +39,7 @@ export default function RootLayout({
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>
+            <Toaster />
           </LoadingProvider>
         </ThemeProvider>
       </body>
