@@ -70,7 +70,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="hero-title mb-3 sm:mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+                    className="hero-title mb-3 sm:mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
                   >
                     <span className="text-gradient">Dario George</span>
                   </motion.h1>

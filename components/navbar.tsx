@@ -87,6 +87,20 @@ export default function Navbar() {
     },
   }
 
+  // Dynamic navbar styles based on theme
+  const navbarStyle = {
+    background: theme === "dark"
+      ? "rgba(13, 6, 32, 0.9)"
+      : "rgba(255, 255, 255, 0.9)",
+    backdropFilter: "blur(10px)",
+    borderBottom: theme === "dark"
+      ? "1px solid rgba(255, 255, 255, 0.1)"
+      : "1px solid rgba(0, 0, 0, 0.1)",
+    boxShadow: theme === "dark"
+      ? "0 0 20px rgba(138, 75, 255, 0.2)"
+      : "0 0 20px rgba(59, 130, 246, 0.2)",
+  }
+
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
@@ -96,13 +110,8 @@ export default function Navbar() {
         stiffness: 100,
         damping: 20,
       }}
-      className="fixed z-50 top-0 left-0 right-0 rounded-none sm:rounded-xl max-w-6xl mx-auto"
-      style={{
-        background: "rgba(13, 6, 32, 0.9)",
-        backdropFilter: "blur(10px)",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-        boxShadow: "0 0 20px rgba(138, 75, 255, 0.2)",
-      }}
+      className="fixed z-50 top-0 left-0 right-0 rounded-none sm:rounded-xl max-w-6xl mx-auto mt-2.5"
+      style={navbarStyle}
     >
       <div className="container mx-auto px-3 sm:px-4 py-3 relative z-10 max-w-5xl">
         <nav className="flex items-center justify-between h-[40px]">
@@ -154,7 +163,12 @@ export default function Navbar() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="rounded-xl w-9 h-9 flex items-center justify-center"
+                className={cn(
+                  "rounded-xl w-9 h-9 flex items-center justify-center",
+                  theme === "dark"
+                    ? "hover:bg-primary/10 text-white"
+                    : "hover:bg-primary/10 text-foreground"
+                )}
                 aria-label="Toggle theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -185,7 +199,12 @@ export default function Navbar() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="rounded-xl w-9 h-9 flex items-center justify-center text-white hover:bg-white/10"
+                className={cn(
+                  "rounded-xl w-9 h-9 flex items-center justify-center",
+                  theme === "dark"
+                    ? "text-white hover:bg-white/10"
+                    : "text-foreground hover:bg-primary/10"
+                )}
                 aria-label="Toggle theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -215,7 +234,12 @@ export default function Navbar() {
                 size="icon"
                 aria-label="Toggle Menu"
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative w-[44px] h-[44px] rounded-xl text-white hover:bg-white/10"
+                className={cn(
+                  "relative w-[44px] h-[44px] rounded-xl",
+                  theme === "dark"
+                    ? "text-white hover:bg-white/10"
+                    : "text-foreground hover:bg-primary/10"
+                )}
                 aria-expanded={isOpen}
               >
                 <AnimatePresence mode="wait">
@@ -245,9 +269,13 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="lg:hidden fixed inset-x-0 top-[56px] z-40 navbar-blur rounded-b-xl max-h-[calc(100vh-56px)] overflow-y-auto"
             style={{
-              background: "rgba(0, 0, 0, 0.85)",
+              background: theme === "dark"
+                ? "rgba(0, 0, 0, 0.85)"
+                : "rgba(255, 255, 255, 0.85)",
               backdropFilter: "blur(10px)",
-              borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+              borderTop: theme === "dark"
+                ? "1px solid rgba(255, 255, 255, 0.1)"
+                : "1px solid rgba(0, 0, 0, 0.1)",
             }}
           >
             <motion.div
@@ -273,7 +301,9 @@ export default function Navbar() {
                       "text-base font-medium",
                       pathname === link.path
                         ? "bg-primary/20 text-primary font-semibold"
-                        : "hover:bg-primary/10 text-white",
+                        : theme === "dark"
+                          ? "hover:bg-primary/10 text-white"
+                          : "hover:bg-primary/10 text-foreground",
                     )}
                   >
                     {link.name}
@@ -286,14 +316,20 @@ export default function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.2 }}
-                className="mt-4 pt-4 border-t border-white/10"
+                className={cn(
+                  "mt-4 pt-4 border-t",
+                  theme === "dark" ? "border-white/10" : "border-black/10"
+                )}
               >
                 <div className="flex justify-center space-x-6 py-2">
                   <Link
                     href="https://github.com/dariogeorge21"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-primary transition-all duration-300"
+                    className={cn(
+                      "hover:text-primary transition-all duration-300",
+                      theme === "dark" ? "text-white/70" : "text-foreground/70"
+                    )}
                     aria-label="GitHub"
                   >
                     <svg
@@ -316,7 +352,10 @@ export default function Navbar() {
                     href="https://www.linkedin.com/in/dariogeorge21"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-primary transition-all duration-300"
+                    className={cn(
+                      "hover:text-primary transition-all duration-300",
+                      theme === "dark" ? "text-white/70" : "text-foreground/70"
+                    )}
                     aria-label="LinkedIn"
                   >
                     <svg
@@ -338,7 +377,10 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="mailto:edu.dariogeorge21@gmail.com"
-                    className="text-white/70 hover:text-primary transition-all duration-300"
+                    className={cn(
+                      "hover:text-primary transition-all duration-300",
+                      theme === "dark" ? "text-white/70" : "text-foreground/70"
+                    )}
                     aria-label="Email"
                   >
                     <svg
