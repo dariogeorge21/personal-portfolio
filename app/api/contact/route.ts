@@ -14,10 +14,10 @@ export async function POST(request: NextRequest) {
   try {
     // Parse the request body
     const body = await request.json();
-    
+
     // Validate the request data
     const result = contactSchema.safeParse(body);
-    
+
     if (!result.success) {
       // Return validation errors
       return NextResponse.json(
@@ -25,26 +25,38 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // Submit the validated message to Supabase
-    const { success, error } = await submitContactMessage(result.data);
-    
-    if (!success) {
+    try {
+      const { success, error } = await submitContactMessage(result.data);
+
+      if (!success) {
+        console.error('API Route - Error from submitContactMessage:', error);
+        return NextResponse.json(
+          { success: false, error },
+          { status: 500 }
+        );
+      }
+    } catch (submitError) {
+      console.error('API Route - Exception from submitContactMessage:', submitError);
       return NextResponse.json(
-        { success: false, error },
+        {
+          success: false,
+          error: submitError instanceof Error ? submitError.message : 'An unknown error occurred during submission'
+        },
         { status: 500 }
       );
     }
-    
+
     // Return success response
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error in contact API route:', error);
-    
+
     return NextResponse.json(
-      { 
-        success: false, 
-        error: error instanceof Error ? error.message : 'An unknown error occurred' 
+      {
+        success: false,
+        error: error instanceof Error ? error.message : 'An unknown error occurred'
       },
       { status: 500 }
     );

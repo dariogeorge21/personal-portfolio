@@ -7,6 +7,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import MouseTrackerWrapper from '@/components/mouse-tracker-wrapper';
 import ThemeBackground from '@/components/theme-background';
+import { Toaster } from '@/components/ui/sonner';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function RootLayout({
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>
+            <Toaster />
           </LoadingProvider>
         </ThemeProvider>
       </body>
