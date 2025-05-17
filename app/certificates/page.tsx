@@ -175,24 +175,6 @@ function MembershipCard({ membership, index }: { membership: Membership; index: 
 
 const certificates: Certificate[] = [
   {
-    name: "Docker Advanced Assessment",
-    issuer: "LearnTube.ai",
-    date: "March 2025",
-    credentialId: "DJA-B-1-1107045-0",
-    credentialLink: "https://www.learntube.ai/verify/certificate/DJA-B-1-1107045-0",
-    imageUrl: "/certificates/docker.jpg",
-    skills: ["Docker", "Containerization", "DevOps", "CI/CD"]
-  },
-  {
-    name: "UI/UX Fundamentals",
-    issuer: "LearnTube.ai",
-    date: "March 2025",
-    credentialId: "DJA-B-1-1099295-0",
-    credentialLink: "https://www.learntube.ai/verify/certificate/DJA-B-1-1099295-0",
-    imageUrl: "/certificates/ui-ux.jpg",
-    skills: ["UI Design", "UX Design", "User Research", "Prototyping"]
-  },
-  {
     name: "Lumino Hackathon",
     issuer: "Saintgits College of Engineering",
     date: "February 2025",
@@ -209,6 +191,24 @@ const certificates: Certificate[] = [
     credentialLink: "https://www.linkedin.com/in/dariogeorge21/overlay/1743763298898/single-media-viewer?type=IMAGE&profileId=ACoAAEQhGFkBn-34os-QwKjCm-gqp1cN7ywoRmE&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BDllvPRURSaSQxWXqFdaY6g%3D%3D",
     imageUrl: "/certificates/asthra9.png",
     skills: ["Linux", "Virtualization", "Mediapipe", "Python"]
+  },
+  {
+    name: "UI/UX Fundamentals",
+    issuer: "LearnTube.ai",
+    date: "March 2025",
+    credentialId: "DJA-B-1-1099295-0",
+    credentialLink: "https://www.learntube.ai/verify/certificate/DJA-B-1-1099295-0",
+    imageUrl: "/certificates/ui-ux.jpg",
+    skills: ["UI Design", "UX Design", "User Research", "Prototyping"]
+  },
+  {
+    name: "Docker Advanced Assessment",
+    issuer: "LearnTube.ai",
+    date: "March 2025",
+    credentialId: "DJA-B-1-1107045-0",
+    credentialLink: "https://www.learntube.ai/verify/certificate/DJA-B-1-1107045-0",
+    imageUrl: "/certificates/docker.jpg",
+    skills: ["Docker", "Containerization", "DevOps", "CI/CD"]
   },
 ];
 
