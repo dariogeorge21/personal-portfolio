@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -25,11 +25,41 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // After mounting, we can safely show the theme toggle
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node) && isOpen) {
+        setIsOpen(false);
+      }
+    }
+
+    // Close menu when pressing escape key
+    function handleEscKey(event: KeyboardEvent) {
+      if (event.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscKey);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [isOpen]);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   const navVariants = {
     visible: {
@@ -65,9 +95,9 @@ export default function Navbar() {
         stiffness: 100,
         damping: 20
       }}
-      className="fixed z-50 top-[20px] left-[16px] right-[16px] rounded-xl navbar-blur max-w-6xl mx-auto left-0 right-0"
+      className="fixed z-50 top-0 sm:top-[10px] md:top-[20px] left-0 right-0 sm:left-[8px] sm:right-[8px] md:left-[16px] md:right-[16px] rounded-none sm:rounded-xl navbar-blur max-w-6xl mx-auto"
     >
-      <div className="container mx-auto px-4 py-3 relative z-10 max-w-5xl">
+      <div className="container mx-auto px-3 sm:px-4 py-3 relative z-10 max-w-5xl">
         <nav className="flex items-center justify-between h-[40px]">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -212,14 +242,15 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ height: 0, opacity: 0, y: -10 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -10 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="lg:hidden overflow-hidden px-4 pb-4 navbar-blur mt-2 rounded-xl mx-[16px] fixed left-0 right-0 cyberpunk-menu"
+            className="lg:hidden overflow-hidden px-3 sm:px-4 pb-4 navbar-blur mt-0 sm:mt-2 rounded-none sm:rounded-xl mx-0 sm:mx-[8px] md:mx-[16px] fixed left-0 right-0 cyberpunk-menu max-h-[80vh] overflow-y-auto"
           >
             <motion.div
-              className="flex flex-col space-y-2"
+              className="flex flex-col space-y-2 py-2"
               variants={{
                 open: {
                   transition: {
@@ -246,6 +277,7 @@ export default function Navbar() {
                     className={cn(
                       'block px-4 py-3 rounded-xl transition-colors',
                       'min-w-[44px] min-h-[44px] flex items-center',
+                      'text-base font-medium', // Increased text size for better touch targets
                       pathname === link.path
                         ? 'bg-primary/10 text-primary font-semibold active-link'
                         : 'hover:bg-primary/5 text-foreground'
@@ -255,6 +287,53 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Social links in mobile menu */}
+              <motion.div
+                variants={{
+                  closed: { x: -20, opacity: 0 },
+                  open: { x: 0, opacity: 1 }
+                }}
+                className="mt-4 pt-4 border-t border-border/30"
+              >
+                <div className="flex justify-center space-x-6 py-2">
+                  <Link
+                    href="https://github.com/dariogeorge21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-all duration-300"
+                    aria-label="GitHub"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/in/dariogeorge21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-all duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect width="4" height="12" x="2" y="9"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  </Link>
+                  <Link
+                    href="mailto:edu.dariogeorge21@gmail.com"
+                    className="text-muted-foreground hover:text-primary transition-all duration-300"
+                    aria-label="Email"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
