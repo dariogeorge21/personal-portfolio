@@ -87,18 +87,15 @@ export default function Navbar() {
     },
   }
 
+  // Use dark theme as default when not mounted yet
+  const currentTheme = mounted ? theme : "dark"
+
   // Dynamic navbar styles based on theme
   const navbarStyle = {
-    background: theme === "dark"
+    background: currentTheme === "dark"
       ? "rgba(13, 6, 32, 0.9)"
       : "rgba(255, 255, 255, 0.9)",
     backdropFilter: "blur(10px)",
-    borderBottom: theme === "dark"
-      ? "1px solid rgba(255, 255, 255, 0.1)"
-      : "1px solid rgba(0, 0, 0, 0.1)",
-    boxShadow: theme === "dark"
-      ? "0 0 20px rgba(138, 75, 255, 0.2)"
-      : "0 0 20px rgba(59, 130, 246, 0.2)",
   }
 
   return (
@@ -165,7 +162,7 @@ export default function Navbar() {
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className={cn(
                   "rounded-xl w-9 h-9 flex items-center justify-center",
-                  theme === "dark"
+                  currentTheme === "dark"
                     ? "hover:bg-primary/10 text-white"
                     : "hover:bg-primary/10 text-foreground"
                 )}
@@ -174,13 +171,13 @@ export default function Navbar() {
                 <AnimatePresence mode="wait" initial={false}>
                   {mounted && (
                     <motion.div
-                      key={theme === "dark" ? "dark" : "light"}
+                      key={currentTheme === "dark" ? "dark" : "light"}
                       initial={{ y: -10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: 10, opacity: 0 }}
                       transition={{ duration: 0.15 }}
                     >
-                      {theme === "dark" ? (
+                      {currentTheme === "dark" ? (
                         <Sun className="h-5 w-5 text-yellow-400" />
                       ) : (
                         <Moon className="h-5 w-5 text-blue-700" />
@@ -201,7 +198,7 @@ export default function Navbar() {
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className={cn(
                   "rounded-xl w-9 h-9 flex items-center justify-center",
-                  theme === "dark"
+                  currentTheme === "dark"
                     ? "text-white hover:bg-white/10"
                     : "text-foreground hover:bg-primary/10"
                 )}
@@ -210,13 +207,13 @@ export default function Navbar() {
                 <AnimatePresence mode="wait" initial={false}>
                   {mounted && (
                     <motion.div
-                      key={theme === "dark" ? "dark" : "light"}
+                      key={currentTheme === "dark" ? "dark" : "light"}
                       initial={{ y: -10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: 10, opacity: 0 }}
                       transition={{ duration: 0.15 }}
                     >
-                      {theme === "dark" ? (
+                      {currentTheme === "dark" ? (
                         <Sun className="h-5 w-5 text-yellow-400" />
                       ) : (
                         <Moon className="h-5 w-5 text-blue-400" />
@@ -236,7 +233,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
                   "relative w-[44px] h-[44px] rounded-xl",
-                  theme === "dark"
+                  currentTheme === "dark"
                     ? "text-white hover:bg-white/10"
                     : "text-foreground hover:bg-primary/10"
                 )}
@@ -269,11 +266,11 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="lg:hidden fixed inset-x-0 top-[56px] z-40 navbar-blur rounded-b-xl max-h-[calc(100vh-56px)] overflow-y-auto"
             style={{
-              background: theme === "dark"
+              background: currentTheme === "dark"
                 ? "rgba(0, 0, 0, 0.85)"
                 : "rgba(255, 255, 255, 0.85)",
               backdropFilter: "blur(10px)",
-              borderTop: theme === "dark"
+              borderTop: currentTheme === "dark"
                 ? "1px solid rgba(255, 255, 255, 0.1)"
                 : "1px solid rgba(0, 0, 0, 0.1)",
             }}
@@ -301,7 +298,7 @@ export default function Navbar() {
                       "text-base font-medium",
                       pathname === link.path
                         ? "bg-primary/20 text-primary font-semibold"
-                        : theme === "dark"
+                        : currentTheme === "dark"
                           ? "hover:bg-primary/10 text-white"
                           : "hover:bg-primary/10 text-foreground",
                     )}
@@ -318,7 +315,7 @@ export default function Navbar() {
                 transition={{ delay: 0.3, duration: 0.2 }}
                 className={cn(
                   "mt-4 pt-4 border-t",
-                  theme === "dark" ? "border-white/10" : "border-black/10"
+                  currentTheme === "dark" ? "border-white/10" : "border-black/10"
                 )}
               >
                 <div className="flex justify-center space-x-6 py-2">
@@ -328,7 +325,7 @@ export default function Navbar() {
                     rel="noopener noreferrer"
                     className={cn(
                       "hover:text-primary transition-all duration-300",
-                      theme === "dark" ? "text-white/70" : "text-foreground/70"
+                      currentTheme === "dark" ? "text-white/70" : "text-foreground/70"
                     )}
                     aria-label="GitHub"
                   >
@@ -354,7 +351,7 @@ export default function Navbar() {
                     rel="noopener noreferrer"
                     className={cn(
                       "hover:text-primary transition-all duration-300",
-                      theme === "dark" ? "text-white/70" : "text-foreground/70"
+                      currentTheme === "dark" ? "text-white/70" : "text-foreground/70"
                     )}
                     aria-label="LinkedIn"
                   >
@@ -379,7 +376,7 @@ export default function Navbar() {
                     href="mailto:edu.dariogeorge21@gmail.com"
                     className={cn(
                       "hover:text-primary transition-all duration-300",
-                      theme === "dark" ? "text-white/70" : "text-foreground/70"
+                      currentTheme === "dark" ? "text-white/70" : "text-foreground/70"
                     )}
                     aria-label="Email"
                   >
