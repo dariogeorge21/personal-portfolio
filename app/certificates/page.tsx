@@ -179,7 +179,7 @@ const certificates: Certificate[] = [
     issuer: "LearnTube.ai",
     date: "March 2025",
     credentialId: "DJA-B-1-1107045-0",
-    credentialLink: "#",
+    credentialLink: "https://www.learntube.ai/verify/certificate/DJA-B-1-1107045-0",
     imageUrl: "/certificates/docker.jpg",
     skills: ["Docker", "Containerization", "DevOps", "CI/CD"]
   },
@@ -188,7 +188,7 @@ const certificates: Certificate[] = [
     issuer: "LearnTube.ai",
     date: "March 2025",
     credentialId: "DJA-B-1-1099295-0",
-    credentialLink: "#",
+    credentialLink: "https://www.learntube.ai/verify/certificate/DJA-B-1-1099295-0",
     imageUrl: "/certificates/ui-ux.jpg",
     skills: ["UI Design", "UX Design", "User Research", "Prototyping"]
   },
@@ -197,7 +197,7 @@ const certificates: Certificate[] = [
     issuer: "Saintgits College of Engineering",
     date: "February 2025",
     credentialId: "NA",
-    credentialLink: "#",
+    credentialLink: "https://www.linkedin.com/posts/dariogeorge21_hackathon-tech-innovation-activity-7310586085753896960-na8B?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEQhGFkBn-34os-QwKjCm-gqp1cN7ywoRmE",
     imageUrl: "/certificates/lumino.jpg",
     skills: ["Next.js", "Firebase", "Tailwind CSS", "Vercel"]
   },
@@ -206,9 +206,9 @@ const certificates: Certificate[] = [
     issuer: "St. Joseph's College of Engineering and Technology",
     date: "March 2025",
     credentialId: "NA",
-    credentialLink: "#",
+    credentialLink: "https://www.linkedin.com/in/dariogeorge21/overlay/1743763298898/single-media-viewer?type=IMAGE&profileId=ACoAAEQhGFkBn-34os-QwKjCm-gqp1cN7ywoRmE&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BDllvPRURSaSQxWXqFdaY6g%3D%3D",
     imageUrl: "/certificates/asthra9.png",
-    skills: ["Linux", "Virtualization", "Mediapipe", "OpenCV"]
+    skills: ["Linux", "Virtualization", "Mediapipe", "Python"]
   },
 ];
 
