@@ -232,12 +232,11 @@ export default function ContactPage() {
 
                 <p className="text-muted-foreground text-xs sm:text-sm">
                   I'm currently focused on expanding my skills in web development using technologies like HTML, CSS, JavaScript, and TypeScript.
-                  I'm also learning Data Structures and Algorithms in Java to build a strong foundation in computer science fundamentals.
+                  I'm also learning Data Structures and Algorithms in C++ to build a strong foundation in computer science fundamentals.
                 </p>
 
                 <p className="text-muted-foreground text-xs sm:text-sm">
-                  When I'm not coding, I enjoy exploring new technologies, learning about computer hardware, and improving my skills in multiple
-                  languages including English, Malayalam, Hindi, and Tamil. I'm always eager to learn and grow in the field of technology.
+                  When I'm not coding, I enjoy exploring new technologies, learning about computer hardware. I'm always eager to learn and grow in the field of technology.
                 </p>
               </div>
             </GlassmorphicCard>
