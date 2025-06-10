@@ -90,7 +90,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="hero-description text-sm sm:text-base"
                   >
-                    Exploring Full Stack Development | Learning DSA in Java | Computer Science Student at St Joseph's College of Engineering and Technology
+                    Exploring Full Stack Development | Learning DSA in C++ | Computer Science Student at St Joseph's College of Engineering and Technology
                   </motion.p>
                 </div>
 
