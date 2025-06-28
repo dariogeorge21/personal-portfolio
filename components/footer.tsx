@@ -43,8 +43,18 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 sm:mt-8 pt-3 sm:pt-4 border-t border-border/40 text-center text-xs sm:text-sm text-muted-foreground">
-          <p>© {currentYear} Dario George. All rights reserved.</p>
-        </div>
+            <p>
+            © {currentYear} Dario George. All rights reserved. &nbsp;|&nbsp;
+            <a
+              href="https://ko-fi.com/U7U61GHVW1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Support me
+            </a>
+            </p>
+        </div>  
       </div>
     </footer>
   );
