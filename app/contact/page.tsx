@@ -157,7 +157,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="text-muted-foreground text-xs sm:text-sm">Location</h4>
-                  <p className="font-medium text-sm sm:text-base">New Delhi, India</p>
+                  <p className="font-medium text-sm sm:text-base">Thodupuzha, India</p>
                 </div>
                 <div>
                   <h4 className="text-muted-foreground text-xs sm:text-sm">Availability</h4>
@@ -350,7 +350,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium text-sm sm:text-base">Location</h4>
                     <p className="text-muted-foreground text-xs sm:text-sm">
-                      New Delhi, India
+                      Kottayam, India
                     </p>
                   </div>
                 </div>
