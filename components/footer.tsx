@@ -46,7 +46,7 @@ export default function Footer() {
             <p>
             © {currentYear} Dario George. All rights reserved. &nbsp;|&nbsp;
             <a
-              href="https://ko-fi.com/U7U61GHVW1"
+              href="https://buymeacoffee.com/dariogeorge21"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
