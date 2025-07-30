@@ -129,11 +129,11 @@ const educationData: Education[] = [
     institution: "St Joseph's College of Engineering and Technology",
     location: "Palai, Kottayam, Kerala",
     period: "2024 - Present",
-    description: "Currently in the second semester (S2) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
+    description: "Currently in the second semester (S3) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
     achievements: [
-      "Current GPA: 8.9",
+      "Current GPA: 8.5",
       "Actively learning web development technologies",
-      "Exploring Data Structures and Algorithms in Java"
+      "Exploring Data Structures and Algorithms in C++"
     ]
   },
   {
@@ -165,7 +165,7 @@ const educationData: Education[] = [
 const achievements = [
   {
     title: "Strong Academic Performance",
-    description: "Maintaining a GPA of 8.9 in BTech Computer Science and Engineering program.",
+    description: "Maintaining a GPA of 8.5 in BTech Computer Science and Engineering program.",
     year: "2025"
   },
   {

@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useInView } from 'react-intersection-observer';
 import BackgroundParticles from '@/components/background-particles';
-import { Github, Linkedin, Twitter, Mail, MapPin, Phone, Send, Heart, Coffee, Code, Music, Book, Camera, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, MapPin, Phone, Send, Heart, Coffee, Code, Music, Book, Camera, ArrowRight, Gamepad } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -63,8 +63,7 @@ const interests = [
   { name: "Photography", icon: <Camera className="h-6 w-6" /> },
   { name: "Reading", icon: <Book className="h-6 w-6" /> },
   { name: "Music", icon: <Music className="h-6 w-6" /> },
-  { name: "Coding", icon: <Code className="h-6 w-6" /> },
-  { name: "Coffee", icon: <Coffee className="h-6 w-6" /> }
+  { name: "Gaming", icon: <Gamepad className="h-6 w-6" /> }
 ];
 
 export default function ContactPage() {
@@ -226,7 +225,7 @@ export default function ContactPage() {
               <div className="space-y-3 sm:space-y-4">
                 <p className="text-muted-foreground text-xs sm:text-sm">
                   Engineering student at St Joseph's College of Engineering and Technology in Palai, Kerala.
-                  I'm currently in my second semester with a GPA of 8.9. My journey in technology began with a fascination for how websites work,
+                  I'm currently in my second semester with a GPA of 8.5. My journey in technology began with a fascination for how websites work,
                   which led me to explore frontend development.
                 </p>
 
@@ -278,7 +277,7 @@ export default function ContactPage() {
         </div>
 
         {/* Personal Interests */}
-        {/* <div className="mb-20">
+        <div className="mb-20">
           <SectionHeading
             title="Personal Interests"
             subtitle="Beyond coding, here are a few things I'm passionate about"
@@ -300,7 +299,7 @@ export default function ContactPage() {
               </motion.div>
             ))}
           </motion.div>
-        </div> */}
+        </div>
 
         <SectionHeading
           title="Get In Touch"
@@ -350,7 +349,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium text-sm sm:text-base">Location</h4>
                     <p className="text-muted-foreground text-xs sm:text-sm">
-                      Kottayam, India
+                      Thodupuzha, India
                     </p>
                   </div>
                 </div>

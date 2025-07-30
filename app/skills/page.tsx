@@ -175,34 +175,34 @@ const frontendSkills: Skill[] = [
 
 const backendSkills: Skill[] = [
   { name: "Python", level: 85 },
-  { name: "C Programming", level: 85 },
-  { name: "C++", level: 75 },
-  { name: "MySQL", level: 75 },
-  { name: "Java (Learning)", level: 30 },
-  { name: "DSA Fundamentals", level: 40 },
-  { name: "Backend Basics", level: 60 },
-  { name: "Database Concepts", level: 70 },
+  { name: "C Programming", level: 90 },
+  { name: "C++", level: 85 },
+  { name: "MySQL", level: 15 },
+  { name: "Java (Learning)", level: 70 },
+  { name: "DSA Fundamentals", level: 30 },
+  { name: "Backend Basics", level: 5 },
+  { name: "Database Concepts", level: 10 },
   { name: "API Fundamentals", level: 65 }
 ];
 
 const toolsSkills: Skill[] = [
-  { name: "Git", level: 90 },
-  { name: "VS Code", level: 95 },
-  { name: "Computer Hardware", level: 80 },
-  { name: "Linux OS", level: 85 },
+  { name: "Git", level: 100 },
+  { name: "VS Code", level: 100 },
+  { name: "Computer Hardware", level: 95 },
+  { name: "Linux OS", level: 90 },
   { name: "Windows OS", level: 95 },
   { name: "Basic Networking", level: 70 },
   { name: "Development Tools", level: 75 },
-  { name: "GitHub", level: 90 },
-  { name: "Command Line", level: 85 }
+  { name: "GitHub", level: 95 },
+  { name: "Command Line", level: 90 }
 ];
 
 const otherSkills: Skill[] = [
   { name: "Prompt Engineering", level: 75 },
   { name: "English", level: 95 },
-  { name: "Malayalam", level: 85 },
-  { name: "Hindi", level: 95 },
-  { name: "Tamil", level: 85 },
+  { name: "Malayalam", level: 90 },
+  { name: "Hindi", level: 100 },
+  { name: "Tamil", level: 80 },
   { name: "Problem Solving", level: 70 },
   { name: "Self-Learning", level: 85 },
   { name: "Time Management", level: 85 },
