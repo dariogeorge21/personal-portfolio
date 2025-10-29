@@ -310,14 +310,34 @@ const otherProjects: Project[] = [
     category: "Web Development"
   },
   {
-    title: "Gooners Studio",
-    description: "Gooners Studio a group project, is a visually appealing website built for a fictional digital media company. The site showcases the company’s expertise across various services including live streaming, media production, digital marketing, event management, and Esports. The website is designed to provide potential clients with an immersive user experience through a modern, responsive, and interactive interface.",
-    date: "February 2025",
-    imageUrl: "/projects/gooners.png",
-    technologies: ["Typescript","NextJS","Tailwind CSS","ShadCN UI"],
-    liveUrl:"https://abc-2-omega.vercel.app/",
-    githubUrl: "https://github.com/dariogeorge21/abc_2",
-    category:"Web Development"
+    title: "GoAero",
+    description: "A flight booking platform built using Java Swing and MySQL as part of a course project. It was built by a team of 4 members. It consists of roles as Passenger, Admin, and Airline Company. ",
+    date: "October 2025",
+    imageUrl: "/projects/goaero.png",
+    technologies: ["Java", "MySQL", "Java Swing"],
+    liveUrl:"/",
+    githubUrl: "https://github.com/dariogeorge21/GoAero",
+    category:"Java"
+  },
+  {
+    title: "Gnosis - The Bible App",
+    description: "A web app that helps in your faith by reading bible, reciting rosaries, and other prayers. Also with an AI chatbot that can help clarify your doubts.",
+    date: "May 2025",
+    imageUrl: "/projects/gnosis.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    liveUrl: "https://gnosis-liard.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/Gnosis",
+    category: "Web Development",
+  },
+  {
+    title: "Finance Tracker",
+    description: "A simple finance tracker app built using NextJS and Supabase. It allows users to track their income and expenses and view their balance.",
+    date: "January 2025",
+    imageUrl: "/projects/finance.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+    liveUrl: "https://finance-tracker-dev.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/finance-tracker",
+    category: "Web Development"
   },
   {
     title: "Typing Speed Test",
@@ -328,5 +348,46 @@ const otherProjects: Project[] = [
     liveUrl: "https://dariogeorge21.github.io/typing-test/",
     githubUrl: "https://github.com/dariogeorge21/typing-test",
     category: "Web Development"
+  },
+  {
+    title: "Chrome Dinosaur using Voice Detection",
+    description: "A simple chrome dinosaur game that can be played using voice detection in python. It uses python and sounddevice library to detect voice. On sound detection it jumps the dinosaur.",
+    date: "February 2025",
+    imageUrl: "/projects/dino.png",
+    technologies: ["Python", "Sounddevice"],
+    liveUrl: "/",
+    githubUrl: "https://github.com/dariogeorge21/dino-py",
+    category: "Python"
+  },
+  {
+    title: "Finger based eye tracking",
+    description: "Consist of two eyes which follows the index finger through the camera.",
+    date: "February 2025",
+    imageUrl: "/projects/eye.png",
+    technologies: ["Vanilla JS","HTML", "CSS", "Mediapipe"],
+    liveUrl: "https://dariogeorge21.github.io/finger-eye-tracking/",
+    githubUrl: "https://github.com/dariogeorge21/finger-eye-tracking",
+    category: "Web Development"
+  },
+  {
+    title: "Tic Tac Toe Game",
+    description: "A simple python based game that allows users to play tic tac toe.",
+    date: "January 2025",
+    imageUrl: "/projects/ttt.png",
+    technologies: ["Python"],
+    liveUrl: "/",
+    githubUrl: "https://github.com/dariogeorge21/TTT-python",
+    category: "Python"
+  },
+  {
+    title: "Snake Game",
+    description: "A simple python based game that allows users to play snake game.",
+    date: "January 2025",
+    imageUrl: "/projects/snake-game.png",
+    technologies: ["Python"],
+    liveUrl: "/",
+    githubUrl: "https://github.com/dariogeorge21/python-snake",
+    category: "Python"
   }
+
 ];
