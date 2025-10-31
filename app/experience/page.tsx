@@ -151,8 +151,8 @@ const experiences: Experience[] = [
     position: "Freelance Developer",
     company: "FreeLance",
     location: "Online",
-    period: "March 2025 - Present",
-    description: "I started freelancing as a developer to gain hands-on experience in building web applications. ",
+    period: "July 2025 - Present",
+    description: "I started freelancing as a frontend developer to gain hands-on experience in building web applications. ",
     responsibilities: [
       "Complete a project for a client within the given deadline",
       "Collaborate with product managers and designers to refine product requirements and user experience"
@@ -166,8 +166,8 @@ const experiences: Experience[] = [
 ];
 
 const technologies = [
-  "JavaScript", "TypeScript", "React", "Next.js", "Angular", "C",
-  "Node.js", "C++", "API", "MongoDB", "MySQL",
-  "Arch Linux", "Augment Code", "VS Code", "Git", "Github", "Python", "HTML",
+  "JavaScript", "TypeScript", "React", "Next.js", "Vite",
+  "Node.js", "API", "MongoDB", "MySQL", "Supabase", "MySQL",
+  "Arch Linux", "Augment Code", "VS Code", "Git", "Github", "HTML",
   "CSS/SCSS", "Tailwind CSS", "Material UI", "Figma", "Webpack"
 ];
