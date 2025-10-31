@@ -333,7 +333,7 @@ const otherProjects: Project[] = [
     title: "Finance Tracker",
     description: "A simple finance tracker app built using NextJS and Supabase. It allows users to track their income and expenses and view their balance.",
     date: "January 2025",
-    imageUrl: "/projects/finance.png",
+    imageUrl: "/projects/finance-dev.png",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveUrl: "https://finance-tracker-dev.vercel.app",
     githubUrl: "https://github.com/dariogeorge21/finance-tracker",
