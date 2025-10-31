@@ -150,24 +150,6 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hero-image-container flex justify-center items-center relative mt-6 md:mt-0"
               >
-                {/* Decorative code blocks */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 0.7, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                  className="absolute -top-8 sm:-top-10 right-4 sm:right-10 bg-background/40 backdrop-blur-md p-2 sm:p-3 rounded-lg border border-border/30 shadow-lg text-[10px] sm:text-xs font-mono text-blue-400 transform rotate-3 z-10 hidden sm:block"
-                >
-                  const developer = new Developer();
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 0.7, x: 0 }}
-                  transition={{ duration: 0.8, delay: 1.1 }}
-                  className="absolute -bottom-6 sm:-bottom-8 left-4 sm:left-10 bg-background/40 backdrop-blur-md p-2 sm:p-3 rounded-lg border border-border/30 shadow-lg text-[10px] sm:text-xs font-mono text-purple-400 transform -rotate-2 z-10 hidden sm:block"
-                >
-                  await skills.improve();
-                </motion.div>
 
                 {/* Glow effect */}
                 <div className="hero-image-glow"></div>
