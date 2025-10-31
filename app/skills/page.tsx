@@ -162,56 +162,64 @@ function SkillCard({ skill, index, inView }: SkillCardProps) {
 }
 
 const frontendSkills: Skill[] = [
-  { name: "HTML", level: 95 },
-  { name: "CSS", level: 90 },
-  { name: "JavaScript", level: 75 },
-  { name: "TypeScript", level: 70 },
-  { name: "NextJS", level: 65 },
-  { name: "Responsive Design", level: 75 },
-  { name: "UI Fundamentals", level: 70 },
-  { name: "Tailwind CSS", level: 65 },
-  { name: "Frontend Basics", level: 80 }
+  { name: "HTML", level: 98 },
+  { name: "CSS", level: 98 },
+  { name: "JavaScript", level: 85 },
+  { name: "TypeScript", level: 90 },
+  { name: "NextJS", level: 95 },
+  { name: "Responsive Design", level: 85 },
+  { name: "UI Fundamentals", level: 90 },
+  { name: "Tailwind CSS", level: 85 },
+  { name: "Frontend Basics", level: 99 },
+  { name: "React", level: 90 },
+  { name: "Swing", level: 90 },
+  { name: "JavaFX", level: 90 },
+  { name: "Rust", level: 70 },
+
 ];
 
 const backendSkills: Skill[] = [
-  { name: "Python", level: 85 },
+  { name: "Python", level: 95 },
   { name: "C Programming", level: 90 },
-  { name: "C++", level: 85 },
-  { name: "MySQL", level: 15 },
-  { name: "Java (Learning)", level: 70 },
-  { name: "DSA Fundamentals", level: 30 },
-  { name: "Backend Basics", level: 5 },
-  { name: "Database Concepts", level: 10 },
-  { name: "API Fundamentals", level: 65 }
+  { name: "C++", level: 95 },
+  { name: "MySQL", level: 95 },
+  { name: "Java", level: 90 },
+  { name: "DSA Fundamentals", level: 70 },
+  { name: "Backend Basics", level: 75 },
+  { name: "Database Concepts", level: 80 },
+  { name: "API Fundamentals", level: 90 },
+  { name: "NodeJS", level: 90 },
+  { name: "Supabase", level: 90 },
+
 ];
 
 const toolsSkills: Skill[] = [
   { name: "Git", level: 100 },
   { name: "VS Code", level: 100 },
-  { name: "Computer Hardware", level: 95 },
-  { name: "Linux OS", level: 90 },
-  { name: "Windows OS", level: 95 },
-  { name: "Basic Networking", level: 70 },
-  { name: "Development Tools", level: 75 },
-  { name: "GitHub", level: 95 },
-  { name: "Command Line", level: 90 }
+  { name: "Computer Hardware", level: 98 },
+  { name: "Linux OS", level: 95 },
+  { name: "Windows OS", level: 98 },
+  { name: "Basic Networking", level: 80 },
+  { name: "Development Tools", level: 85 },
+  { name: "GitHub", level: 98 },
+  { name: "Command Line", level: 95 },
+
 ];
 
 const otherSkills: Skill[] = [
-  { name: "Prompt Engineering", level: 75 },
+  { name: "Prompt Engineering", level: 98 },
   { name: "English", level: 95 },
   { name: "Malayalam", level: 90 },
   { name: "Hindi", level: 100 },
   { name: "Tamil", level: 80 },
-  { name: "Problem Solving", level: 70 },
   { name: "Self-Learning", level: 85 },
   { name: "Time Management", level: 85 },
-  { name: "Adaptability", level: 90 }
+  { name: "Adaptability", level: 97 }
 ];
 
 const professionalSkills: Skill[] = [
   { name: "Communication", level: 85 },
-  { name: "Teamwork", level: 90 },
+  { name: "Teamwork", level: 95 },
   { name: "Problem Solving", level: 85 },
   { name: "Critical Thinking", level: 80 },
   { name: "Learning Agility", level: 90 },
