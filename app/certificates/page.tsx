@@ -71,12 +71,12 @@ function CertificateCard({ certificate, index }: { certificate: Certificate; ind
       transition={{ duration: 0.6, delay: 0.1 * index }}
     >
       <GlassmorphicCard className="h-full flex flex-col overflow-hidden">
-        <div className="relative w-full h-48 mb-6 overflow-hidden rounded-md">
+        <div className="relative w-full h-48 mb-6 overflow-hidden rounded-md bg-muted/30">
           <Image
             src={certificate.imageUrl}
             alt={certificate.name}
             fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
+            className="object-contain transition-transform duration-300 hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
@@ -210,6 +210,24 @@ const certificates: Certificate[] = [
     imageUrl: "/certificates/docker.jpg",
     skills: ["Docker", "Containerization", "DevOps", "CI/CD"]
   },
+  {
+    name: "Insendium 10.0 Participant",
+    issuer: "St. Joseph's College of Engineering and Technology",
+    date: "August 2025",
+    credentialId: "NA",
+    credentialLink: "#",
+    imageUrl: "/certificates/insendium10.jpg",
+    skills: ["Teamwork", "Problem Solving", "Communication", "Leadership"]
+  },
+  {
+    name: "HashItUp Hackathon",
+    issuer: "Mar Baselios College of Engineering, Kuttikanam",
+    date: "September 2025",
+    credentialId: "NA",
+    credentialLink: "#",
+    imageUrl: "/certificates/hashitup.jpeg",
+    skills: ["NextJS", "Supabase", "AnimaJS", "React"]
+  }
 ];
 
 const memberships: Membership[] = [
