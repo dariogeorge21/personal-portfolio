@@ -308,7 +308,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience Preview Section */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="experience">
         <div className="container mx-auto">
           <motion.div
@@ -326,40 +326,65 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          <ExperienceTimeline experiences={experiences} />
+          {/* Show only the most recent experience */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <GlassmorphicCard className="p-6 sm:p-8 max-w-3xl mx-auto">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gradient mb-1">
+                    {experiences[0].position}
+                  </h3>
+                  <p className="text-lg text-muted-foreground">{experiences[0].company}</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center justify-end text-muted-foreground text-sm">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>{experiences[0].period}</span>
+                  </div>
+                  <div className="flex items-center justify-end text-muted-foreground text-sm mt-1">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    <span>{experiences[0].location}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <p className="text-muted-foreground mb-6 text-sm sm:text-base">
+                {experiences[0].description}
+              </p>
 
-          <div className="mt-12 sm:mt-16 md:mt-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-6 sm:mb-8"
-            >
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">Technologies & Tools</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Technologies and tools I've worked with throughout my career</p>
-            </motion.div>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {technologies.slice(0, 8).map((tech, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                  >
+                    {tech}
+                  </span>
+                ))}
+                <span className="text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground">
+                  +{technologies.length - 8} more
+                </span>
+              </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
-              {technologies.map((tech, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.05 * index }}
-                  viewport={{ once: true }}
-                >
-                  <GlassmorphicCard className="p-2 sm:p-3 md:p-4 text-center h-full flex flex-col items-center justify-center">
-                    <span className="font-medium text-xs sm:text-sm">{tech}</span>
-                  </GlassmorphicCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+              <Button 
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
+                asChild
+              >
+                <Link href="/experience">
+                  View Full Experience <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </GlassmorphicCard>
+          </motion.div>
         </div>
       </section>
 
-      {/* Education Section */}
+      {/* Education Preview Section */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="education">
         <div className="container mx-auto">
           <motion.div
@@ -377,52 +402,63 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          <div className="grid gap-8 mb-12 sm:mb-16 md:mb-20">
-            {educationData.map((edu, index) => (
-              <EducationCard key={index} education={edu} index={index} />
-            ))}
-          </div>
+          {/* Show only current education */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <GlassmorphicCard className="p-6 sm:p-8 max-w-3xl mx-auto">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gradient mb-1">
+                    {educationData[0].degree}
+                  </h3>
+                  <p className="text-lg text-muted-foreground">{educationData[0].institution}</p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center justify-end text-muted-foreground text-sm">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>{educationData[0].period}</span>
+                  </div>
+                  <div className="flex items-center justify-end text-muted-foreground text-sm mt-1">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    <span>{educationData[0].location}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <p className="text-muted-foreground mb-6 text-sm sm:text-base">
+                {educationData[0].description}
+              </p>
 
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-6 sm:mb-8"
-            >
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">Academic Achievements</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Recognition and awards received during my academic journey</p>
-            </motion.div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                {achievements.slice(0, 3).map((achievement, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <Award className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-sm">{achievement.title}</h4>
+                      <p className="text-xs text-muted-foreground">{achievement.year}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
-                  viewport={{ once: true }}
-                >
-                  <GlassmorphicCard className="h-full p-4 sm:p-6">
-                    <div className="text-primary mb-4">
-                      <Award className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{achievement.title}</h3>
-                    <p className="text-muted-foreground mb-4 text-sm">{achievement.description}</p>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      <span>{achievement.year}</span>
-                    </div>
-                  </GlassmorphicCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+              <Button 
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
+                asChild
+              >
+                <Link href="/education">
+                  View Complete Education History <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </GlassmorphicCard>
+          </motion.div>
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills Preview Section */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="skills">
         <div className="container mx-auto">
           <motion.div
@@ -440,111 +476,139 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          <div className="mb-12 sm:mb-16 md:mb-20">
-            <Tabs defaultValue="frontend" className="w-full">
-              <div className="flex justify-center mb-6 sm:mb-8 overflow-x-auto pb-2">
-                <TabsList className="glassmorphism flex-nowrap">
-                  <TabsTrigger value="frontend" className="text-xs sm:text-sm whitespace-nowrap">Frontend</TabsTrigger>
-                  <TabsTrigger value="backend" className="text-xs sm:text-sm whitespace-nowrap">Backend</TabsTrigger>
-                  <TabsTrigger value="tools" className="text-xs sm:text-sm whitespace-nowrap">Tools & DevOps</TabsTrigger>
-                  <TabsTrigger value="other" className="text-xs sm:text-sm whitespace-nowrap">Other Skills</TabsTrigger>
-                </TabsList>
-              </div>
-
-              <TabsContent value="frontend">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                  {frontendSkills.map((skill, index) => (
-                    <SkillCard key={index} skill={skill} index={index} />
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="backend">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                  {backendSkills.map((skill, index) => (
-                    <SkillCard key={index} skill={skill} index={index} />
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="tools">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                  {toolsSkills.map((skill, index) => (
-                    <SkillCard key={index} skill={skill} index={index} />
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="other">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                  {otherSkills.map((skill, index) => (
-                    <SkillCard key={index} skill={skill} index={index} />
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-
-          <div>
+          {/* Skills Overview Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-6 sm:mb-8"
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">Professional Skills</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Soft skills and professional abilities that complement my technical expertise</p>
+              <GlassmorphicCard className="p-6 text-center h-full">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                  <Code className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Frontend</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {frontendSkills.length}+ Technologies
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  {frontendSkills.slice(0, 4).map((skill, i) => (
+                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      {skill.name}
+                    </span>
+                  ))}
+                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                    +{frontendSkills.length - 4}
+                  </span>
+                </div>
+              </GlassmorphicCard>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <GlassmorphicCard className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Communication & Collaboration</h3>
-
-                  {professionalSkills.slice(0, 4).map((skill, index) => (
-                    <div key={index} className="mb-4 sm:mb-6">
-                      <div className="flex justify-between mb-1 sm:mb-2">
-                        <span className="font-medium text-sm sm:text-base">{skill.name}</span>
-                        <span className="text-muted-foreground text-xs sm:text-sm">{skill.level}%</span>
-                      </div>
-                      <Progress value={skill.level} className="h-1.5 sm:h-2" indicatorClassName="bg-gradient-to-r from-blue-400 to-purple-600" />
-                    </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <GlassmorphicCard className="p-6 text-center h-full">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+                  <Layers className="w-6 h-6 text-green-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Backend</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {backendSkills.length}+ Technologies
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  {backendSkills.slice(0, 4).map((skill, i) => (
+                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      {skill.name}
+                    </span>
                   ))}
-                </GlassmorphicCard>
-              </motion.div>
+                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                    +{backendSkills.length - 4}
+                  </span>
+                </div>
+              </GlassmorphicCard>
+            </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <GlassmorphicCard className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Leadership & Management</h3>
-
-                  {professionalSkills.slice(4, 8).map((skill, index) => (
-                    <div key={index} className="mb-4 sm:mb-6">
-                      <div className="flex justify-between mb-1 sm:mb-2">
-                        <span className="font-medium text-sm sm:text-base">{skill.name}</span>
-                        <span className="text-muted-foreground text-xs sm:text-sm">{skill.level}%</span>
-                      </div>
-                      <Progress value={skill.level} className="h-1.5 sm:h-2" indicatorClassName="bg-gradient-to-r from-blue-400 to-purple-600" />
-                    </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <GlassmorphicCard className="p-6 text-center h-full">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                  <Globe className="w-6 h-6 text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Tools & DevOps</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {toolsSkills.length}+ Tools
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  {toolsSkills.slice(0, 4).map((skill, i) => (
+                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      {skill.name}
+                    </span>
                   ))}
-                </GlassmorphicCard>
-              </motion.div>
-            </div>
+                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                    +{toolsSkills.length - 4}
+                  </span>
+                </div>
+              </GlassmorphicCard>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <GlassmorphicCard className="p-6 text-center h-full">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 flex items-center justify-center">
+                  <Award className="w-6 h-6 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Other Skills</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {otherSkills.length}+ Abilities
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  {otherSkills.slice(0, 4).map((skill, i) => (
+                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      {skill.name}
+                    </span>
+                  ))}
+                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                    +{otherSkills.length - 4}
+                  </span>
+                </div>
+              </GlassmorphicCard>
+            </motion.div>
           </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
+              asChild
+            >
+              <Link href="/skills">
+                Explore All Skills & Expertise <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Featured Projects Section */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="projects">
         <div className="container mx-auto">
           <motion.div
@@ -555,201 +619,224 @@ export default function Home() {
             className="text-center mb-10 sm:mb-16"
           >
             <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
-              Projects
+              Featured Projects
             </motion.h2>
             <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              A showcase of my technical projects and development work
+              A showcase of my best technical projects and development work
             </motion.p>
           </motion.div>
 
-          <div className="mb-10 sm:mb-16">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 md:mb-8 text-gradient">Featured Projects</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              {featuredProjects.map((project, index) => (
-                <FeaturedProjectCard key={index} project={project} index={index} />
-              ))}
-            </div>
+          {/* Show only 2 featured projects */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-10">
+            {featuredProjects.slice(0, 2).map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+              >
+                <GlassmorphicCard className="h-full flex flex-col overflow-hidden p-4 sm:p-6 hover:scale-[1.02] transition-transform duration-300">
+                  <div className="relative w-full h-48 sm:h-56 mb-4 overflow-hidden rounded-md">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <Badge className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/80 hover:bg-primary text-xs">
+                      {project.category}
+                    </Badge>
+                  </div>
+
+                  <div className="flex-grow">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
+                    
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.slice(0, 4).map((tech, i) => (
+                          <span
+                            key={i}
+                            className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.technologies.length > 4 && (
+                          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                            +{project.technologies.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2 mt-4">
+                    {project.liveUrl && project.liveUrl !== "/" && (
+                      <Button className="flex-1 text-xs sm:text-sm h-9" asChild>
+                        <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          Live Demo <ExternalLink className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
+                    )}
+                    {project.githubUrl && (
+                      <Button variant="outline" className="flex-1 border-gradient text-xs sm:text-sm h-9" asChild>
+                        <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          View Code <Github className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                </GlassmorphicCard>
+              </motion.div>
+            ))}
           </div>
 
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 md:mb-8 text-gradient">Other Projects</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-              {otherProjects.map((project, index) => (
-                <ProjectCard key={index} project={project} index={index} />
-              ))}
-            </div>
-          </div>
+          {/* Other Projects Preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <GlassmorphicCard className="p-6 sm:p-8">
+              <div className="text-center mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">More Projects</h3>
+                <p className="text-muted-foreground text-sm">
+                  I've worked on {otherProjects.length}+ additional projects including web apps, Python tools, and more
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
+                {otherProjects.slice(0, 8).map((project, index) => (
+                  <div
+                    key={index}
+                    className="p-3 rounded-lg bg-background/50 border border-border/50 hover:border-primary/50 transition-colors"
+                  >
+                    <h4 className="font-medium text-sm mb-1 line-clamp-1">{project.title}</h4>
+                    <p className="text-xs text-muted-foreground">{project.category}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
+                  asChild
+                >
+                  <Link href="/projects">
+                    View All {featuredProjects.length + otherProjects.length} Projects <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </GlassmorphicCard>
+          </motion.div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact CTA Section */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="contact">
         <div className="container mx-auto">
           <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-            className="text-center mb-10 sm:mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
-              Get In Touch
-            </motion.h2>
-            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              Have a question or want to work together? Feel free to contact me!
-            </motion.p>
-          </motion.div>
+            <GlassmorphicCard className="p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
+              {/* Background decorations */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-pink-500/20 to-blue-600/20 rounded-full blur-3xl"></div>
+              
+              <div className="relative z-10">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
+                  Let's Work Together
+                </h2>
+                <p className="text-muted-foreground text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                  Have a project in mind or want to discuss opportunities? I'm always open to new challenges and collaborations.
+                </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <GlassmorphicCard className="h-full p-4 sm:p-6">
-                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Contact Information</h3>
-
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-start">
-                    <div className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary">
-                      <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm sm:text-base">Email</h4>
-                      <a href="mailto:edu.dariogeorge21@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm break-words">
-                        edu.dariogeorge21@gmail.com
-                      </a>
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
+                  <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/30">
+                    <Mail className="w-6 h-6 text-primary" />
+                    <div className="text-sm font-medium">Email</div>
+                    <a href="mailto:edu.dariogeorge21@gmail.com" className="text-xs text-muted-foreground hover:text-primary transition-colors break-all">
+                      edu.dariogeorge21@gmail.com
+                    </a>
                   </div>
-
-                  <div className="flex items-start">
-                    <div className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary">
-                      <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm sm:text-base">Phone</h4>
-                      <a href="tel:+917838403506" className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm">
-                        +91 7838403506
-                      </a>
-                    </div>
+                  
+                  <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/30">
+                    <Phone className="w-6 h-6 text-primary" />
+                    <div className="text-sm font-medium">Phone</div>
+                    <a href="tel:+917838403506" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                      +91 7838403506
+                    </a>
                   </div>
-
-                  <div className="flex items-start">
-                    <div className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary">
-                      <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm sm:text-base">Location</h4>
-                      <p className="text-muted-foreground text-xs sm:text-sm">
-                        Thodupuzha, India
-                      </p>
+                  
+                  <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/30">
+                    <MapPin className="w-6 h-6 text-primary" />
+                    <div className="text-sm font-medium">Location</div>
+                    <div className="text-xs text-muted-foreground">
+                      Thodupuzha, India
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 sm:mt-10 p-3 sm:p-4 bg-primary/5 rounded-lg border border-primary/10">
-                  <h4 className="font-medium mb-1 sm:mb-2 text-sm sm:text-base">Availability</h4>
-                  <p className="text-muted-foreground text-xs sm:text-sm">
-                    I'm currently a student at St Joseph's College of Engineering and Technology, open to internships, learning opportunities, and collaborative projects.
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-base px-8" 
+                    asChild
+                  >
+                    <Link href="/contact">
+                      Send Message <Send className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+
+                  <div className="flex gap-4">
+                    <Link
+                      href="https://github.com/dariogeorge21"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      aria-label="GitHub"
+                    >
+                      <Github className="h-5 w-5" />
+                    </Link>
+                    <Link
+                      href="https://www.linkedin.com/in/dariogeorge21"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="h-5 w-5" />
+                    </Link>
+                    <Link
+                      href="mailto:edu.dariogeorge21@gmail.com"
+                      className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      aria-label="Email"
+                    >
+                      <Mail className="h-5 w-5" />
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-4 bg-primary/5 rounded-lg border border-primary/10 inline-block">
+                  <p className="text-sm text-muted-foreground">
+                    💼 Currently open to <span className="text-primary font-medium">internships</span> and <span className="text-primary font-medium">learning opportunities</span>
                   </p>
                 </div>
-              </GlassmorphicCard>
-            </motion.div>
-
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <GlassmorphicCard className="p-4 sm:p-6">
-                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Send me a message</h3>
-
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Subject</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Subject of your message" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Write your message here..."
-                              rows={6}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 h-9 sm:h-10 text-sm sm:text-base"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>Sending message...</>
-                      ) : (
-                        <>
-                          Send Message <Send className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </Form>
-              </GlassmorphicCard>
-            </motion.div>
-          </div>
+              </div>
+            </GlassmorphicCard>
+          </motion.div>
         </div>
       </section>
     </div>
