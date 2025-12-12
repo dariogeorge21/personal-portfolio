@@ -15,11 +15,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Dario George | Portfolio',
-  description: 'Computer Science Student | Frontend Developer | Exploring Full Stack Development',
-  icons: {
-    icon: '/favicon.ico',
+  title: 'Dario George - Full Stack Developer & Freelancer | Web Development Services',
+  description: 'Hire Dario George, a Full Stack Developer and BTech Computer Science student. Specializing in modern web applications with React, Next.js, TypeScript, and Node.js. Available for freelance projects.',
+  keywords: ['Full Stack Developer', 'Web Developer', 'Freelancer', 'React', 'Next.js', 'TypeScript', 'Node.js', 'Web Development', 'API Development', 'UI/UX Design'],
+  authors: [{ name: 'Dario George' }],
+  creator: 'Dario George',
+  publisher: 'Dario George',
+  openGraph: {
+    title: 'Dario George - Full Stack Developer & Freelancer',
+    description: 'Transform your ideas into powerful digital solutions. Available for freelance web development projects.',
+    url: 'https://dariogeorge.in',
+    siteName: 'Dario George Portfolio',
+    type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dario George - Full Stack Developer & Freelancer',
+    description: 'Available for freelance web development projects. Specializing in modern web technologies.',
+    creator: '@dariogeorge21',
+  },
+  viewport: 'width=device-width, initial-scale=1',
+  robots: 'index, follow',
 };
 
 export default function RootLayout({
