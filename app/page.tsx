@@ -81,9 +81,18 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="hero-description text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-4"
+                  className="hero-description text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-2"
                 >
                   Transforming ideas into powerful digital solutions. Specializing in modern web applications with cutting-edge technologies.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto mb-4"
+                >
+                  BTech Computer Science Student | St Joseph's College of Engineering and Technology
                 </motion.p>
 
                 {/* Tech Stack */}
