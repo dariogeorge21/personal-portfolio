@@ -522,284 +522,681 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Preview Section */}
-      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="experience">
-        <div className="container mx-auto">
+      {/* Experience Preview Section - Enhanced */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 relative overflow-hidden" id="experience">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-600/10 to-indigo-500/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+        
+        <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.1 }}
-            className="text-center mb-10 sm:mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+            <motion.div variants={item} className="inline-flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20 mb-4">
+              <Briefcase className="w-4 h-4 text-blue-400" />
+              <span className="text-blue-300 font-medium text-sm">Professional Journey</span>
+            </motion.div>
+            <motion.h2 variants={item} className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
               Work Experience
             </motion.h2>
-            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              My professional journey and career milestones
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+              Building real-world solutions and gaining hands-on expertise
             </motion.p>
           </motion.div>
 
-          {/* Show only the most recent experience */}
+          {/* Enhanced Experience Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="relative"
           >
-            <GlassmorphicCard className="p-6 sm:p-8 max-w-3xl mx-auto">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gradient mb-1">
-                    {experiences[0].position}
-                  </h3>
-                  <p className="text-lg text-muted-foreground">{experiences[0].company}</p>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center justify-end text-muted-foreground text-sm">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    <span>{experiences[0].period}</span>
-                  </div>
-                  <div className="flex items-center justify-end text-muted-foreground text-sm mt-1">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    <span>{experiences[0].location}</span>
-                  </div>
-                </div>
-              </div>
+            {/* Timeline connector line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden md:block rounded-full"></div>
+            
+            <GlassmorphicCard className="relative p-0 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group">
+              {/* Card gradient border effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-transparent to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              <p className="text-muted-foreground mb-6 text-sm sm:text-base">
-                {experiences[0].description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {technologies.slice(0, 8).map((tech, index) => (
-                  <span
-                    key={index}
-                    className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                <span className="text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground">
-                  +{technologies.length - 8} more
-                </span>
-              </div>
-
-              <Button 
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
-                asChild
-              >
-                <Link href="/experience">
-                  View Full Experience <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </GlassmorphicCard>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Education Preview Section */}
-      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="education">
-        <div className="container mx-auto">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-            className="text-center mb-10 sm:mb-16"
-          >
-            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
-              Education
-            </motion.h2>
-            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              My academic journey and qualifications
-            </motion.p>
-          </motion.div>
-
-          {/* Show only current education */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <GlassmorphicCard className="p-6 sm:p-8 max-w-3xl mx-auto">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gradient mb-1">
-                    {educationData[0].degree}
-                  </h3>
-                  <p className="text-lg text-muted-foreground">{educationData[0].institution}</p>
+              <div className="p-6 sm:p-8 md:p-10 relative z-10">
+                {/* Timeline dot */}
+                <div className="absolute left-4 top-8 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30 hidden md:flex">
+                  <Briefcase className="w-4 h-4 text-white" />
                 </div>
-                <div className="text-right">
-                  <div className="flex items-center justify-end text-muted-foreground text-sm">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    <span>{educationData[0].period}</span>
-                  </div>
-                  <div className="flex items-center justify-end text-muted-foreground text-sm mt-1">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    <span>{educationData[0].location}</span>
-                  </div>
-                </div>
-              </div>
-              
-              <p className="text-muted-foreground mb-6 text-sm sm:text-base">
-                {educationData[0].description}
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-                {achievements.slice(0, 3).map((achievement, index) => (
-                  <div key={index} className="flex items-start gap-2">
-                    <Award className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-medium text-sm">{achievement.title}</h4>
-                      <p className="text-xs text-muted-foreground">{achievement.year}</p>
+                
+                <div className="md:ml-16">
+                  {/* Header Section */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                    <div className="flex-1">
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <h3 className="text-2xl sm:text-3xl font-bold text-gradient mb-2">
+                          {experiences[0].position}
+                        </h3>
+                      </motion.div>
+                      <div className="flex items-center gap-2 text-lg text-foreground/80 font-medium mb-3">
+                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        {experiences[0].company}
+                      </div>
+                      
+                      {/* Info badges */}
+                      <div className="flex flex-wrap gap-3">
+                        <div className="flex items-center gap-2 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20 text-sm text-blue-300 group-hover:bg-blue-500/20 transition-colors">
+                          <Calendar className="w-4 h-4" />
+                          <span>{experiences[0].period}</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-purple-500/10 px-3 py-1.5 rounded-full border border-purple-500/20 text-sm text-purple-300 group-hover:bg-purple-500/20 transition-colors">
+                          <MapPin className="w-4 h-4" />
+                          <span>{experiences[0].location}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Status indicator */}
+                    <div className="hidden sm:block">
+                      <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30">
+                        <span className="text-green-400 text-sm font-semibold">Current Role</span>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                  
+                  {/* Description with quote styling */}
+                  <div className="relative mb-8">
+                    <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+                    <p className="text-muted-foreground text-base sm:text-lg leading-relaxed pl-4 italic">
+                      "{experiences[0].description}"
+                    </p>
+                  </div>
 
-              <Button 
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
-                asChild
-              >
-                <Link href="/education">
-                  View Complete Education History <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+                  {/* Key Responsibilities with animation */}
+                  {experiences[0].responsibilities && (
+                    <div className="mb-8">
+                      <h4 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Key Responsibilities
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {experiences[0].responsibilities.map((responsibility, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 * index, duration: 0.4 }}
+                            whileHover={{ x: 5 }}
+                            className="flex items-start gap-2 text-sm text-muted-foreground p-2 rounded-lg hover:bg-white/5 transition-colors"
+                          >
+                            <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                            <span>{responsibility}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Technologies with hover effects */}
+                  <div className="mb-8">
+                    <h4 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
+                      <Code className="w-4 h-4 text-blue-400" />
+                      Technologies Used
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {technologies.slice(0, 10).map((tech, index) => (
+                        <motion.span
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.05 * index, duration: 0.3 }}
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 text-primary border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all cursor-default"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                      {technologies.length > 10 && (
+                        <span className="text-xs px-3 py-1.5 rounded-full bg-muted/50 text-muted-foreground border border-border/50">
+                          +{technologies.length - 10} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button 
+                      className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all group/btn" 
+                      size="lg"
+                      asChild
+                    >
+                      <Link href="/experience">
+                        View Full Experience 
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
+                  </motion.div>
+                </div>
+              </div>
             </GlassmorphicCard>
           </motion.div>
         </div>
       </section>
 
-      {/* Skills Preview Section */}
-      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="skills">
-        <div className="container mx-auto">
+      {/* Education Preview Section - Enhanced */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 relative overflow-hidden" id="education">
+        {/* Background decorative elements */}
+        <div className="absolute top-1/2 left-0 w-80 h-80 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-teal-500/10 to-green-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+        
+        <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.1 }}
-            className="text-center mb-10 sm:mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
-              My Skills
+            <motion.div variants={item} className="inline-flex items-center gap-2 bg-green-500/10 px-4 py-2 rounded-full border border-green-500/20 mb-4">
+              <Award className="w-4 h-4 text-green-400" />
+              <span className="text-green-300 font-medium text-sm">Academic Background</span>
+            </motion.div>
+            <motion.h2 variants={item} className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
+              Education
             </motion.h2>
-            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              A comprehensive overview of my technical expertise and professional capabilities
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+              Building a strong foundation through continuous learning
             </motion.p>
           </motion.div>
 
-          {/* Skills Overview Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+          {/* Enhanced Education Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <GlassmorphicCard className="relative p-0 overflow-hidden hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 group">
+              {/* Decorative header bar */}
+              <div className="h-2 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500"></div>
+              
+              <div className="p-6 sm:p-8 md:p-10">
+                {/* Main content grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  {/* Left section - Education details */}
+                  <div className="lg:col-span-2">
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                      <div>
+                        <motion.h3
+                          whileHover={{ scale: 1.01 }}
+                          className="text-2xl sm:text-3xl font-bold text-gradient mb-2"
+                        >
+                          {educationData[0].degree}
+                        </motion.h3>
+                        <div className="flex items-center gap-2 text-lg text-foreground/80 font-medium mb-3">
+                          <span className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
+                            🎓
+                          </span>
+                          {educationData[0].institution}
+                        </div>
+                        
+                        {/* Info badges */}
+                        <div className="flex flex-wrap gap-3">
+                          <div className="flex items-center gap-2 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20 text-sm text-green-300">
+                            <Calendar className="w-4 h-4" />
+                            <span>{educationData[0].period}</span>
+                          </div>
+                          <div className="flex items-center gap-2 bg-teal-500/10 px-3 py-1.5 rounded-full border border-teal-500/20 text-sm text-teal-300">
+                            <MapPin className="w-4 h-4" />
+                            <span>{educationData[0].location}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Current Status Badge */}
+                      <div className="hidden sm:block">
+                        <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 animate-pulse">
+                          <span className="text-green-400 text-sm font-semibold">📚 Currently Enrolled</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Description */}
+                    <div className="relative mb-8 p-4 rounded-xl bg-gradient-to-r from-green-500/5 to-transparent border-l-4 border-green-500">
+                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+                        {educationData[0].description}
+                      </p>
+                    </div>
+
+                    {/* CTA Button */}
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg hover:shadow-xl hover:shadow-green-500/25 transition-all group/btn" 
+                        size="lg"
+                        asChild
+                      >
+                        <Link href="/education">
+                          View Complete Education History 
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </motion.div>
+                  </div>
+
+                  {/* Right section - Achievements showcase */}
+                  <div className="lg:col-span-1">
+                    <div className="h-full p-5 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-green-500/20">
+                      <h4 className="text-sm font-semibold text-foreground/80 mb-5 flex items-center gap-2">
+                        <Star className="w-4 h-4 text-yellow-400" />
+                        Key Achievements
+                      </h4>
+                      
+                      <div className="space-y-4">
+                        {achievements.slice(0, 4).map((achievement, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 * index, duration: 0.4 }}
+                            whileHover={{ x: -5, scale: 1.02 }}
+                            className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-transparent hover:border-green-500/30 transition-all cursor-default group/ach"
+                          >
+                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500/30 to-emerald-500/30 flex items-center justify-center flex-shrink-0 group-hover/ach:scale-110 transition-transform">
+                              <Award className="w-5 h-5 text-green-400" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h5 className="font-medium text-sm text-foreground group-hover/ach:text-green-300 transition-colors line-clamp-2">
+                                {achievement.title}
+                              </h5>
+                              <p className="text-xs text-muted-foreground mt-1">{achievement.year}</p>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </GlassmorphicCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills Preview Section - Enhanced */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 relative overflow-hidden" id="skills">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-indigo-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <motion.div variants={item} className="inline-flex items-center gap-2 bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20 mb-4">
+              <Zap className="w-4 h-4 text-purple-400" />
+              <span className="text-purple-300 font-medium text-sm">Technical Expertise</span>
+            </motion.div>
+            <motion.h2 variants={item} className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
+              My Skills
+            </motion.h2>
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+              A comprehensive toolkit spanning frontend, backend, and beyond
+            </motion.p>
+          </motion.div>
+
+          {/* Skills Overview Grid - Enhanced Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-10">
+            {/* Frontend Skills Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotateY: -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group"
             >
-              <GlassmorphicCard className="p-6 text-center h-full">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
-                  <Code className="w-6 h-6 text-blue-400" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Frontend</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {frontendSkills.length}+ Technologies
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  {frontendSkills.slice(0, 4).map((skill, i) => (
-                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
-                      {skill.name}
+              <GlassmorphicCard className="p-6 text-center h-full relative overflow-hidden hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500">
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:to-cyan-500/10 transition-all duration-500"></div>
+                
+                {/* Decorative corner accent */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-blue-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center border border-blue-500/30 shadow-lg group-hover:shadow-blue-500/30 transition-all duration-500"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                  >
+                    <Code className="w-8 h-8 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors">Frontend</h3>
+                  
+                  {/* Skill count with animated ring */}
+                  <div className="relative w-16 h-16 mx-auto mb-4">
+                    <svg className="w-16 h-16 transform -rotate-90">
+                      <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-blue-500/20" />
+                      <motion.circle 
+                        cx="32" cy="32" r="28" fill="none" stroke="url(#blueGradient)" strokeWidth="4" strokeLinecap="round"
+                        initial={{ strokeDasharray: "0 176" }}
+                        whileInView={{ strokeDasharray: "140 176" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                      />
+                      <defs>
+                        <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#3b82f6" />
+                          <stop offset="100%" stopColor="#06b6d4" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-blue-400">
+                      {frontendSkills.length}+
                     </span>
-                  ))}
-                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                    +{frontendSkills.length - 4}
-                  </span>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground mb-4">Technologies</p>
+                  
+                  <div className="flex flex-wrap gap-1.5 justify-center">
+                    {frontendSkills.slice(0, 4).map((skill, i) => (
+                      <motion.span 
+                        key={i} 
+                        className="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20 hover:bg-blue-500/20 transition-colors cursor-default"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        {skill.name}
+                      </motion.span>
+                    ))}
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground">
+                      +{frontendSkills.length - 4}
+                    </span>
+                  </div>
                 </div>
               </GlassmorphicCard>
             </motion.div>
 
+            {/* Backend Skills Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotateY: -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group"
             >
-              <GlassmorphicCard className="p-6 text-center h-full">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 flex items-center justify-center">
-                  <Layers className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Backend</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {backendSkills.length}+ Technologies
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  {backendSkills.slice(0, 4).map((skill, i) => (
-                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
-                      {skill.name}
+              <GlassmorphicCard className="p-6 text-center h-full relative overflow-hidden hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 to-emerald-500/0 group-hover:from-green-500/10 group-hover:to-emerald-500/10 transition-all duration-500"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-green-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-green-500/30 to-emerald-500/30 flex items-center justify-center border border-green-500/30 shadow-lg group-hover:shadow-green-500/30 transition-all duration-500"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                  >
+                    <Layers className="w-8 h-8 text-green-400 group-hover:text-green-300 transition-colors" />
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-green-300 transition-colors">Backend</h3>
+                  
+                  <div className="relative w-16 h-16 mx-auto mb-4">
+                    <svg className="w-16 h-16 transform -rotate-90">
+                      <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-green-500/20" />
+                      <motion.circle 
+                        cx="32" cy="32" r="28" fill="none" stroke="url(#greenGradient)" strokeWidth="4" strokeLinecap="round"
+                        initial={{ strokeDasharray: "0 176" }}
+                        whileInView={{ strokeDasharray: "130 176" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                      />
+                      <defs>
+                        <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#22c55e" />
+                          <stop offset="100%" stopColor="#10b981" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-green-400">
+                      {backendSkills.length}+
                     </span>
-                  ))}
-                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                    +{backendSkills.length - 4}
-                  </span>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground mb-4">Technologies</p>
+                  
+                  <div className="flex flex-wrap gap-1.5 justify-center">
+                    {backendSkills.slice(0, 4).map((skill, i) => (
+                      <motion.span 
+                        key={i} 
+                        className="text-xs px-2.5 py-1 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 hover:bg-green-500/20 transition-colors cursor-default"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        {skill.name}
+                      </motion.span>
+                    ))}
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground">
+                      +{backendSkills.length - 4}
+                    </span>
+                  </div>
                 </div>
               </GlassmorphicCard>
             </motion.div>
 
+            {/* Tools & DevOps Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotateY: -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group"
             >
-              <GlassmorphicCard className="p-6 text-center h-full">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                  <Globe className="w-6 h-6 text-purple-400" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Tools & DevOps</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {toolsSkills.length}+ Tools
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  {toolsSkills.slice(0, 4).map((skill, i) => (
-                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
-                      {skill.name}
+              <GlassmorphicCard className="p-6 text-center h-full relative overflow-hidden hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center border border-purple-500/30 shadow-lg group-hover:shadow-purple-500/30 transition-all duration-500"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                  >
+                    <Globe className="w-8 h-8 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-purple-300 transition-colors">Tools & DevOps</h3>
+                  
+                  <div className="relative w-16 h-16 mx-auto mb-4">
+                    <svg className="w-16 h-16 transform -rotate-90">
+                      <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-purple-500/20" />
+                      <motion.circle 
+                        cx="32" cy="32" r="28" fill="none" stroke="url(#purpleGradient)" strokeWidth="4" strokeLinecap="round"
+                        initial={{ strokeDasharray: "0 176" }}
+                        whileInView={{ strokeDasharray: "120 176" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.4 }}
+                      />
+                      <defs>
+                        <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#a855f7" />
+                          <stop offset="100%" stopColor="#ec4899" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-purple-400">
+                      {toolsSkills.length}+
                     </span>
-                  ))}
-                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                    +{toolsSkills.length - 4}
-                  </span>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground mb-4">Tools</p>
+                  
+                  <div className="flex flex-wrap gap-1.5 justify-center">
+                    {toolsSkills.slice(0, 4).map((skill, i) => (
+                      <motion.span 
+                        key={i} 
+                        className="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 hover:bg-purple-500/20 transition-colors cursor-default"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        {skill.name}
+                      </motion.span>
+                    ))}
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground">
+                      +{toolsSkills.length - 4}
+                    </span>
+                  </div>
                 </div>
               </GlassmorphicCard>
             </motion.div>
 
+            {/* Other Skills Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotateY: -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group"
             >
-              <GlassmorphicCard className="p-6 text-center h-full">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 flex items-center justify-center">
-                  <Award className="w-6 h-6 text-orange-400" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Other Skills</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {otherSkills.length}+ Abilities
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  {otherSkills.slice(0, 4).map((skill, i) => (
-                    <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
-                      {skill.name}
+              <GlassmorphicCard className="p-6 text-center h-full relative overflow-hidden hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-red-500/0 group-hover:from-orange-500/10 group-hover:to-red-500/10 transition-all duration-500"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-orange-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-orange-500/30 to-red-500/30 flex items-center justify-center border border-orange-500/30 shadow-lg group-hover:shadow-orange-500/30 transition-all duration-500"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                  >
+                    <Award className="w-8 h-8 text-orange-400 group-hover:text-orange-300 transition-colors" />
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-orange-300 transition-colors">Other Skills</h3>
+                  
+                  <div className="relative w-16 h-16 mx-auto mb-4">
+                    <svg className="w-16 h-16 transform -rotate-90">
+                      <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-orange-500/20" />
+                      <motion.circle 
+                        cx="32" cy="32" r="28" fill="none" stroke="url(#orangeGradient)" strokeWidth="4" strokeLinecap="round"
+                        initial={{ strokeDasharray: "0 176" }}
+                        whileInView={{ strokeDasharray: "110 176" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                      />
+                      <defs>
+                        <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f97316" />
+                          <stop offset="100%" stopColor="#ef4444" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-orange-400">
+                      {otherSkills.length}+
                     </span>
-                  ))}
-                  <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                    +{otherSkills.length - 4}
-                  </span>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground mb-4">Abilities</p>
+                  
+                  <div className="flex flex-wrap gap-1.5 justify-center">
+                    {otherSkills.slice(0, 4).map((skill, i) => (
+                      <motion.span 
+                        key={i} 
+                        className="text-xs px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 hover:bg-orange-500/20 transition-colors cursor-default"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        {skill.name}
+                      </motion.span>
+                    ))}
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground">
+                      +{otherSkills.length - 4}
+                    </span>
+                  </div>
                 </div>
               </GlassmorphicCard>
             </motion.div>
           </div>
+
+          {/* Total Skills Summary Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-10"
+          >
+            <GlassmorphicCard className="p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="text-center sm:text-left">
+                  <h4 className="text-lg sm:text-xl font-bold mb-2">Total Technical Proficiency</h4>
+                  <p className="text-sm text-muted-foreground">Combined expertise across {frontendSkills.length + backendSkills.length + toolsSkills.length + otherSkills.length}+ technologies and skills</p>
+                </div>
+                
+                <div className="flex items-center gap-4 flex-wrap justify-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span className="text-sm text-muted-foreground">Frontend</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span className="text-sm text-muted-foreground">Backend</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                    <span className="text-sm text-muted-foreground">Tools</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                    <span className="text-sm text-muted-foreground">Other</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Progress bar visualization */}
+              <div className="mt-6 h-3 rounded-full bg-muted/30 overflow-hidden flex">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-blue-500 to-blue-600"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${(frontendSkills.length / (frontendSkills.length + backendSkills.length + toolsSkills.length + otherSkills.length)) * 100}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                />
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-green-500 to-green-600"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${(backendSkills.length / (frontendSkills.length + backendSkills.length + toolsSkills.length + otherSkills.length)) * 100}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.4 }}
+                />
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-purple-500 to-purple-600"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${(toolsSkills.length / (frontendSkills.length + backendSkills.length + toolsSkills.length + otherSkills.length)) * 100}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.6 }}
+                />
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-orange-500 to-orange-600"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${(otherSkills.length / (frontendSkills.length + backendSkills.length + toolsSkills.length + otherSkills.length)) * 100}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                />
+              </div>
+            </GlassmorphicCard>
+          </motion.div>
 
           {/* CTA Button */}
           <motion.div
@@ -809,15 +1206,22 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Button 
-              size="lg"
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
-              asChild
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <Link href="/skills">
-                Explore All Skills & Expertise <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 shadow-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all group/btn px-8" 
+                asChild
+              >
+                <Link href="/skills">
+                  <Zap className="mr-2 h-5 w-5 group-hover/btn:scale-110 transition-transform" />
+                  Explore All Skills & Expertise 
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
