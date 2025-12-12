@@ -3,13 +3,83 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Linkedin, Mail, Download } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, Download, Calendar, MapPin, Briefcase, Award, Code, ExternalLink, Github, Globe, Layers, Send, Phone } from 'lucide-react';
 import Link from 'next/link';
 import BackgroundParticles from '@/components/background-particles';
 import { GlassmorphicCard } from '@/components/glassmorphic-card';
 import { useInView } from 'react-intersection-observer';
+import { SectionHeading } from '@/components/ui/section-heading';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { toast } from 'sonner';
+import { useState } from 'react';
+
+// Form schema for contact form
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  async function onSubmit(data: FormValues) {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        form.reset();
+      } else {
+        toast.error(result.error || "Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   // Animation configuration
   const container = {
     hidden: { opacity: 0 },
@@ -237,9 +307,852 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Experience Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="experience">
+        <div className="container mx-auto">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+              Work Experience
+            </motion.h2>
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+              My professional journey and career milestones
+            </motion.p>
+          </motion.div>
+
+          <ExperienceTimeline experiences={experiences} />
+
+          <div className="mt-12 sm:mt-16 md:mt-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-6 sm:mb-8"
+            >
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">Technologies & Tools</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Technologies and tools I've worked with throughout my career</p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
+              {technologies.map((tech, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.05 * index }}
+                  viewport={{ once: true }}
+                >
+                  <GlassmorphicCard className="p-2 sm:p-3 md:p-4 text-center h-full flex flex-col items-center justify-center">
+                    <span className="font-medium text-xs sm:text-sm">{tech}</span>
+                  </GlassmorphicCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="education">
+        <div className="container mx-auto">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+              Education
+            </motion.h2>
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+              My academic journey and qualifications
+            </motion.p>
+          </motion.div>
+
+          <div className="grid gap-8 mb-12 sm:mb-16 md:mb-20">
+            {educationData.map((edu, index) => (
+              <EducationCard key={index} education={edu} index={index} />
+            ))}
+          </div>
+
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-6 sm:mb-8"
+            >
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">Academic Achievements</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Recognition and awards received during my academic journey</p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {achievements.map((achievement, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  viewport={{ once: true }}
+                >
+                  <GlassmorphicCard className="h-full p-4 sm:p-6">
+                    <div className="text-primary mb-4">
+                      <Award className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">{achievement.title}</h3>
+                    <p className="text-muted-foreground mb-4 text-sm">{achievement.description}</p>
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      <span>{achievement.year}</span>
+                    </div>
+                  </GlassmorphicCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="skills">
+        <div className="container mx-auto">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+              My Skills
+            </motion.h2>
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+              A comprehensive overview of my technical expertise and professional capabilities
+            </motion.p>
+          </motion.div>
+
+          <div className="mb-12 sm:mb-16 md:mb-20">
+            <Tabs defaultValue="frontend" className="w-full">
+              <div className="flex justify-center mb-6 sm:mb-8 overflow-x-auto pb-2">
+                <TabsList className="glassmorphism flex-nowrap">
+                  <TabsTrigger value="frontend" className="text-xs sm:text-sm whitespace-nowrap">Frontend</TabsTrigger>
+                  <TabsTrigger value="backend" className="text-xs sm:text-sm whitespace-nowrap">Backend</TabsTrigger>
+                  <TabsTrigger value="tools" className="text-xs sm:text-sm whitespace-nowrap">Tools & DevOps</TabsTrigger>
+                  <TabsTrigger value="other" className="text-xs sm:text-sm whitespace-nowrap">Other Skills</TabsTrigger>
+                </TabsList>
+              </div>
+
+              <TabsContent value="frontend">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                  {frontendSkills.map((skill, index) => (
+                    <SkillCard key={index} skill={skill} index={index} />
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="backend">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                  {backendSkills.map((skill, index) => (
+                    <SkillCard key={index} skill={skill} index={index} />
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="tools">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                  {toolsSkills.map((skill, index) => (
+                    <SkillCard key={index} skill={skill} index={index} />
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="other">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                  {otherSkills.map((skill, index) => (
+                    <SkillCard key={index} skill={skill} index={index} />
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-6 sm:mb-8"
+            >
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">Professional Skills</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">Soft skills and professional abilities that complement my technical expertise</p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <GlassmorphicCard className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Communication & Collaboration</h3>
+
+                  {professionalSkills.slice(0, 4).map((skill, index) => (
+                    <div key={index} className="mb-4 sm:mb-6">
+                      <div className="flex justify-between mb-1 sm:mb-2">
+                        <span className="font-medium text-sm sm:text-base">{skill.name}</span>
+                        <span className="text-muted-foreground text-xs sm:text-sm">{skill.level}%</span>
+                      </div>
+                      <Progress value={skill.level} className="h-1.5 sm:h-2" indicatorClassName="bg-gradient-to-r from-blue-400 to-purple-600" />
+                    </div>
+                  ))}
+                </GlassmorphicCard>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <GlassmorphicCard className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Leadership & Management</h3>
+
+                  {professionalSkills.slice(4, 8).map((skill, index) => (
+                    <div key={index} className="mb-4 sm:mb-6">
+                      <div className="flex justify-between mb-1 sm:mb-2">
+                        <span className="font-medium text-sm sm:text-base">{skill.name}</span>
+                        <span className="text-muted-foreground text-xs sm:text-sm">{skill.level}%</span>
+                      </div>
+                      <Progress value={skill.level} className="h-1.5 sm:h-2" indicatorClassName="bg-gradient-to-r from-blue-400 to-purple-600" />
+                    </div>
+                  ))}
+                </GlassmorphicCard>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="projects">
+        <div className="container mx-auto">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+              Projects
+            </motion.h2>
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+              A showcase of my technical projects and development work
+            </motion.p>
+          </motion.div>
+
+          <div className="mb-10 sm:mb-16">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 md:mb-8 text-gradient">Featured Projects</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+              {featuredProjects.map((project, index) => (
+                <FeaturedProjectCard key={index} project={project} index={index} />
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 md:mb-8 text-gradient">Other Projects</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              {otherProjects.map((project, index) => (
+                <ProjectCard key={index} project={project} index={index} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="contact">
+        <div className="container mx-auto">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+              Get In Touch
+            </motion.h2>
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+              Have a question or want to work together? Feel free to contact me!
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <GlassmorphicCard className="h-full p-4 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Contact Information</h3>
+
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="flex items-start">
+                    <div className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary">
+                      <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-sm sm:text-base">Email</h4>
+                      <a href="mailto:edu.dariogeorge21@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm break-words">
+                        edu.dariogeorge21@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary">
+                      <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-sm sm:text-base">Phone</h4>
+                      <a href="tel:+917838403506" className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm">
+                        +91 7838403506
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary">
+                      <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-sm sm:text-base">Location</h4>
+                      <p className="text-muted-foreground text-xs sm:text-sm">
+                        Thodupuzha, India
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 sm:mt-10 p-3 sm:p-4 bg-primary/5 rounded-lg border border-primary/10">
+                  <h4 className="font-medium mb-1 sm:mb-2 text-sm sm:text-base">Availability</h4>
+                  <p className="text-muted-foreground text-xs sm:text-sm">
+                    I'm currently a student at St Joseph's College of Engineering and Technology, open to internships, learning opportunities, and collaborative projects.
+                  </p>
+                </div>
+              </GlassmorphicCard>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <GlassmorphicCard className="p-4 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Send me a message</h3>
+
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your email" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Subject</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Subject of your message" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Write your message here..."
+                              rows={6}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 h-9 sm:h-10 text-sm sm:text-base"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>Sending message...</>
+                      ) : (
+                        <>
+                          Send Message <Send className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
+              </GlassmorphicCard>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+// Helper Components
+
+// Experience Timeline Component
+interface Experience {
+  position: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string;
+  responsibilities: string[];
+  achievements?: string[];
+}
+
+function ExperienceTimeline({ experiences }: { experiences: Experience[] }) {
+  return (
+    <div className="relative">
+      {/* Timeline line */}
+      <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-px bg-gradient-to-b from-blue-400 to-purple-600 z-0 hidden md:block" />
+
+      {experiences.map((experience, index) => {
+        const { ref, inView } = useInView({
+          triggerOnce: true,
+          threshold: 0.1
+        });
+
+        const isEven = index % 2 === 0;
+
+        return (
+          <div key={index} ref={ref} className="mb-8 sm:mb-10 md:mb-12 relative z-10">
+            <div className="md:hidden absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-400 to-purple-600" />
+
+            <div className="flex items-start">
+              {/* Timeline dot */}
+              <div className="relative md:absolute md:left-1/2 md:transform md:-translate-x-1/2 mt-1.5 md:mt-0">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={inView ? { scale: 1 } : { scale: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 rounded-full bg-gradient-to-r from-blue-400 to-purple-600 shadow-glow z-20"
+                />
+              </div>
+
+              {/* Content */}
+              <motion.div
+                initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -30 : 30 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className={`ml-6 sm:ml-8 md:ml-0 md:w-1/2 ${isEven ? 'md:pr-6 lg:pr-12' : 'md:pl-6 lg:pl-12 md:ml-auto'}`}
+              >
+                <GlassmorphicCard className="p-4 sm:p-6">
+                  <div className="md:flex justify-between mb-3 sm:mb-4">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold text-gradient">{experience.position}</h3>
+                      <p className="text-base sm:text-lg">{experience.company}</p>
+                    </div>
+                    <div className="mt-2 md:mt-0 md:text-right">
+                      <div className="flex items-center md:justify-end text-muted-foreground text-xs sm:text-sm">
+                        <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                        <span>{experience.period}</span>
+                      </div>
+                      <div className="flex items-center md:justify-end text-muted-foreground mt-1 text-xs sm:text-sm">
+                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                        <span>{experience.location}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-muted-foreground mb-3 sm:mb-4 text-xs sm:text-sm">{experience.description}</p>
+
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className="font-medium mb-1 sm:mb-2 text-sm sm:text-base">Key Responsibilities:</h4>
+                    <ul className="list-disc pl-4 sm:pl-5 text-muted-foreground space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                      {experience.responsibilities.map((responsibility, i) => (
+                        <li key={i}>{responsibility}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {experience.achievements && (
+                    <div>
+                      <h4 className="font-medium mb-1 sm:mb-2 text-sm sm:text-base">Achievements:</h4>
+                      <ul className="list-disc pl-4 sm:pl-5 text-muted-foreground space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                        {experience.achievements.map((achievement, i) => (
+                          <li key={i}>{achievement}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </GlassmorphicCard>
+              </motion.div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// Education Card Component
+interface Education {
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+  description: string;
+  achievements?: string[];
+}
+
+function EducationCard({ education, index }: { education: Education; index: number }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay: 0.2 * index }}
+    >
+      <GlassmorphicCard className="p-4 sm:p-6">
+        <div className="md:flex justify-between mb-4">
+          <div>
+            <h3 className="text-xl font-bold text-gradient">{education.degree}</h3>
+            <p className="text-lg">{education.institution}</p>
+          </div>
+          <div className="mt-2 md:mt-0 md:text-right">
+            <div className="flex items-center md:justify-end text-muted-foreground">
+              <Calendar className="w-4 h-4 mr-2" />
+              <span>{education.period}</span>
+            </div>
+            <div className="flex items-center md:justify-end text-muted-foreground mt-1">
+              <MapPin className="w-4 h-4 mr-2" />
+              <span>{education.location}</span>
+            </div>
+          </div>
+        </div>
+
+        <p className="text-muted-foreground mb-4 text-sm">{education.description}</p>
+
+        {education.achievements && (
+          <div>
+            <h4 className="font-medium mb-2">Key Achievements:</h4>
+            <ul className="list-disc pl-5 text-muted-foreground space-y-1 text-sm">
+              {education.achievements.map((achievement, i) => (
+                <li key={i}>{achievement}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </GlassmorphicCard>
+    </motion.div>
+  );
+}
+
+// Skill Card Component
+interface Skill {
+  name: string;
+  level: number;
+}
+
+function SkillCard({ skill, index }: { skill: Skill; index: number }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay: 0.1 * index }}
+    >
+      <GlassmorphicCard className="p-3 sm:p-4 md:p-5">
+        <div className="flex justify-between items-center mb-2 sm:mb-3 md:mb-4">
+          <h3 className="font-medium text-sm sm:text-base">{skill.name}</h3>
+          <span className="text-muted-foreground text-xs sm:text-sm">{skill.level}%</span>
+        </div>
+        <Progress value={skill.level} className="h-1.5 sm:h-2" indicatorClassName="bg-gradient-to-r from-blue-400 to-purple-600" />
+      </GlassmorphicCard>
+    </motion.div>
+  );
+}
+
+// Project Card Components
+interface Project {
+  title: string;
+  description: string;
+  date: string;
+  imageUrl: string;
+  technologies: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  featured?: boolean;
+  category: string;
+  keyFeatures?: string[];
+}
+
+function FeaturedProjectCard({ project, index }: { project: Project; index: number }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay: 0.1 * index }}
+    >
+      <GlassmorphicCard className="h-full flex flex-col overflow-hidden p-4 sm:p-6">
+        <div className="relative w-full h-48 sm:h-56 md:h-64 mb-4 sm:mb-6 overflow-hidden rounded-md">
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+          <Badge className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/80 hover:bg-primary text-[10px] sm:text-xs">{project.category}</Badge>
+        </div>
+
+        <div className="flex-grow">
+          <div className="flex items-start justify-between mb-2 sm:mb-4">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-1">{project.title}</h3>
+              <div className="flex items-center text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4">
+                <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                <span>{project.date}</span>
+              </div>
+            </div>
+            <div className="flex space-x-1 sm:space-x-2">
+              {project.githubUrl && (
+                <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                  <Button variant="outline" size="icon" className="rounded-full h-7 w-7 sm:h-8 sm:w-8">
+                    <Github className="h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </Link>
+              )}
+              {project.liveUrl && (
+                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                  <Button variant="outline" size="icon" className="rounded-full h-7 w-7 sm:h-8 sm:w-8">
+                    <Globe className="h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </div>
+
+          <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">{project.description}</p>
+
+          {project.keyFeatures && project.keyFeatures.length > 0 && (
+            <div className="mb-4 sm:mb-6">
+              <h4 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2">Key Features</h4>
+              <ul className="list-disc pl-4 sm:pl-5 text-xs sm:text-sm text-muted-foreground space-y-0.5 sm:space-y-1">
+                {project.keyFeatures.map((feature, i) => (
+                  <li key={i}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="mb-4 sm:mb-6">
+            <h4 className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Technologies</h4>
+            <div className="flex flex-wrap gap-1 sm:gap-2">
+              {project.technologies.map((tech, i) => (
+                <span
+                  key={i}
+                  className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-primary/10 text-primary"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-2 sm:gap-4">
+          {project.liveUrl && (
+            <Button className="flex-1 text-xs sm:text-sm h-8 sm:h-10" asChild>
+              <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                Live Demo <ExternalLink className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+              </Link>
+            </Button>
+          )}
+          {project.githubUrl && (
+            <Button variant="outline" className="flex-1 border-gradient text-xs sm:text-sm h-8 sm:h-10" asChild>
+              <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                View Code <Code className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+              </Link>
+            </Button>
+          )}
+        </div>
+      </GlassmorphicCard>
+    </motion.div>
+  );
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay: 0.1 * index }}
+    >
+      <GlassmorphicCard className="h-full flex flex-col overflow-hidden p-4 sm:p-6">
+        <div className="relative w-full h-40 sm:h-44 md:h-48 mb-3 sm:mb-4 overflow-hidden rounded-md">
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+          <Badge className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-primary/80 hover:bg-primary text-[10px] sm:text-xs">{project.category}</Badge>
+        </div>
+
+        <div className="flex-grow">
+          <div className="flex items-start justify-between mb-2 sm:mb-3">
+            <h3 className="text-lg sm:text-xl font-bold">{project.title}</h3>
+            <div className="flex space-x-1">
+              {project.githubUrl && (
+                <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                  <Button variant="ghost" size="icon" className="h-6 w-6 sm:h-7 sm:w-7">
+                    <Github className="h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </Link>
+              )}
+              {project.liveUrl && (
+                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                  <Button variant="ghost" size="icon" className="h-6 w-6 sm:h-7 sm:w-7">
+                    <Globe className="h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center text-[10px] sm:text-xs text-muted-foreground mb-2 sm:mb-3">
+            <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1" />
+            <span>{project.date}</span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-3">{project.description}</p>
+
+          <div className="mb-3 sm:mb-4">
+            <div className="flex flex-wrap gap-1">
+              {project.technologies.slice(0, 4).map((tech, i) => (
+                <span
+                  key={i}
+                  className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-primary/10 text-primary"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 4 && (
+                <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                  +{project.technologies.length - 4}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-1.5 sm:gap-2">
+          {project.liveUrl && (
+            <Button size="sm" variant="outline" className="flex-1 text-[10px] sm:text-xs h-7 sm:h-8" asChild>
+              <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                Live Demo
+              </Link>
+            </Button>
+          )}
+          {project.githubUrl && (
+            <Button size="sm" variant="outline" className="flex-1 text-[10px] sm:text-xs h-7 sm:h-8" asChild>
+              <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                View Code
+              </Link>
+            </Button>
+          )}
+        </div>
+      </GlassmorphicCard>
+    </motion.div>
+  );
+}
+
+// Data Arrays
 
 // Services cards data
 const servicesCards = [
@@ -290,5 +1203,306 @@ const servicesCards = [
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
     )
+  }
+];
+
+// Experience Data
+const experiences: Experience[] = [
+  {
+    position: "Freelance Developer",
+    company: "FreeLance",
+    location: "Online",
+    period: "July 2025 - Present",
+    description: "I started freelancing as a frontend developer to gain hands-on experience in building web applications. ",
+    responsibilities: [
+      "Complete a project for a client within the given deadline",
+      "Collaborate with product managers and designers to refine product requirements and user experience"
+    ],
+    achievements: [
+      "Learned to complete tasks within a given deadline",
+      "Learned about new technologies and frameworks like React, Next.js, and TypeScript",
+      "Gained experience in working with clients and managing their expectations"
+    ]
+  },
+];
+
+const technologies = [
+  "JavaScript", "TypeScript", "React", "Next.js", "Vite",
+  "Node.js", "API", "MongoDB", "MySQL", "Supabase", "MySQL",
+  "Arch Linux", "Augment Code", "VS Code", "Git", "Github", "HTML",
+  "CSS/SCSS", "Tailwind CSS", "Material UI", "Figma", "Webpack"
+];
+
+// Education Data
+const educationData: Education[] = [
+  {
+    degree: "BTech in Computer Science and Engineering",
+    institution: "St Joseph's College of Engineering and Technology",
+    location: "Palai, Kottayam, Kerala",
+    period: "2024 - Present",
+    description: "Currently in the second semester (S3) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
+    achievements: [
+      "Current GPA: 8.5",
+      "Actively learning web development technologies",
+      "Exploring Data Structures and Algorithms in C++"
+    ]
+  },
+  {
+    degree: "12th (Pre-degree)",
+    institution: "St Mary's Central School",
+    location: "Idukki, Kerala",
+    period: "July 2022 - April 2024",
+    description: "Completed higher secondary education with a focus on Mathematics and Computer Science, developing a strong foundation in logical thinking and problem-solving skills.",
+    achievements: [
+      "Achieved 87.8% in final examinations",
+      "Specialized in Mathematics and Computer Science",
+      "Participated in school-level programming competitions"
+    ]
+  },
+  {
+    degree: "10th (SSLC)",
+    institution: "St Columba's School",
+    location: "New Delhi",
+    period: "April 2011 - May 2022",
+    description: "Completed secondary education with a well-rounded curriculum covering all major subjects, developing a strong academic foundation.",
+    achievements: [
+      "Achieved 72.8% in final examinations",
+      "Participated in various extracurricular activities",
+      "Developed initial interest in computers and technology"
+    ]
+  }
+];
+
+const achievements = [
+  {
+    title: "Strong Academic Performance",
+    description: "Maintaining a GPA of 8.5 in BTech Computer Science and Engineering program.",
+    year: "2025"
+  },
+  {
+    title: "Higher Secondary Achievement",
+    description: "Scored 87.8% in 12th grade with specialization in Mathematics and Computer Science.",
+    year: "2024"
+  },
+  {
+    title: "Multilingual Proficiency",
+    description: "Proficient in four languages: English, Malayalam, Hindi, and Tamil, enabling effective communication across diverse environments.",
+    year: "2021-Present"
+  },
+  {
+    title: "Self-Taught Programming",
+    description: "Independently learned multiple programming languages and web development technologies.",
+    year: "2022-Present"
+  },
+  {
+    title: "Frontend Development Projects",
+    description: "Created personal projects to practice and demonstrate skills in HTML, CSS, JavaScript, and TypeScript.",
+    year: "2024-Present"
+  },
+  {
+    title: "Computer Hardware Knowledge",
+    description: "Developed comprehensive understanding of computer hardware components and troubleshooting techniques.",
+    year: "2020-2022"
+  }
+];
+
+// Skills Data
+const frontendSkills: Skill[] = [
+  { name: "HTML", level: 98 },
+  { name: "CSS", level: 98 },
+  { name: "JavaScript", level: 85 },
+  { name: "TypeScript", level: 90 },
+  { name: "NextJS", level: 95 },
+  { name: "Responsive Design", level: 85 },
+  { name: "UI Fundamentals", level: 90 },
+  { name: "Tailwind CSS", level: 85 },
+  { name: "Frontend Basics", level: 99 },
+  { name: "React", level: 90 },
+  { name: "Swing", level: 90 },
+  { name: "JavaFX", level: 90 },
+  { name: "Rust", level: 70 },
+];
+
+const backendSkills: Skill[] = [
+  { name: "Python", level: 95 },
+  { name: "C Programming", level: 90 },
+  { name: "C++", level: 95 },
+  { name: "MySQL", level: 95 },
+  { name: "Java", level: 90 },
+  { name: "DSA Fundamentals", level: 70 },
+  { name: "Backend Basics", level: 75 },
+  { name: "Database Concepts", level: 80 },
+  { name: "API Fundamentals", level: 90 },
+  { name: "NodeJS", level: 90 },
+  { name: "Supabase", level: 90 },
+];
+
+const toolsSkills: Skill[] = [
+  { name: "Git", level: 100 },
+  { name: "VS Code", level: 100 },
+  { name: "Computer Hardware", level: 98 },
+  { name: "Linux OS", level: 95 },
+  { name: "Windows OS", level: 98 },
+  { name: "Basic Networking", level: 80 },
+  { name: "Development Tools", level: 85 },
+  { name: "GitHub", level: 98 },
+  { name: "Command Line", level: 95 },
+];
+
+const otherSkills: Skill[] = [
+  { name: "Prompt Engineering", level: 98 },
+  { name: "English", level: 95 },
+  { name: "Malayalam", level: 90 },
+  { name: "Hindi", level: 100 },
+  { name: "Tamil", level: 80 },
+  { name: "Self-Learning", level: 85 },
+  { name: "Time Management", level: 85 },
+  { name: "Adaptability", level: 97 }
+];
+
+const professionalSkills: Skill[] = [
+  { name: "Communication", level: 85 },
+  { name: "Teamwork", level: 95 },
+  { name: "Problem Solving", level: 85 },
+  { name: "Critical Thinking", level: 80 },
+  { name: "Learning Agility", level: 90 },
+  { name: "Attention to Detail", level: 85 },
+  { name: "Time Management", level: 80 },
+  { name: "Adaptability", level: 95 }
+];
+
+// Projects Data
+const featuredProjects: Project[] = [
+  {
+    title: "AI CENTRAL Station",
+    description: "An advanced, all-in-one platform designed to help users explore, compare, and utilize a wide range of AI tools and technologies. Acts as a toolkit hub, streamlining access to the latest and best AI tools across categories — from generative models to productivity boosters.",
+    date: "May 2025",
+    imageUrl: "/projects/ai-central.jpg",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Radix UI", "NewsAPI"],
+    liveUrl: "https://ai-central.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/ai-central-station",
+    featured: true,
+    category: "AI Platform",
+    keyFeatures: [
+      "Dynamic AI Toolkit Hub with categorized access to AI tools",
+      "Live API Integration for up-to-date tool data",
+      "Automated Documentation Generator using AI summarizers",
+      "Benchmarking Page ranking tools based on performance",
+      "AI News Feed integrated with NewsAPI",
+      "Fully Responsive UI built with Next.js and Tailwind CSS",
+      "Future-Proofed Database Handling for scalability"
+    ]
+  },
+  {
+    title: "Personal Portfolio Website",
+    description: "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features a dark/light theme toggle, smooth animations, and a clean, professional design.",
+    date: "April 2025",
+    imageUrl: "/projects/portfolio.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+    liveUrl: "https://dariogeorge.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/personal-portfolio",
+    featured: true,
+    category: "Web Development",
+    keyFeatures: [
+      "Dark/Light theme toggle for user preference",
+      "Smooth animations using Framer Motion",
+      "Responsive design for all devices",
+      "Dynamic routing for easy navigation",
+      "SEO optimized for better visibility",
+      "Integrated with Vercel for fast deployment"
+    ]
+  },
+];
+
+const otherProjects: Project[] = [
+  {
+    title: "AI Toolkit Hub",
+    description: "A page where multiple AI tools are listed with multiple categories.",
+    date: "January 2025",
+    imageUrl: "/projects/ai-toolkit.png",
+    technologies: ["JavaScript", "Tailwind CSS", "Vercel", "HTML"],
+    liveUrl: "https://ai-hub-psi.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/AI-HUB-PAGE",
+    category: "Web Development"
+  },
+  {
+    title: "GoAero",
+    description: "A flight booking platform built using Java Swing and MySQL as part of a course project. It was built by a team of 4 members. It consists of roles as Passenger, Admin, and Airline Company. ",
+    date: "October 2025",
+    imageUrl: "/projects/goaero.png",
+       technologies: ["Java", "MySQL", "Java Swing"],
+    liveUrl:"/",
+    githubUrl: "https://github.com/dariogeorge21/GoAero",
+    category:"Java"
+  },
+  {
+    title: "Gnosis - The Bible App",
+    description: "A web app that helps in your faith by reading bible, reciting rosaries, and other prayers. Also with an AI chatbot that can help clarify your doubts.",
+    date: "May 2025",
+    imageUrl: "/projects/gnosis.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    liveUrl: "https://gnosis-liard.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/Gnosis",
+    category: "Web Development",
+  },
+  {
+    title: "Finance Tracker",
+    description: "A simple finance tracker app built using NextJS and Supabase. It allows users to track their income and expenses and view their balance.",
+    date: "January 2025",
+    imageUrl: "/projects/finance-dev.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+    liveUrl: "https://finance-tracker-dev.vercel.app",
+    githubUrl: "https://github.com/dariogeorge21/finance-tracker",
+    category: "Web Development"
+  },
+  {
+    title: "Typing Speed Test",
+    description: "A simple web page that allows users to test their typing speed and accuracy.",
+    date: "January 2025",
+    imageUrl: "/projects/typing-test.png",
+    technologies: ["JavaScript", "HTML", "CSS"],
+    liveUrl: "https://dariogeorge21.github.io/typing-test/",
+    githubUrl: "https://github.com/dariogeorge21/typing-test",
+    category: "Web Development"
+  },
+  {
+    title: "Chrome Dinosaur using Voice Detection",
+    description: "A simple chrome dinosaur game that can be played using voice detection in python. It uses python and sounddevice library to detect voice. On sound detection it jumps the dinosaur.",
+    date: "February 2025",
+    imageUrl: "/projects/dino.png",
+    technologies: ["Python", "Sounddevice"],
+    liveUrl: "/",
+    githubUrl: "https://github.com/dariogeorge21/dino-py",
+    category: "Python"
+  },
+  {
+    title: "Finger based eye tracking",
+    description: "Consist of two eyes which follows the index finger through the camera.",
+    date: "February 2025",
+    imageUrl: "/projects/eye.png",
+    technologies: ["Vanilla JS","HTML", "CSS", "Mediapipe"],
+    liveUrl: "https://dariogeorge21.github.io/finger-eye-tracking/",
+    githubUrl: "https://github.com/dariogeorge21/finger-eye-tracking",
+    category: "Web Development"
+  },
+  {
+    title: "Tic Tac Toe Game",
+    description: "A simple python based game that allows users to play tic tac toe.",
+    date: "January 2025",
+    imageUrl: "/projects/ttt.png",
+    technologies: ["Python"],
+    liveUrl: "/",
+    githubUrl: "https://github.com/dariogeorge21/TTT-python",
+    category: "Python"
+  },
+  {
+    title: "Snake Game",
+    description: "A simple python based game that allows users to play snake game.",
+    date: "January 2025",
+    imageUrl: "/projects/snake-game.png",
+    technologies: ["Python"],
+    liveUrl: "/",
+    githubUrl: "https://github.com/dariogeorge21/python-snake",
+    category: "Python"
   }
 ];
