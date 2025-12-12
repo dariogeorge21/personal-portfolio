@@ -61,7 +61,7 @@ export default function Home() {
                   <span className="hero-tech-badge">TypeScript</span>
                   <span className="hero-tech-badge">React</span>
                   <span className="hero-tech-badge">NextJS</span>
-                  <span className="hero-tech-badge">Python</span>
+                  <span className="hero-tech-badge">Supabase</span>
                 </motion.div>
 
                 {/* Main heading */}
@@ -81,7 +81,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="hero-subtitle mb-4 sm:mb-6 text-lg sm:text-xl md:text-2xl"
                   >
-                    Student, Frontend Developer
+                    Full Stack Developer | Freelancer
                   </motion.h2>
 
                   <motion.p
@@ -90,7 +90,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="hero-description text-sm sm:text-base"
                   >
-                    Exploring Full Stack Development | Learning DSA in C++ | Computer Science Student at St Joseph's College of Engineering and Technology
+                    Computer Science Student at St Joseph's College of Engineering and Technology
                   </motion.p>
                 </div>
 
