@@ -43,27 +43,27 @@ export default function Home() {
             <div className="absolute -top-6 -right-6 w-24 sm:w-32 h-24 sm:h-32 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-8 -left-8 w-32 sm:w-40 h-32 sm:h-40 bg-gradient-to-tr from-pink-500/20 to-blue-600/20 rounded-full blur-3xl"></div>
 
-            <div className="relative z-10 text-center space-y-8">
+            <div className="relative z-10 text-center space-y-6">
               {/* Status Badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="flex justify-center"
+                className="flex justify-center pt-4"
               >
-                <div className="bg-green-500/10 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-green-500/30 shadow-lg flex items-center gap-2 sm:gap-3">
-                  <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                <div className="bg-green-500/10 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-green-500/30 shadow-lg flex items-center gap-2 sm:gap-3">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                   <span className="text-xs sm:text-sm font-medium text-green-400">Available for Freelance Projects</span>
                 </div>
               </motion.div>
 
               {/* Main heading */}
-              <div>
+              <div className="space-y-4 sm:space-y-5">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="hero-title mb-4 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+                  className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                 >
                   <span className="text-gradient">Dario George</span>
                 </motion.h1>
@@ -72,59 +72,61 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="hero-subtitle mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl"
+                  className="hero-subtitle text-lg sm:text-xl md:text-2xl font-semibold"
                 >
                   Full Stack Developer & Freelancer
                 </motion.h2>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="hero-description text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-2"
-                >
-                  Transforming ideas into powerful digital solutions. Specializing in modern web applications with cutting-edge technologies.
-                </motion.p>
+                <div className="space-y-3">
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="hero-description text-base sm:text-lg max-w-3xl mx-auto leading-relaxed"
+                  >
+                    Transforming ideas into powerful digital solutions. Specializing in modern web applications with cutting-edge technologies.
+                  </motion.p>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.7 }}
-                  className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto mb-4"
-                >
-                  BTech Computer Science Student | St Joseph's College of Engineering and Technology
-                </motion.p>
-
-                {/* Tech Stack */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                  className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8"
-                >
-                  <span className="hero-tech-badge">TypeScript</span>
-                  <span className="hero-tech-badge">React</span>
-                  <span className="hero-tech-badge">Next.js</span>
-                  <span className="hero-tech-badge">Node.js</span>
-                  <span className="hero-tech-badge">Supabase</span>
-                  <span className="hero-tech-badge">Tailwind CSS</span>
-                </motion.div>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                  >
+                    BTech Computer Science Student | St Joseph's College of Engineering and Technology
+                  </motion.p>
+                </div>
               </div>
+
+              {/* Tech Stack */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="flex flex-wrap justify-center gap-2 pt-2"
+              >
+                <span className="hero-tech-badge">TypeScript</span>
+                <span className="hero-tech-badge">React</span>
+                <span className="hero-tech-badge">Next.js</span>
+                <span className="hero-tech-badge">Node.js</span>
+                <span className="hero-tech-badge">Supabase</span>
+                <span className="hero-tech-badge">Tailwind CSS</span>
+              </motion.div>
 
               {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1 }}
-                className="flex flex-wrap justify-center gap-4 sm:gap-6"
+                className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-6"
               >
-                <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hero-button-glow text-base sm:text-lg h-11 sm:h-12 px-6 sm:px-8">
+                <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hero-button-glow text-sm sm:text-base h-11 sm:h-12 px-6 sm:px-8 font-medium">
                   <Link href="/contact">
-                    Hire Me <ArrowRight className="ml-2 h-5 w-5" />
+                    Hire Me <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
 
-                <Button variant="outline" size="lg" className="border-gradient hover-glow text-base sm:text-lg h-11 sm:h-12 px-6 sm:px-8" asChild>
+                <Button variant="outline" size="lg" className="border-gradient hover-glow text-sm sm:text-base h-11 sm:h-12 px-6 sm:px-8 font-medium" asChild>
                   <Link href="/projects">
                     View Projects
                   </Link>
@@ -136,7 +138,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
-                className="flex justify-center gap-6 pt-4"
+                className="flex justify-center gap-8 pt-8"
               >
                 <Link href="https://github.com/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 sm:h-7 sm:w-7">
