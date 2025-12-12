@@ -37,93 +37,117 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-20 md:pb-24 px-3 sm:px-4 min-h-screen flex items-center justify-center">
-        <div className="container mx-auto max-w-5xl">
-          <div className="hero-glassmorphic p-8 sm:p-12 md:p-16 relative">
-            {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-24 sm:w-32 h-24 sm:h-32 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-8 -left-8 w-32 sm:w-40 h-32 sm:h-40 bg-gradient-to-tr from-pink-500/20 to-blue-600/20 rounded-full blur-3xl"></div>
+        <div className="container mx-auto max-w-6xl">
+          <div className="hero-glassmorphic p-10 sm:p-14 md:p-20 relative overflow-hidden">
+            {/* Enhanced Decorative elements */}
+            <div className="absolute -top-8 -right-8 w-28 sm:w-36 h-28 sm:h-36 bg-gradient-to-br from-blue-500/25 to-purple-600/25 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-10 -left-10 w-36 sm:w-44 h-36 sm:h-44 bg-gradient-to-tr from-pink-500/25 to-blue-600/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute top-1/2 right-1/4 w-20 sm:w-24 h-20 sm:h-24 bg-gradient-to-br from-green-500/15 to-teal-600/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+            
+            {/* Border gradient effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-pink-500/10 rounded-2xl blur-xl"></div>
 
-            <div className="relative z-10 text-center space-y-6">
-              {/* Status Badge */}
+            <div className="relative z-10 text-center space-y-7 sm:space-y-8">
+              {/* Enhanced Status Badge */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex justify-center pt-4"
+                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+                className="flex justify-center pt-2"
               >
-                <div className="bg-green-500/10 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-green-500/30 shadow-lg flex items-center gap-2 sm:gap-3">
-                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                  <span className="text-xs sm:text-sm font-medium text-green-400">Available for Freelance Projects</span>
+                <div className="bg-gradient-to-r from-green-500/15 to-emerald-500/15 backdrop-blur-xl px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-green-500/40 shadow-2xl flex items-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-300">
+                  <span className="relative">
+                    <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse block"></span>
+                    <span className="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping"></span>
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold text-green-300 tracking-wide">Available for Projects</span>
                 </div>
               </motion.div>
 
-              {/* Main heading */}
-              <div className="space-y-4 sm:space-y-5">
+              {/* Enhanced Main heading */}
+              <div className="space-y-5 sm:space-y-6">
                 <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 100 }}
+                  className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight"
                 >
-                  <span className="text-gradient">Dario George</span>
+                  <span className="text-gradient bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                    Dario George
+                  </span>
                 </motion.h1>
 
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="hero-subtitle text-lg sm:text-xl md:text-2xl font-semibold"
+                  className="hero-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90"
                 >
-                  Full Stack Developer & Freelancer
+                  Full Stack Developer | Freelancer
                 </motion.h2>
 
-                <div className="space-y-3">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="hero-description text-base sm:text-lg max-w-3xl mx-auto leading-relaxed"
-                  >
-                    Delivering high-impact web solutions that drive business growth. I help startups and businesses build scalable, modern applications that convert ideas into results. Available for freelance projects worldwide.
-                  </motion.p>
+                <div className="space-y-4 max-w-4xl mx-auto">
+                  
 
-                  <motion.p
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
-                    className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                    className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm sm:text-base text-muted-foreground leading-relaxed"
                   >
-                    📍 New Delhi, India | BTech Computer Science Student | St Joseph's College of Engineering and Technology
-                  </motion.p>
+                    <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/30">
+                      <span className="text-blue-400">📍</span>
+                      <span>New Delhi, India</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/30">
+                      <span className="text-green-400">🎓</span>
+                      <span>BTech Computer Science</span>
+                    </div>
+                  </motion.div>
 
-                  <motion.p
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.75 }}
-                    className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                    className="bg-gradient-to-r from-background/40 to-background/20 backdrop-blur-lg rounded-2xl p-4 border border-border/30"
                   >
-                    🌐 Languages: English (Fluent) • Hindi (Native) • Malayalam (Intermediate) • Tamil (Basic)
-                  </motion.p>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-purple-400">🌐</span>
+                      <span className="text-sm font-medium text-foreground/70">Languages</span>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
+                      <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-full border border-green-500/30">English (Fluent)</span>
+                      <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full border border-blue-500/30">Hindi (Native)</span>
+                      <span className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full border border-purple-500/30">Malayalam (Intermediate)</span>
+                      <span className="bg-orange-500/20 text-orange-300 px-2 py-1 rounded-full border border-orange-500/30">Tamil (Basic)</span>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
 
-              {/* Tech Stack */}
+              {/* Enhanced Tech Stack */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="flex flex-wrap justify-center gap-2 pt-2"
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="bg-gradient-to-br from-background/30 to-background/10 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-border/40 shadow-xl"
               >
-                <span className="hero-tech-badge">Next.js</span>
-                <span className="hero-tech-badge">Supabase</span>
-                <span className="hero-tech-badge">React</span>
-                <span className="hero-tech-badge">TypeScript</span>
-                <span className="hero-tech-badge">Node.js</span>
-                <span className="hero-tech-badge">Tailwind CSS</span>
-                <span className="hero-tech-badge">Shadcn UI</span>
-                <span className="hero-tech-badge">Vite</span>
-                <span className="hero-tech-badge">JavaScript</span>
-                <span className="hero-tech-badge">Bootstrap</span>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <span className="text-blue-400">⚡</span>
+                  <span className="text-sm font-medium text-foreground/70">Tech Stack</span>
+                </div>
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                  <span className="hero-tech-badge bg-gradient-to-r from-blue-600/20 to-blue-700/20 border-blue-500/40 text-blue-300 hover:scale-105">Next.js</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-green-600/20 to-emerald-700/20 border-emerald-500/40 text-emerald-300 hover:scale-105">Supabase</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-cyan-600/20 to-cyan-700/20 border-cyan-500/40 text-cyan-300 hover:scale-105">React</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-blue-600/20 to-indigo-700/20 border-indigo-500/40 text-indigo-300 hover:scale-105">TypeScript</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-green-600/20 to-green-700/20 border-green-500/40 text-green-300 hover:scale-105">Node.js</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-teal-600/20 to-teal-700/20 border-teal-500/40 text-teal-300 hover:scale-105">Tailwind CSS</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-slate-600/20 to-gray-700/20 border-slate-500/40 text-slate-300 hover:scale-105">Shadcn UI</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-purple-600/20 to-purple-700/20 border-purple-500/40 text-purple-300 hover:scale-105">Vite</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-yellow-600/20 to-amber-700/20 border-yellow-500/40 text-yellow-300 hover:scale-105">JavaScript</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-violet-600/20 to-purple-700/20 border-violet-500/40 text-violet-300 hover:scale-105">Bootstrap</span>
+                </div>
               </motion.div>
 
               {/* CTA Buttons */}
