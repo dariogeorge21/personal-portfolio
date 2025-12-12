@@ -84,7 +84,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="hero-description text-base sm:text-lg max-w-3xl mx-auto leading-relaxed"
                   >
-                    Transforming ideas into powerful digital solutions. Specializing in modern web applications with cutting-edge technologies.
+                    Delivering high-impact web solutions that drive business growth. I help startups and businesses build scalable, modern applications that convert ideas into results. Available for freelance projects worldwide.
                   </motion.p>
 
                   <motion.p
@@ -93,7 +93,16 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.7 }}
                     className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed"
                   >
-                    BTech Computer Science Student | St Joseph's College of Engineering and Technology
+                    📍 New Delhi, India | BTech Computer Science Student | St Joseph's College of Engineering and Technology
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.75 }}
+                    className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                  >
+                    🌐 Languages: English (Fluent) • Hindi (Native) • Malayalam (Intermediate) • Tamil (Basic)
                   </motion.p>
                 </div>
               </div>
@@ -105,12 +114,16 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.8 }}
                 className="flex flex-wrap justify-center gap-2 pt-2"
               >
-                <span className="hero-tech-badge">TypeScript</span>
-                <span className="hero-tech-badge">React</span>
                 <span className="hero-tech-badge">Next.js</span>
-                <span className="hero-tech-badge">Node.js</span>
                 <span className="hero-tech-badge">Supabase</span>
+                <span className="hero-tech-badge">React</span>
+                <span className="hero-tech-badge">TypeScript</span>
+                <span className="hero-tech-badge">Node.js</span>
                 <span className="hero-tech-badge">Tailwind CSS</span>
+                <span className="hero-tech-badge">Shadcn UI</span>
+                <span className="hero-tech-badge">Vite</span>
+                <span className="hero-tech-badge">JavaScript</span>
+                <span className="hero-tech-badge">Bootstrap</span>
               </motion.div>
 
               {/* CTA Buttons */}
