@@ -543,3 +543,97 @@
   height: 100%;
   z-index: -1;
 }
+
+/* Enhanced scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced button glow effects */
+.hero-button-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-button-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.hero-button-glow:hover::before {
+  left: 100%;
+}
+
+/* Enhanced project card hover effects */
+.project-card-enhanced {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-enhanced:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Availability badge pulse */
+.availability-pulse {
+  animation: availabilityPulse 2s ease-in-out infinite;
+}
+
+@keyframes availabilityPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+}
+
+/* Enhanced section spacing for mobile */
+@media (max-width: 640px) {
+  section {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* Smooth scroll snap for mobile */
+@media (max-width: 768px) {
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Enhanced focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Contact card hover effect */
+.contact-card-hover {
+  transition: all 0.3s ease;
+}
+
+.contact-card-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+/* Stats counter animation */
+.stats-number {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

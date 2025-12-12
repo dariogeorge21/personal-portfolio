@@ -1,9 +1,9 @@
 "use client";
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Linkedin, Mail, Download, Calendar, MapPin, Briefcase, Award, Code, ExternalLink, Github, Globe, Layers, Send, Phone } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, Download, Calendar, MapPin, Briefcase, Award, Code, ExternalLink, Github, Globe, Layers, Send, Phone, Clock, CheckCircle, Star, Zap, MessageCircle, Users, Rocket, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import BackgroundParticles from '@/components/background-particles';
 import { GlassmorphicCard } from '@/components/glassmorphic-card';
@@ -27,7 +27,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { toast } from 'sonner';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Form schema for contact form
 const formSchema = z.object({
@@ -41,6 +41,20 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  // Hide scroll indicator after scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollIndicator(false);
+      } else {
+        setShowScrollIndicator(true);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -102,13 +116,31 @@ export default function Home() {
   });
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen scroll-smooth">
       <BackgroundParticles />
 
-      {/* Hero Section */}
-      <section className="pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-20 md:pb-24 px-3 sm:px-4 min-h-screen flex items-center justify-center">
+      {/* Floating Contact Button - Sticky CTA */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 2, duration: 0.5 }}
+        className="fixed bottom-6 right-6 z-50 hidden sm:block"
+      >
+        <Link href="#contact">
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-2xl hover:shadow-blue-500/25 rounded-full px-6 py-6 group"
+          >
+            <MessageCircle className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
+            <span className="font-semibold">Let's Talk</span>
+          </Button>
+        </Link>
+      </motion.div>
+
+      {/* Hero Section - Enhanced */}
+      <section className="pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-3 sm:px-4 min-h-screen flex items-center justify-center relative">
         <div className="container mx-auto max-w-6xl">
-          <div className="hero-glassmorphic p-10 sm:p-14 md:p-20 relative overflow-hidden">
+          <div className="hero-glassmorphic p-8 sm:p-12 md:p-16 lg:p-20 relative overflow-hidden">
             {/* Enhanced Decorative elements */}
             <div className="absolute -top-8 -right-8 w-28 sm:w-36 h-28 sm:h-36 bg-gradient-to-br from-blue-500/25 to-purple-600/25 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-10 -left-10 w-36 sm:w-44 h-36 sm:h-44 bg-gradient-to-tr from-pink-500/25 to-blue-600/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -117,32 +149,44 @@ export default function Home() {
             {/* Border gradient effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-pink-500/10 rounded-2xl blur-xl"></div>
 
-            <div className="relative z-10 text-center space-y-7 sm:space-y-8">
-              {/* Enhanced Status Badge */}
+            <div className="relative z-10 text-center space-y-6 sm:space-y-8">
+              {/* Enhanced Availability Badge - More Prominent */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, y: -10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
                 className="flex justify-center pt-2"
               >
-                <div className="bg-gradient-to-r from-green-500/15 to-emerald-500/15 backdrop-blur-xl px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-green-500/40 shadow-2xl flex items-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-xl px-6 sm:px-8 py-3 sm:py-4 rounded-full border-2 border-green-500/50 shadow-2xl shadow-green-500/20 flex items-center gap-3 sm:gap-4 hover:scale-105 hover:border-green-400/60 transition-all duration-300 cursor-pointer group">
                   <span className="relative">
-                    <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse block"></span>
-                    <span className="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping"></span>
+                    <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse block"></span>
+                    <span className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping"></span>
                   </span>
-                  <span className="text-xs sm:text-sm font-semibold text-green-300 tracking-wide">Available for Projects</span>
+                  <span className="text-sm sm:text-base font-bold text-green-300 tracking-wide">
+                    🚀 Open for Freelance & Internships
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-green-400 group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.div>
 
               {/* Enhanced Main heading */}
-              <div className="space-y-5 sm:space-y-6">
+              <div className="space-y-4 sm:space-y-6">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-muted-foreground text-sm sm:text-base tracking-widest uppercase font-medium"
+                >
+                  Hello, I'm
+                </motion.p>
+                
                 <motion.h1
                   initial={{ opacity: 0, y: 30, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 100 }}
-                  className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight"
+                  className="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none"
                 >
-                  <span className="text-gradient bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                  <span className="text-gradient bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                     Dario George
                   </span>
                 </motion.h1>
@@ -151,45 +195,39 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="hero-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90"
+                  className="hero-subtitle text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground/90"
                 >
-                  Full Stack Developer | Freelancer
+                  Full Stack Developer & Creative Problem Solver
                 </motion.h2>
 
-                <div className="space-y-4 max-w-4xl mx-auto">
-                  
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+                >
+                  I craft modern, scalable web applications with clean code and exceptional user experiences. 
+                  <span className="text-primary font-medium"> Let's build something amazing together.</span>
+                </motion.p>
 
+                <div className="space-y-4 max-w-4xl mx-auto pt-2">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                    className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm sm:text-base text-muted-foreground leading-relaxed"
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm sm:text-base text-muted-foreground"
                   >
-                    <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/30">
-                      <span className="text-blue-400">📍</span>
+                    <div className="flex items-center gap-2 bg-background/30 backdrop-blur-sm px-4 py-2 rounded-full border border-border/40 hover:border-primary/40 transition-colors">
+                      <MapPin className="w-4 h-4 text-blue-400" />
                       <span>New Delhi, India</span>
                     </div>
-                    <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/30">
-                      <span className="text-green-400">🎓</span>
-                      <span>BTech Computer Science</span>
+                    <div className="flex items-center gap-2 bg-background/30 backdrop-blur-sm px-4 py-2 rounded-full border border-border/40 hover:border-primary/40 transition-colors">
+                      <Award className="w-4 h-4 text-green-400" />
+                      <span>BTech CS Student</span>
                     </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.75 }}
-                    className="bg-gradient-to-r from-background/40 to-background/20 backdrop-blur-lg rounded-2xl p-4 border border-border/30"
-                  >
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-purple-400">🌐</span>
-                      <span className="text-sm font-medium text-foreground/70">Languages</span>
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
-                      <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-full border border-green-500/30">English (Fluent)</span>
-                      <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full border border-blue-500/30">Hindi (Native)</span>
-                      <span className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full border border-purple-500/30">Malayalam (Intermediate)</span>
-                      <span className="bg-orange-500/20 text-orange-300 px-2 py-1 rounded-full border border-orange-500/30">Tamil (Basic)</span>
+                    <div className="flex items-center gap-2 bg-background/30 backdrop-blur-sm px-4 py-2 rounded-full border border-border/40 hover:border-primary/40 transition-colors">
+                      <Clock className="w-4 h-4 text-orange-400" />
+                      <span>Quick Response</span>
                     </div>
                   </motion.div>
                 </div>
@@ -199,69 +237,245 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="bg-gradient-to-br from-background/30 to-background/10 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-border/40 shadow-xl"
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="bg-gradient-to-br from-background/40 to-background/20 backdrop-blur-xl rounded-2xl p-5 sm:p-6 border border-border/40 shadow-xl"
               >
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <span className="text-blue-400">⚡</span>
-                  <span className="text-sm font-medium text-foreground/70">Tech Stack</span>
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Zap className="w-5 h-5 text-yellow-400" />
+                  <span className="text-sm sm:text-base font-semibold text-foreground/80">Tech Stack I Work With</span>
                 </div>
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                  <span className="hero-tech-badge bg-gradient-to-r from-blue-600/20 to-blue-700/20 border-blue-500/40 text-blue-300 hover:scale-105">Next.js</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-green-600/20 to-emerald-700/20 border-emerald-500/40 text-emerald-300 hover:scale-105">Supabase</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-cyan-600/20 to-cyan-700/20 border-cyan-500/40 text-cyan-300 hover:scale-105">React</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-blue-600/20 to-indigo-700/20 border-indigo-500/40 text-indigo-300 hover:scale-105">TypeScript</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-green-600/20 to-green-700/20 border-green-500/40 text-green-300 hover:scale-105">Node.js</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-teal-600/20 to-teal-700/20 border-teal-500/40 text-teal-300 hover:scale-105">Tailwind CSS</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-slate-600/20 to-gray-700/20 border-slate-500/40 text-slate-300 hover:scale-105">Shadcn UI</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-purple-600/20 to-purple-700/20 border-purple-500/40 text-purple-300 hover:scale-105">Vite</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-yellow-600/20 to-amber-700/20 border-yellow-500/40 text-yellow-300 hover:scale-105">JavaScript</span>
-                  <span className="hero-tech-badge bg-gradient-to-r from-violet-600/20 to-purple-700/20 border-violet-500/40 text-violet-300 hover:scale-105">Bootstrap</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-blue-600/20 to-blue-700/20 border-blue-500/40 text-blue-300 hover:scale-105 hover:border-blue-400/60 transition-all">Next.js</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-green-600/20 to-emerald-700/20 border-emerald-500/40 text-emerald-300 hover:scale-105 hover:border-emerald-400/60 transition-all">Supabase</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-cyan-600/20 to-cyan-700/20 border-cyan-500/40 text-cyan-300 hover:scale-105 hover:border-cyan-400/60 transition-all">React</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-blue-600/20 to-indigo-700/20 border-indigo-500/40 text-indigo-300 hover:scale-105 hover:border-indigo-400/60 transition-all">TypeScript</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-green-600/20 to-green-700/20 border-green-500/40 text-green-300 hover:scale-105 hover:border-green-400/60 transition-all">Node.js</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-teal-600/20 to-teal-700/20 border-teal-500/40 text-teal-300 hover:scale-105 hover:border-teal-400/60 transition-all">Tailwind CSS</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-purple-600/20 to-purple-700/20 border-purple-500/40 text-purple-300 hover:scale-105 hover:border-purple-400/60 transition-all">Python</span>
+                  <span className="hero-tech-badge bg-gradient-to-r from-yellow-600/20 to-amber-700/20 border-yellow-500/40 text-yellow-300 hover:scale-105 hover:border-yellow-400/60 transition-all">JavaScript</span>
                 </div>
               </motion.div>
 
-              {/* CTA Buttons */}
+              {/* Enhanced CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
-                className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-6"
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 pt-4"
               >
-                <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hero-button-glow text-sm sm:text-base h-11 sm:h-12 px-6 sm:px-8 font-medium">
-                  <Link href="/contact">
-                    Hire Me <ArrowRight className="ml-2 h-4 w-4" />
+                <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hero-button-glow text-base sm:text-lg h-12 sm:h-14 px-8 sm:px-10 font-semibold shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all group">
+                  <Link href="#contact">
+                    <Briefcase className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                    Hire Me for Your Project
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
 
-                <Button variant="outline" size="lg" className="border-gradient hover-glow text-sm sm:text-base h-11 sm:h-12 px-6 sm:px-8 font-medium" asChild>
-                  <Link href="/projects">
-                    View Projects
+                <Button variant="outline" size="lg" className="border-2 border-gradient hover-glow text-base sm:text-lg h-12 sm:h-14 px-8 sm:px-10 font-semibold group" asChild>
+                  <Link href="#projects">
+                    <Code className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                    View My Work
+                  </Link>
+                </Button>
+
+                <Button variant="ghost" size="lg" className="text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 font-medium hover:bg-primary/10 group" asChild>
+                  <Link href="/RESUME DARIO-GEORGE.pdf" target="_blank" rel="noopener noreferrer">
+                    <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                    Download Resume
                   </Link>
                 </Button>
               </motion.div>
 
-              {/* Social Links */}
+              {/* Social Links - Enhanced */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="flex justify-center gap-8 pt-8"
+                transition={{ duration: 0.8, delay: 1.1 }}
+                className="flex justify-center gap-4 pt-6"
               >
-                <Link href="https://github.com/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 sm:h-7 sm:w-7">
-                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                  </svg>
+                <Link href="https://github.com/dariogeorge21" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 group">
+                  <Github className="h-6 w-6" />
                 </Link>
-                <Link href="https://www.linkedin.com/in/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110">
-                  <Linkedin className="h-6 w-6 sm:h-7 sm:w-7" />
+                <Link href="https://www.linkedin.com/in/dariogeorge21" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 group">
+                  <Linkedin className="h-6 w-6" />
                 </Link>
-                <Link href="mailto:edu.dariogeorge21@gmail.com" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110">
-                  <Mail className="h-6 w-6 sm:h-7 sm:w-7" />
+                <Link href="mailto:edu.dariogeorge21@gmail.com" className="p-3 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 group">
+                  <Mail className="h-6 w-6" />
+                </Link>
+                <Link href="tel:+917838403506" className="p-3 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 group">
+                  <Phone className="h-6 w-6" />
                 </Link>
               </motion.div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <AnimatePresence>
+          {showScrollIndicator && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            >
+              <Link href="#hire-me" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
+                <span className="text-xs sm:text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ChevronDown className="h-6 w-6" />
+                </motion.div>
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
+
+      {/* NEW: Hire Me / Availability Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 relative" id="hire-me">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <GlassmorphicCard className="p-8 sm:p-10 md:p-12 relative overflow-hidden">
+              {/* Background decorations */}
+              <div className="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-green-500/20 to-emerald-600/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-tr from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"></div>
+              
+              <div className="relative z-10">
+                <div className="text-center mb-10 sm:mb-12">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-2 bg-green-500/15 px-4 py-2 rounded-full border border-green-500/30 mb-6"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                    <span className="text-green-300 font-semibold text-sm sm:text-base">Currently Available for Work</span>
+                  </motion.div>
+                  
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
+                    Ready to Bring Your Ideas to Life
+                  </h2>
+                  <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+                    I'm actively seeking freelance projects and internship opportunities. Let's create something exceptional together.
+                  </p>
+                </div>
+
+                {/* What I Offer Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="p-6 rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 hover:border-blue-400/40 transition-all group"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Globe className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">Full Stack Web Development</h3>
+                    <p className="text-sm text-muted-foreground mb-4">End-to-end web applications with React, Next.js, Node.js, and modern databases.</p>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Responsive Design</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> API Integration</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Database Design</li>
+                    </ul>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="p-6 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 hover:border-purple-400/40 transition-all group"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Layers className="w-6 h-6 text-purple-400" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">Frontend Development</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Pixel-perfect interfaces with modern frameworks and smooth animations.</p>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> React & Next.js</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> TypeScript</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Tailwind CSS</li>
+                    </ul>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="p-6 rounded-xl bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 hover:border-green-400/40 transition-all group md:col-span-2 lg:col-span-1"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Rocket className="w-6 h-6 text-green-400" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">Custom Solutions</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Tailored projects based on your unique requirements and goals.</p>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Quick Turnaround</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Transparent Communication</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Ongoing Support</li>
+                    </ul>
+                  </motion.div>
+                </div>
+
+                {/* Stats Row */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                  <div className="text-center p-4 rounded-lg bg-background/30">
+                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">{featuredProjects.length + otherProjects.length}+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Projects Completed</div>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-background/30">
+                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">24h</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Response Time</div>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-background/30">
+                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">100%</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Commitment</div>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-background/30">
+                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">∞</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Enthusiasm</div>
+                  </div>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-base sm:text-lg px-8 sm:px-10 h-12 sm:h-14 font-semibold shadow-xl hover:shadow-green-500/25 transition-all group" 
+                    asChild
+                  >
+                    <Link href="#contact">
+                      <Briefcase className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      Let's Discuss Your Project
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                  
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="border-2 text-base sm:text-lg px-8 sm:px-10 h-12 sm:h-14 font-semibold group" 
+                    asChild
+                  >
+                    <Link href="mailto:edu.dariogeorge21@gmail.com">
+                      <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      Quick Email
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Response Time Note */}
+                <div className="text-center mt-6">
+                  <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
+                    <Clock className="w-4 h-4 text-green-400" />
+                    Typical response within 24 hours • Flexible availability
+                  </p>
+                </div>
+              </div>
+            </GlassmorphicCard>
+          </motion.div>
         </div>
       </section>
 
@@ -608,9 +822,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects Section */}
+      {/* Featured Projects Section - Enhanced */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="projects">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             variants={container}
             initial="hidden"
@@ -618,16 +832,20 @@ export default function Home() {
             viewport={{ once: true, amount: 0.1 }}
             className="text-center mb-10 sm:mb-16"
           >
-            <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
+            <motion.div variants={item} className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20 mb-4">
+              <Star className="w-4 h-4 text-primary" />
+              <span className="text-primary font-medium text-sm">Portfolio Showcase</span>
+            </motion.div>
+            <motion.h2 variants={item} className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4 sm:mb-6">
               Featured Projects
             </motion.h2>
-            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              A showcase of my best technical projects and development work
+            <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+              A showcase of my best technical projects demonstrating full-stack expertise and creative problem-solving
             </motion.p>
           </motion.div>
 
-          {/* Show only 2 featured projects */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-10">
+          {/* Featured Projects Grid - Enhanced Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 mb-12">
             {featuredProjects.slice(0, 2).map((project, index) => (
               <motion.div
                 key={index}
@@ -635,104 +853,169 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
+                className="group"
               >
-                <GlassmorphicCard className="h-full flex flex-col overflow-hidden p-4 sm:p-6 hover:scale-[1.02] transition-transform duration-300">
-                  <div className="relative w-full h-48 sm:h-56 mb-4 overflow-hidden rounded-md">
+                <GlassmorphicCard className="h-full flex flex-col overflow-hidden p-0 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+                  {/* Project Image with Overlay */}
+                  <div className="relative w-full h-56 sm:h-64 md:h-72 overflow-hidden">
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-300 hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                    <Badge className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-primary/80 hover:bg-primary text-xs">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                    
+                    {/* Featured Badge */}
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0 shadow-lg">
+                        <Star className="w-3 h-3 mr-1" /> Featured
+                      </Badge>
+                    </div>
+                    
+                    {/* Category Badge */}
+                    <Badge className="absolute top-4 right-4 bg-primary/90 hover:bg-primary text-sm">
                       {project.category}
                     </Badge>
+                    
+                    {/* Quick Action Buttons - Visible on Hover */}
+                    <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {project.liveUrl && project.liveUrl !== "/" && (
+                        <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" className="bg-white/90 hover:bg-white text-black shadow-lg">
+                            <ExternalLink className="w-4 h-4" />
+                          </Button>
+                        </Link>
+                      )}
+                      {project.githubUrl && (
+                        <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" variant="outline" className="bg-black/80 hover:bg-black text-white border-0 shadow-lg">
+                            <Github className="w-4 h-4" />
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="flex-grow">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
+                  {/* Project Content */}
+                  <div className="p-6 sm:p-8 flex-grow flex flex-col">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors">{project.title}</h3>
+                      <span className="text-xs text-muted-foreground whitespace-nowrap ml-4">{project.date}</span>
+                    </div>
                     
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    <p className="text-sm sm:text-base text-muted-foreground mb-6 line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
 
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.slice(0, 4).map((tech, i) => (
+                    {/* Key Features */}
+                    {project.keyFeatures && project.keyFeatures.length > 0 && (
+                      <div className="mb-6">
+                        <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-400" />
+                          Key Features
+                        </h4>
+                        <ul className="grid grid-cols-1 gap-2">
+                          {project.keyFeatures.slice(0, 3).map((feature, i) => (
+                            <li key={i} className="text-xs sm:text-sm text-muted-foreground flex items-start gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Technologies */}
+                    <div className="mt-auto">
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.technologies.map((tech, i) => (
                           <span
                             key={i}
-                            className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
+                            className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 text-primary border border-primary/20 font-medium"
                           >
                             {tech}
                           </span>
                         ))}
-                        {project.technologies.length > 4 && (
-                          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                            +{project.technologies.length - 4}
-                          </span>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3">
+                        {project.liveUrl && project.liveUrl !== "/" && (
+                          <Button className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all" asChild>
+                            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                              Live Demo <ExternalLink className="ml-2 h-4 w-4" />
+                            </Link>
+                          </Button>
+                        )}
+                        {project.githubUrl && (
+                          <Button variant="outline" className="flex-1 border-2 hover:bg-primary/5" asChild>
+                            <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              Source Code <Github className="ml-2 h-4 w-4" />
+                            </Link>
+                          </Button>
                         )}
                       </div>
                     </div>
-                  </div>
-
-                  <div className="flex gap-2 mt-4">
-                    {project.liveUrl && project.liveUrl !== "/" && (
-                      <Button className="flex-1 text-xs sm:text-sm h-9" asChild>
-                        <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          Live Demo <ExternalLink className="ml-1 h-3 w-3" />
-                        </Link>
-                      </Button>
-                    )}
-                    {project.githubUrl && (
-                      <Button variant="outline" className="flex-1 border-gradient text-xs sm:text-sm h-9" asChild>
-                        <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          View Code <Github className="ml-1 h-3 w-3" />
-                        </Link>
-                      </Button>
-                    )}
                   </div>
                 </GlassmorphicCard>
               </motion.div>
             ))}
           </div>
 
-          {/* Other Projects Preview */}
+          {/* Other Projects Preview - Enhanced Grid */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <GlassmorphicCard className="p-6 sm:p-8">
-              <div className="text-center mb-6">
-                <h3 className="text-xl sm:text-2xl font-bold mb-2">More Projects</h3>
-                <p className="text-muted-foreground text-sm">
-                  I've worked on {otherProjects.length}+ additional projects including web apps, Python tools, and more
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
-                {otherProjects.slice(0, 8).map((project, index) => (
-                  <div
-                    key={index}
-                    className="p-3 rounded-lg bg-background/50 border border-border/50 hover:border-primary/50 transition-colors"
-                  >
-                    <h4 className="font-medium text-sm mb-1 line-clamp-1">{project.title}</h4>
-                    <p className="text-xs text-muted-foreground">{project.category}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center">
+            <GlassmorphicCard className="p-6 sm:p-8 md:p-10">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2">More Projects</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Explore {otherProjects.length}+ additional projects across web apps, Python tools, and more
+                  </p>
+                </div>
                 <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700" 
+                  variant="outline"
+                  className="border-2 group whitespace-nowrap" 
                   asChild
                 >
                   <Link href="/projects">
-                    View All {featuredProjects.length + otherProjects.length} Projects <ArrowRight className="ml-2 h-4 w-4" />
+                    View All <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {otherProjects.slice(0, 8).map((project, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.03, y: -3 }}
+                    className="p-4 rounded-xl bg-gradient-to-br from-background/60 to-background/30 border border-border/50 hover:border-primary/50 transition-all cursor-pointer group"
+                  >
+                    <h4 className="font-medium text-sm mb-2 line-clamp-1 group-hover:text-primary transition-colors">{project.title}</h4>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">{project.category}</span>
+                      <ArrowRight className="w-3 h-3 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="text-center mt-8">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-xl hover:shadow-2xl transition-all" 
+                  asChild
+                >
+                  <Link href="/projects">
+                    <Code className="mr-2 h-5 w-5" />
+                    View Complete Portfolio ({featuredProjects.length + otherProjects.length} Projects)
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
@@ -741,98 +1024,164 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact CTA Section */}
+      {/* Enhanced Contact Section */}
       <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4" id="contact">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <GlassmorphicCard className="p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
+            <GlassmorphicCard className="p-8 sm:p-12 md:p-16 relative overflow-hidden">
               {/* Background decorations */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-pink-500/20 to-blue-600/20 rounded-full blur-3xl"></div>
+              <div className="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-tr from-pink-500/20 to-blue-600/20 rounded-full blur-3xl"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-green-500/10 to-teal-600/10 rounded-full blur-3xl"></div>
               
               <div className="relative z-10">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
-                  Let's Work Together
-                </h2>
-                <p className="text-muted-foreground text-base sm:text-lg mb-8 max-w-2xl mx-auto">
-                  Have a project in mind or want to discuss opportunities? I'm always open to new challenges and collaborations.
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
-                  <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/30">
-                    <Mail className="w-6 h-6 text-primary" />
-                    <div className="text-sm font-medium">Email</div>
-                    <a href="mailto:edu.dariogeorge21@gmail.com" className="text-xs text-muted-foreground hover:text-primary transition-colors break-all">
-                      edu.dariogeorge21@gmail.com
-                    </a>
-                  </div>
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-2 bg-green-500/15 px-4 py-2 rounded-full border border-green-500/30 mb-6"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                    <span className="text-green-300 font-semibold text-sm sm:text-base">Ready to Start</span>
+                  </motion.div>
                   
-                  <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/30">
-                    <Phone className="w-6 h-6 text-primary" />
-                    <div className="text-sm font-medium">Phone</div>
-                    <a href="tel:+917838403506" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                      +91 7838403506
-                    </a>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/30">
-                    <MapPin className="w-6 h-6 text-primary" />
-                    <div className="text-sm font-medium">Location</div>
-                    <div className="text-xs text-muted-foreground">
-                      Thodupuzha, India
-                    </div>
-                  </div>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient mb-4">
+                    Let's Work Together
+                  </h2>
+                  <p className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    Have a project in mind or want to discuss opportunities? I'm always open to new challenges and collaborations.
+                  </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                {/* Contact Options Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="p-6 rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 hover:border-blue-400/40 transition-all group text-center"
+                  >
+                    <div className="w-14 h-14 mx-auto rounded-full bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Mail className="w-7 h-7 text-blue-400" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">Email Me</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Best for detailed project discussions</p>
+                    <a href="mailto:edu.dariogeorge21@gmail.com" className="text-sm text-primary hover:underline break-all">
+                      edu.dariogeorge21@gmail.com
+                    </a>
+                  </motion.div>
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="p-6 rounded-xl bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 hover:border-green-400/40 transition-all group text-center"
+                  >
+                    <div className="w-14 h-14 mx-auto rounded-full bg-green-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Phone className="w-7 h-7 text-green-400" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">Call Me</h3>
+                    <p className="text-sm text-muted-foreground mb-4">For quick conversations</p>
+                    <a href="tel:+917838403506" className="text-sm text-primary hover:underline">
+                      +91 7838403506
+                    </a>
+                  </motion.div>
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="p-6 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 hover:border-purple-400/40 transition-all group text-center"
+                  >
+                    <div className="w-14 h-14 mx-auto rounded-full bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Linkedin className="w-7 h-7 text-purple-400" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">Connect on LinkedIn</h3>
+                    <p className="text-sm text-muted-foreground mb-4">For professional networking</p>
+                    <Link href="https://www.linkedin.com/in/dariogeorge21" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                      linkedin.com/in/dariogeorge21
+                    </Link>
+                  </motion.div>
+                </div>
+
+                {/* Primary CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                   <Button 
                     size="lg"
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-base px-8" 
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-base sm:text-lg px-10 sm:px-12 h-14 sm:h-16 font-semibold shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all group" 
                     asChild
                   >
                     <Link href="/contact">
-                      Send Message <Send className="ml-2 h-4 w-4" />
+                      <Send className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      Send Me a Message
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
 
-                  <div className="flex gap-4">
-                    <Link
-                      href="https://github.com/dariogeorge21"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                      aria-label="GitHub"
-                    >
-                      <Github className="h-5 w-5" />
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="border-2 text-base sm:text-lg px-8 sm:px-10 h-14 sm:h-16 font-semibold group" 
+                    asChild
+                  >
+                    <Link href="/RESUME DARIO-GEORGE.pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      Download Resume
                     </Link>
-                    <Link
-                      href="https://www.linkedin.com/in/dariogeorge21"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </Link>
-                    <Link
-                      href="mailto:edu.dariogeorge21@gmail.com"
-                      className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                      aria-label="Email"
-                    >
-                      <Mail className="h-5 w-5" />
-                    </Link>
-                  </div>
+                  </Button>
                 </div>
 
-                <div className="mt-8 p-4 bg-primary/5 rounded-lg border border-primary/10 inline-block">
-                  <p className="text-sm text-muted-foreground">
-                    💼 Currently open to <span className="text-primary font-medium">internships</span> and <span className="text-primary font-medium">learning opportunities</span>
-                  </p>
+                {/* Social Links */}
+                <div className="flex justify-center gap-4 mb-8">
+                  <Link
+                    href="https://github.com/dariogeorge21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                    aria-label="GitHub"
+                  >
+                    <Github className="h-6 w-6" />
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/in/dariogeorge21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-6 w-6" />
+                  </Link>
+                  <Link
+                    href="mailto:edu.dariogeorge21@gmail.com"
+                    className="p-4 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                    aria-label="Email"
+                  >
+                    <Mail className="h-6 w-6" />
+                  </Link>
+                  <Link
+                    href="tel:+917838403506"
+                    className="p-4 rounded-full bg-background/30 border border-border/40 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                    aria-label="Phone"
+                  >
+                    <Phone className="h-6 w-6" />
+                  </Link>
+                </div>
+
+                {/* Response Time & Availability Note */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <div className="flex items-center gap-2 bg-green-500/10 px-4 py-2 rounded-full border border-green-500/20">
+                    <Clock className="w-4 h-4 text-green-400" />
+                    <span className="text-sm text-muted-foreground">Response within 24 hours</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20">
+                    <Briefcase className="w-4 h-4 text-blue-400" />
+                    <span className="text-sm text-muted-foreground">Open for freelance & internships</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">
+                    <MapPin className="w-4 h-4 text-purple-400" />
+                    <span className="text-sm text-muted-foreground">Remote friendly</span>
+                  </div>
                 </div>
               </div>
             </GlassmorphicCard>
