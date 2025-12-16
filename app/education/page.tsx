@@ -129,7 +129,7 @@ const educationData: Education[] = [
     institution: "St Joseph's College of Engineering and Technology",
     location: "Palai, Kottayam, Kerala",
     period: "2024 - Present",
-    description: "Currently in the second semester (S3) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
+    description: "Currently in the second semester (S4) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
     achievements: [
       "Current GPA: 8.5",
       "Actively learning web development technologies",
