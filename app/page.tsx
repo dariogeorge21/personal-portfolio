@@ -119,20 +119,20 @@ export default function Home() {
     <div className="relative min-h-screen scroll-smooth">
       <BackgroundParticles />
 
-      {/* Floating Contact Button - Sticky CTA */}
+      {/* Floating Portfolio Button - Quick Navigation */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 2, duration: 0.5 }}
         className="fixed bottom-6 right-6 z-50 hidden sm:block"
       >
-        <Link href="#contact">
+        <Link href="#projects">
           <Button 
             size="lg" 
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-2xl hover:shadow-blue-500/25 rounded-full px-6 py-6 group"
           >
-            <MessageCircle className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-            <span className="font-semibold">Let's Talk</span>
+            <Code className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
+            <span className="font-semibold">My Work</span>
           </Button>
         </Link>
       </motion.div>
@@ -163,7 +163,7 @@ export default function Home() {
                     <span className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping"></span>
                   </span>
                   <span className="text-sm sm:text-base font-bold text-green-300 tracking-wide">
-                    🚀 Open for Freelance & Internships
+                    🚀 Available for Opportunities
                   </span>
                   <ArrowRight className="h-4 w-4 text-green-400 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -207,7 +207,7 @@ export default function Home() {
                   className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
                 >
                   I craft modern, scalable web applications with clean code and exceptional user experiences. 
-                  <span className="text-primary font-medium"> Let's build something amazing together.</span>
+                  <span className="text-primary font-medium"> Passionate about turning ideas into digital reality.</span>
                 </motion.p>
 
                 <div className="space-y-4 max-w-4xl mx-auto pt-2">
@@ -264,17 +264,17 @@ export default function Home() {
                 className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 pt-4"
               >
                 <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hero-button-glow text-base sm:text-lg h-12 sm:h-14 px-8 sm:px-10 font-semibold shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all group">
-                  <Link href="#contact">
-                    <Briefcase className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                    Hire Me for Your Project
+                  <Link href="#projects">
+                    <Code className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                    Explore My Projects
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
 
                 <Button variant="outline" size="lg" className="border-2 border-gradient hover-glow text-base sm:text-lg h-12 sm:h-14 px-8 sm:px-10 font-semibold group" asChild>
-                  <Link href="#projects">
-                    <Code className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                    View My Work
+                  <Link href="#skills">
+                    <Zap className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                    View Skills
                   </Link>
                 </Button>
 
@@ -320,7 +320,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 1.5 }}
               className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             >
-              <Link href="#hire-me" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
+              <Link href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
                 <span className="text-xs sm:text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
@@ -334,8 +334,8 @@ export default function Home() {
         </AnimatePresence>
       </section>
 
-      {/* NEW: Hire Me / Availability Section */}
-      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 relative" id="hire-me">
+      {/* About Me / Portfolio Overview Section */}
+      <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 relative" id="about">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -354,21 +354,21 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="inline-flex items-center gap-2 bg-green-500/15 px-4 py-2 rounded-full border border-green-500/30 mb-6"
+                    className="inline-flex items-center gap-2 bg-blue-500/15 px-4 py-2 rounded-full border border-blue-500/30 mb-6"
                   >
-                    <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-green-300 font-semibold text-sm sm:text-base">Currently Available for Work</span>
+                    <Users className="w-5 h-5 text-blue-400" />
+                    <span className="text-blue-300 font-semibold text-sm sm:text-base">About Me</span>
                   </motion.div>
                   
                   <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-4">
-                    Ready to Bring Your Ideas to Life
+                    Turning Ideas Into Digital Reality
                   </h2>
                   <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-                    I'm actively seeking freelance projects and internship opportunities. Let's create something exceptional together.
+                    I'm a passionate Computer Science student and developer who loves creating innovative solutions and learning new technologies.
                   </p>
                 </div>
 
-                {/* What I Offer Grid */}
+                {/* My Expertise Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                   <motion.div
                     whileHover={{ scale: 1.02, y: -5 }}
@@ -377,11 +377,11 @@ export default function Home() {
                     <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                       <Globe className="w-6 h-6 text-blue-400" />
                     </div>
-                    <h3 className="text-lg font-bold mb-2">Full Stack Web Development</h3>
-                    <p className="text-sm text-muted-foreground mb-4">End-to-end web applications with React, Next.js, Node.js, and modern databases.</p>
+                    <h3 className="text-lg font-bold mb-2">Full Stack Development</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Building complete web applications from frontend to backend with modern technologies.</p>
                     <ul className="text-xs text-muted-foreground space-y-1">
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Responsive Design</li>
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> API Integration</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> React & Next.js</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Node.js & APIs</li>
                       <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Database Design</li>
                     </ul>
                   </motion.div>
@@ -391,14 +391,14 @@ export default function Home() {
                     className="p-6 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 hover:border-purple-400/40 transition-all group"
                   >
                     <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                      <Layers className="w-6 h-6 text-purple-400" />
+                      <Code className="w-6 h-6 text-purple-400" />
                     </div>
-                    <h3 className="text-lg font-bold mb-2">Frontend Development</h3>
-                    <p className="text-sm text-muted-foreground mb-4">Pixel-perfect interfaces with modern frameworks and smooth animations.</p>
+                    <h3 className="text-lg font-bold mb-2">Programming Languages</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Proficient in multiple programming languages for diverse project requirements.</p>
                     <ul className="text-xs text-muted-foreground space-y-1">
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> React & Next.js</li>
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> TypeScript</li>
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Tailwind CSS</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> JavaScript & TypeScript</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Python & C++</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Java & MySQL</li>
                     </ul>
                   </motion.div>
 
@@ -407,35 +407,35 @@ export default function Home() {
                     className="p-6 rounded-xl bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 hover:border-green-400/40 transition-all group md:col-span-2 lg:col-span-1"
                   >
                     <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                      <Rocket className="w-6 h-6 text-green-400" />
+                      <Zap className="w-6 h-6 text-green-400" />
                     </div>
-                    <h3 className="text-lg font-bold mb-2">Custom Solutions</h3>
-                    <p className="text-sm text-muted-foreground mb-4">Tailored projects based on your unique requirements and goals.</p>
+                    <h3 className="text-lg font-bold mb-2">Continuous Learning</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Always exploring new technologies and improving skills through hands-on projects.</p>
                     <ul className="text-xs text-muted-foreground space-y-1">
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Quick Turnaround</li>
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Transparent Communication</li>
-                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Ongoing Support</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> AI Integration</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Modern Frameworks</li>
+                      <li className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-green-400" /> Best Practices</li>
                     </ul>
                   </motion.div>
                 </div>
 
-                {/* Stats Row */}
+                {/* Portfolio Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
                   <div className="text-center p-4 rounded-lg bg-background/30">
                     <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">{featuredProjects.length + otherProjects.length}+</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">Projects Completed</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Projects Built</div>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-background/30">
-                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">24h</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">Response Time</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">15+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Technologies</div>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-background/30">
-                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">100%</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">Commitment</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">2+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Years Learning</div>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-background/30">
                     <div className="text-3xl sm:text-4xl font-bold text-gradient mb-1">∞</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">Enthusiasm</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Passion</div>
                   </div>
                 </div>
 
@@ -443,12 +443,12 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Button 
                     size="lg"
-                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-base sm:text-lg px-8 sm:px-10 h-12 sm:h-14 font-semibold shadow-xl hover:shadow-green-500/25 transition-all group" 
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-base sm:text-lg px-8 sm:px-10 h-12 sm:h-14 font-semibold shadow-xl hover:shadow-blue-500/25 transition-all group" 
                     asChild
                   >
-                    <Link href="#contact">
-                      <Briefcase className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                      Let's Discuss Your Project
+                    <Link href="#projects">
+                      <Code className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      View My Projects
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -459,18 +459,18 @@ export default function Home() {
                     className="border-2 text-base sm:text-lg px-8 sm:px-10 h-12 sm:h-14 font-semibold group" 
                     asChild
                   >
-                    <Link href="mailto:edu.dariogeorge21@gmail.com">
-                      <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                      Quick Email
+                    <Link href="#skills">
+                      <Zap className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      Explore Skills
                     </Link>
                   </Button>
                 </div>
 
-                {/* Response Time Note */}
+                {/* Portfolio Navigation */}
                 <div className="text-center mt-6">
                   <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
-                    <Clock className="w-4 h-4 text-green-400" />
-                    Typical response within 24 hours • Flexible availability
+                    <Star className="w-4 h-4 text-yellow-400" />
+                    Computer Science Student • Full Stack Developer • Open to Opportunities
                   </p>
                 </div>
               </div>
@@ -489,10 +489,10 @@ export default function Home() {
             className="text-center mb-10 sm:mb-16"
           >
             <motion.h2 variants={item} className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-3 sm:mb-4">
-              Services I Provide
+              What I Do
             </motion.h2>
             <motion.p variants={item} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              Comprehensive digital solutions tailored to bring your vision to life
+              My expertise spans across various areas of software development and technology
             </motion.p>
           </motion.div>
 
@@ -565,7 +565,7 @@ export default function Home() {
               
               <div className="p-6 sm:p-8 md:p-10 relative z-10">
                 {/* Timeline dot */}
-                <div className="absolute left-4 top-8 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30 hidden md:flex">
+                <div className="absolute left-4 top-8 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 items-center justify-center shadow-lg shadow-blue-500/30 hidden md:flex">
                   <Briefcase className="w-4 h-4 text-white" />
                 </div>
                 
@@ -1450,17 +1450,17 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="inline-flex items-center gap-2 bg-green-500/15 px-4 py-2 rounded-full border border-green-500/30 mb-6"
+                    className="inline-flex items-center gap-2 bg-blue-500/15 px-4 py-2 rounded-full border border-blue-500/30 mb-6"
                   >
-                    <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-green-300 font-semibold text-sm sm:text-base">Ready to Start</span>
+                    <MessageCircle className="w-5 h-5 text-blue-400" />
+                    <span className="text-blue-300 font-semibold text-sm sm:text-base">Get In Touch</span>
                   </motion.div>
                   
                   <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient mb-4">
-                    Let's Work Together
+                    Let's Connect
                   </h2>
                   <p className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                    Have a project in mind or want to discuss opportunities? I'm always open to new challenges and collaborations.
+                    Interested in my work or want to collaborate? I'd love to hear from you and discuss how we can create something amazing together.
                   </p>
                 </div>
 
@@ -1474,7 +1474,7 @@ export default function Home() {
                       <Mail className="w-7 h-7 text-blue-400" />
                     </div>
                     <h3 className="text-lg font-bold mb-2">Email Me</h3>
-                    <p className="text-sm text-muted-foreground mb-4">Best for detailed project discussions</p>
+                    <p className="text-sm text-muted-foreground mb-4">Best for collaboration opportunities</p>
                     <a href="mailto:edu.dariogeorge21@gmail.com" className="text-sm text-primary hover:underline break-all">
                       edu.dariogeorge21@gmail.com
                     </a>
@@ -1488,7 +1488,7 @@ export default function Home() {
                       <Phone className="w-7 h-7 text-green-400" />
                     </div>
                     <h3 className="text-lg font-bold mb-2">Call Me</h3>
-                    <p className="text-sm text-muted-foreground mb-4">For quick conversations</p>
+                    <p className="text-sm text-muted-foreground mb-4">For direct conversations</p>
                     <a href="tel:+917838403506" className="text-sm text-primary hover:underline">
                       +91 7838403506
                     </a>
@@ -1517,8 +1517,8 @@ export default function Home() {
                     asChild
                   >
                     <Link href="/contact">
-                      <Send className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                      Send Me a Message
+                      <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                      Get In Touch
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -1572,19 +1572,19 @@ export default function Home() {
                   </Link>
                 </div>
 
-                {/* Response Time & Availability Note */}
+                {/* Portfolio Quick Navigation */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <div className="flex items-center gap-2 bg-green-500/10 px-4 py-2 rounded-full border border-green-500/20">
-                    <Clock className="w-4 h-4 text-green-400" />
-                    <span className="text-sm text-muted-foreground">Response within 24 hours</span>
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span className="text-sm text-muted-foreground">Available for opportunities</span>
                   </div>
                   <div className="flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20">
-                    <Briefcase className="w-4 h-4 text-blue-400" />
-                    <span className="text-sm text-muted-foreground">Open for freelance & internships</span>
+                    <Clock className="w-4 h-4 text-blue-400" />
+                    <span className="text-sm text-muted-foreground">Quick to respond</span>
                   </div>
                   <div className="flex items-center gap-2 bg-purple-500/10 px-4 py-2 rounded-full border border-purple-500/20">
-                    <MapPin className="w-4 h-4 text-purple-400" />
-                    <span className="text-sm text-muted-foreground">Remote friendly</span>
+                    <Globe className="w-4 h-4 text-purple-400" />
+                    <span className="text-sm text-muted-foreground">Remote ready</span>
                   </div>
                 </div>
               </div>
@@ -2080,7 +2080,7 @@ const educationData: Education[] = [
     institution: "St Joseph's College of Engineering and Technology",
     location: "Palai, Kottayam, Kerala",
     period: "2024 - Present",
-    description: "Currently in the second semester (S3) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
+    description: "Currently in the second semester (S4) of Computer Science and Engineering program, focusing on building a strong foundation in programming, data structures, and algorithms.",
     achievements: [
       "Current GPA: 8.5",
       "Actively learning web development technologies",
